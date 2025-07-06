@@ -583,10 +583,12 @@
             }
         });
 
-        // PWA Installation
+        // PWA Installation Debug
         let deferredPrompt;
+        let installButton;
         
         window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('✅ PWA install prompt available!');
             e.preventDefault();
             deferredPrompt = e;
             showInstallBanner();
@@ -594,13 +596,18 @@
 
         function showInstallBanner() {
             const banner = document.getElementById('installBanner');
-            banner.classList.add('show');
+            if (banner) {
+                banner.classList.add('show');
+                console.log('📱 Install banner shown');
+            }
         }
 
         function dismissInstallBanner() {
             const banner = document.getElementById('installBanner');
-            banner.classList.remove('show');
-            localStorage.setItem('installBannerDismissed', 'true');
+            if (banner) {
+                banner.classList.remove('show');
+                localStorage.setItem('installBannerDismissed', 'true');
+            }
         }
 
         async function installPWA() {
@@ -610,26 +617,75 @@
                 console.log(`User response to the install prompt: ${outcome}`);
                 deferredPrompt = null;
                 dismissInstallBanner();
+            } else {
+                console.log('❌ No install prompt available. Possible reasons:');
+                console.log('1. App already installed');
+                console.log('2. Not served over HTTPS');
+                console.log('3. Missing manifest.json or icons');
+                console.log('4. Browser doesn\'t support PWA');
+                alert('PWA installation not available. Check console for details.');
+            }
+        }
+
+        // PWA Installation Status Check
+        function checkPWAStatus() {
+            console.log('🔍 PWA Status Check:');
+            console.log('HTTPS:', location.protocol === 'https:');
+            console.log('Service Worker Support:', 'serviceWorker' in navigator);
+            console.log('Manifest:', document.querySelector('link[rel="manifest"]') ? 'Found' : 'Missing');
+            
+            // Check if app is already installed
+            window.addEventListener('appinstalled', () => {
+                console.log('✅ PWA installed successfully!');
+                dismissInstallBanner();
+            });
+            
+            // Check service worker registration
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(registrations => {
+                    console.log('Service Workers:', registrations.length > 0 ? 'Registered' : 'Not found');
+                    if (registrations.length === 0) {
+                        console.log('⚠️ Service worker not registered yet');
+                    }
+                });
             }
         }
 
         // Check if install banner was previously dismissed
         window.addEventListener('load', () => {
+            checkPWAStatus();
+            
             if (localStorage.getItem('installBannerDismissed') === 'true') {
                 const banner = document.getElementById('installBanner');
-                banner.style.display = 'none';
+                if (banner) {
+                    banner.style.display = 'none';
+                }
             }
+            
+            // Force show install button for testing (remove after debugging)
+            setTimeout(() => {
+                if (!deferredPrompt) {
+                    console.log('💡 Install prompt not triggered. Testing fallback...');
+                    // Uncomment next line to force show install banner for testing
+                    // showInstallBanner();
+                }
+            }, 3000);
         });
 
-        // Register Service Worker
+        // Register Service Worker with better error handling
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
+                navigator.serviceWorker.register('./service_worker.js')
                     .then((registration) => {
-                        console.log('SW registered: ', registration);
+                        console.log('✅ SW registered successfully:', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            console.log('🔄 SW update found');
+                        });
                     })
                     .catch((registrationError) => {
-                        console.log('SW registration failed: ', registrationError);
+                        console.error('❌ SW registration failed:', registrationError);
                     });
             });
         }
@@ -637,10 +693,11 @@
         // Offline Status Check
         function checkOfflineStatus() {
             if (navigator.onLine) {
-                alert('✅ Online: You\'re connected to the internet.\n🔄 The app will also work offline once cached!');
+                alert('✅ Online: You\'re connected to the internet.\n🔄 The app will also work offline once cached!\n\n📊 PWA Status: Check browser console for details.');
             } else {
-                alert('📱 Offline: You\'re browsing offline!\n✨ All content is still accessible thanks to PWA technology.');
+                alert('📱 Offline: You\'re browsing offline!\n✨ All content is still accessible thanks to PWA technology.\n\n🎉 This proves the offline functionality works!');
             }
+            checkPWAStatus();
         }
 
         // Update online/offline status
