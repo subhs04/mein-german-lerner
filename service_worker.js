@@ -1,20 +1,12 @@
-const CACHE_NAME = 'german-hub-v1.0.1';
+const CACHE_NAME = 'german-hub-v1.0.2';
 const urlsToCache = [
   './',
   './index.html',
   './manifest.json',
   './content/vocabulary/index.html',
-  './content/vocabulary/w-words-verbs.html',
+  './content/vocabulary/profession_page.html',
   './content/vocabulary/professions.html',
-  './content/vocabulary/food-drinks.html',
-  './content/vocabulary/city-locations.html',
-  './content/grammar/index.html',
-  './content/grammar/articles.html',
-  './content/grammar/verb-conjugation.html',
-  './content/practice/index.html',
-  './content/practice/quiz.html',
-  './content/practice/flashcards.html',
-  './content/tools/settings.html'
+  './content/vocabulary/w_words_verbs_page.html'
 ];
 
 // Install event - cache resources

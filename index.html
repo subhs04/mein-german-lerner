@@ -14,11 +14,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="German Hub">
-    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iNDAiIGZpbGw9InVybCgjZ3JhZGllbnQwXzFfMikiLz4KPGREZWZZPGO8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF8xXzIiIHgxPSIwIiB5MT0iMCIgeDI9IjE5MiIgeTI9IjE5MiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjNjY3ZWVhIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzc2NGJhMiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjx0ZXh0IHg9Ijk2IiB5PSIxMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI5NiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn4et8J+HqzwvdGV4dD4KPC9zdmc+">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iNzIiIHZpZXdCb3g9IjAgMCA3MiA3MiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjcyIiBoZWlnaHQ9IjcyIiByeD0iMTYiIGZpbGw9InVybCgjZ3JhZGllbnQwXzFfMikiLz4KPGREZWZZPGO8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF8xXzIiIHgxPSIwIiB5MT0iMCIgeDI9IjcyIiB5Mj0iNzIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzY2N2VlYSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3NjRiYTIiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8dGV4dCB4PSIzNiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn4et8J+HqzwvdGV4dD4KPC9zdmc+">
     
     <style>
         * {
@@ -594,6 +593,16 @@
             showInstallBanner();
         });
 
+        // Force debug mode to show install banner for testing
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                    console.log('🔧 Debug mode: Forcing install banner on localhost');
+                    showInstallBanner();
+                }
+            }, 2000);
+        });
+
         function showInstallBanner() {
             const banner = document.getElementById('installBanner');
             if (banner) {
@@ -662,12 +671,17 @@
                 }
             }
             
-            // Force show install button for testing (remove after debugging)
+            // Enhanced debugging for PWA installation
             setTimeout(() => {
                 if (!deferredPrompt) {
-                    console.log('💡 Install prompt not triggered. Testing fallback...');
-                    // Uncomment next line to force show install banner for testing
-                    // showInstallBanner();
+                    console.log('💡 Install prompt not triggered. Possible reasons:');
+                    console.log('1. Site not served over HTTPS (except localhost)');
+                    console.log('2. App already installed');
+                    console.log('3. Browser doesn\'t support PWA installation');
+                    console.log('4. PWA criteria not fully met');
+                    console.log('Current URL:', window.location.href);
+                    console.log('Is HTTPS:', window.location.protocol === 'https:');
+                    console.log('Is localhost:', window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
                 }
             }, 3000);
         });
