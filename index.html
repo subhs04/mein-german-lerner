@@ -354,6 +354,12 @@
             from { transform: translateY(-20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
         
         /* Footer */
         .footer {
@@ -604,13 +610,74 @@
                     return;
                 }
                 
-                // If no install prompt after 3 seconds, show fallback banner
+                // Try to trigger install prompt through user interaction
                 if (!installPromptAvailable) {
                     console.log('💡 Install prompt not automatically triggered - showing banner anyway');
                     showInstallBanner();
+                    
+                    // Also try to detect if browser supports PWA installation
+                    detectPWASupport();
                 }
             }, 3000);
         });
+
+        function detectPWASupport() {
+            // Check various browser capabilities
+            const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            const isEdge = /Edge/.test(navigator.userAgent);
+            const isFirefox = /Firefox/.test(navigator.userAgent);
+            const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+            const isAndroid = /Android/.test(navigator.userAgent);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            
+            console.log('🔍 Browser Detection:');
+            console.log('Chrome:', isChrome);
+            console.log('Edge:', isEdge);
+            console.log('Firefox:', isFirefox);
+            console.log('Safari:', isSafari);
+            console.log('Android:', isAndroid);
+            console.log('iOS:', isIOS);
+            
+            // Check if service worker is properly registered
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.ready.then(registration => {
+                    console.log('✅ Service Worker ready:', registration.scope);
+                    
+                    // For Chrome/Edge, try to manually check PWA criteria
+                    if (isChrome || isEdge) {
+                        checkChromeInstallability();
+                    }
+                });
+            }
+        }
+
+        function checkChromeInstallability() {
+            // Check if the page meets PWA criteria
+            const manifest = document.querySelector('link[rel="manifest"]');
+            const serviceWorker = 'serviceWorker' in navigator;
+            const isSecure = location.protocol === 'https:' || location.hostname === 'localhost';
+            
+            console.log('🔍 PWA Criteria Check:');
+            console.log('Manifest:', manifest ? '✅' : '❌');
+            console.log('Service Worker:', serviceWorker ? '✅' : '❌');
+            console.log('Secure Context:', isSecure ? '✅' : '❌');
+            
+            if (manifest && serviceWorker && isSecure) {
+                console.log('✅ PWA criteria met - browser should show install option');
+                
+                // Update install banner to be more prominent
+                const banner = document.getElementById('installBanner');
+                if (banner && banner.classList.contains('show')) {
+                    const installBtn = banner.querySelector('button');
+                    if (installBtn) {
+                        installBtn.textContent = '📱 Install App (PWA Ready!)';
+                        installBtn.style.animation = 'pulse 2s infinite';
+                    }
+                }
+            } else {
+                console.log('❌ PWA criteria not fully met');
+            }
+        }
 
         function showInstallBanner() {
             const banner = document.getElementById('installBanner');
@@ -630,31 +697,130 @@
 
         async function installPWA() {
             if (deferredPrompt) {
+                // Native installation prompt available
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
                 console.log(`User response to the install prompt: ${outcome}`);
                 deferredPrompt = null;
                 dismissInstallBanner();
             } else {
+                // No native prompt - try alternative methods
                 console.log('❌ No native install prompt available.');
-                console.log('📱 Manual installation instructions:');
-                console.log('Chrome: Menu → Install App (or Add to Home Screen on mobile)');
-                console.log('Firefox: Menu → Install This Site as App');
-                console.log('Safari: Share → Add to Home Screen');
                 
-                // Show manual installation instructions
-                const instructions = `
-📱 To install this app:
-
-Chrome/Edge: Look for "Install" button in address bar or Menu → "Install App"
-Firefox: Menu → "Install This Site as App"
-Safari (iOS): Share button → "Add to Home Screen"
-Samsung Internet: Menu → "Add page to" → "Home screen"
-
-This will create a standalone app icon on your device!`;
-                
-                alert(instructions);
+                // Check if we can trigger installation through other means
+                if (window.navigator.standalone !== undefined) {
+                    // iOS Safari
+                    showIOSInstallInstructions();
+                } else if (window.chrome && window.chrome.webstore) {
+                    // Chrome - check if install button might be available
+                    showChromeInstallHelp();
+                } else {
+                    // Generic fallback
+                    showGenericInstallHelp();
+                }
             }
+        }
+
+        function showIOSInstallInstructions() {
+            const modal = createInstallModal(`
+                <div style="text-align: center; padding: 20px;">
+                    <h3>📱 Install on iOS</h3>
+                    <p>To install this app on your iPhone/iPad:</p>
+                    <ol style="text-align: left; margin: 20px 0;">
+                        <li>Tap the <strong>Share</strong> button <span style="font-size: 20px;">⬆️</span></li>
+                        <li>Scroll down and tap <strong>"Add to Home Screen"</strong></li>
+                        <li>Tap <strong>"Add"</strong> to confirm</li>
+                    </ol>
+                    <p>The app will appear on your home screen like a native app!</p>
+                </div>
+            `);
+        }
+
+        function showChromeInstallHelp() {
+            const modal = createInstallModal(`
+                <div style="text-align: center; padding: 20px;">
+                    <h3>🔧 Install on Chrome</h3>
+                    <p>To install this app:</p>
+                    <ol style="text-align: left; margin: 20px 0;">
+                        <li>Look for an <strong>Install</strong> icon in the address bar</li>
+                        <li>Or click the <strong>⋮</strong> menu → <strong>"Install German Hub"</strong></li>
+                        <li>Click <strong>"Install"</strong> to confirm</li>
+                    </ol>
+                    <p>If you don't see these options, try refreshing the page!</p>
+                </div>
+            `);
+        }
+
+        function showGenericInstallHelp() {
+            const modal = createInstallModal(`
+                <div style="text-align: center; padding: 20px;">
+                    <h3>📱 Install This App</h3>
+                    <p>To install this app on your device:</p>
+                    <div style="text-align: left; margin: 20px 0;">
+                        <p><strong>Chrome/Edge:</strong> Look for "Install" button in address bar or Menu → "Install App"</p>
+                        <p><strong>Firefox:</strong> Menu → "Install This Site as App"</p>
+                        <p><strong>Safari (iOS):</strong> Share button → "Add to Home Screen"</p>
+                        <p><strong>Samsung Internet:</strong> Menu → "Add page to" → "Home screen"</p>
+                    </div>
+                    <p>This will create a standalone app icon on your device!</p>
+                </div>
+            `);
+        }
+
+        function createInstallModal(content) {
+            // Create modal overlay
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+            `;
+            
+            // Create modal content
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                border-radius: 15px;
+                max-width: 400px;
+                margin: 20px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                animation: slideIn 0.3s ease;
+            `;
+            
+            modalContent.innerHTML = content + `
+                <div style="padding: 20px; text-align: center; border-top: 1px solid #eee;">
+                    <button onclick="this.closest('.install-modal').remove()" style="
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        border: none;
+                        padding: 12px 24px;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        font-weight: 600;
+                    ">Got It!</button>
+                </div>
+            `;
+            
+            modal.appendChild(modalContent);
+            modal.className = 'install-modal';
+            document.body.appendChild(modal);
+            
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+            
+            return modal;
         }
 
         // PWA Installation Status Check
