@@ -585,22 +585,31 @@
         // PWA Installation Debug
         let deferredPrompt;
         let installButton;
+        let installPromptAvailable = false;
         
         window.addEventListener('beforeinstallprompt', (e) => {
             console.log('✅ PWA install prompt available!');
             e.preventDefault();
             deferredPrompt = e;
+            installPromptAvailable = true;
             showInstallBanner();
         });
-
-        // Force debug mode to show install banner for testing
+        
+        // Check if PWA can be installed (more reliable detection)
         window.addEventListener('load', () => {
             setTimeout(() => {
-                if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                    console.log('🔧 Debug mode: Forcing install banner on localhost');
+                // Check if already installed
+                if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+                    console.log('📱 App already installed or running in standalone mode');
+                    return;
+                }
+                
+                // If no install prompt after 3 seconds, show fallback banner
+                if (!installPromptAvailable) {
+                    console.log('💡 Install prompt not automatically triggered - showing banner anyway');
                     showInstallBanner();
                 }
-            }, 2000);
+            }, 3000);
         });
 
         function showInstallBanner() {
@@ -627,12 +636,24 @@
                 deferredPrompt = null;
                 dismissInstallBanner();
             } else {
-                console.log('❌ No install prompt available. Possible reasons:');
-                console.log('1. App already installed');
-                console.log('2. Not served over HTTPS');
-                console.log('3. Missing manifest.json or icons');
-                console.log('4. Browser doesn\'t support PWA');
-                alert('PWA installation not available. Check console for details.');
+                console.log('❌ No native install prompt available.');
+                console.log('📱 Manual installation instructions:');
+                console.log('Chrome: Menu → Install App (or Add to Home Screen on mobile)');
+                console.log('Firefox: Menu → Install This Site as App');
+                console.log('Safari: Share → Add to Home Screen');
+                
+                // Show manual installation instructions
+                const instructions = `
+📱 To install this app:
+
+Chrome/Edge: Look for "Install" button in address bar or Menu → "Install App"
+Firefox: Menu → "Install This Site as App"
+Safari (iOS): Share button → "Add to Home Screen"
+Samsung Internet: Menu → "Add page to" → "Home screen"
+
+This will create a standalone app icon on your device!`;
+                
+                alert(instructions);
             }
         }
 
