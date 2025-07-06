@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Learning Hub</title>
+    <meta name="description" content="Your comprehensive platform for learning German vocabulary, grammar, and pronunciation">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Apple PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="German Hub">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header with Navigation */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .logo .flag {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        /* Desktop Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Mobile Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #495057;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-list li {
+            margin: 10px 0;
+        }
+        
+        .mobile-nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-list a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        /* Main Content Area */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .hero-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .hero-section h1 {
+            font-size: 3rem;
+            color: #495057;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-section p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #495057;
+            border: 2px solid #e9ecef;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Features Grid */
+        .features-section {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card p {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+        
+        .feature-card .btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        
+        /* Install Banner */
+        .install-banner {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            display: none;
+        }
+        
+        .install-banner.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero-section {
+                padding: 40px 20px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 20px 10px;
+            }
+            
+            .hero-section {
+                padding: 30px 15px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="flag">🇩🇪</span>
+                German Hub
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu">
+                <li><a href="content/vocabulary/index.html">📚 Vocabulary</a></li>
+                <li><a href="content/grammar/index.html">📖 Grammar</a></li>
+                <li><a href="content/practice/index.html">🎯 Practice</a></li>
+                <li><a href="content/tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+            
+            <!-- Mobile Hamburger -->
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-list">
+                <li><a href="content/vocabulary/index.html">📚 Vocabulary</a></li>
+                <li><a href="content/grammar/index.html">📖 Grammar</a></li>
+                <li><a href="content/practice/index.html">🎯 Practice</a></li>
+                <li><a href="content/tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Guten Tag! 👋</h1>
+            <p>Your comprehensive platform for learning German vocabulary, grammar, and pronunciation. Master the language with interactive content, responsive tables, and offline access.</p>
+            <div class="cta-buttons">
+                <a href="content/vocabulary/index.html" class="btn btn-primary">
+                    📚 Start Learning Vocabulary
+                </a>
+                <a href="content/practice/index.html" class="btn btn-secondary">
+                    🎯 Take a Practice Quiz
+                </a>
+            </div>
+        </section>
+
+        <!-- Install Banner (PWA) -->
+        <div class="install-banner" id="installBanner">
+            <h3>📱 Install German Hub</h3>
+            <p>Add this app to your home screen for offline access and a native app experience!</p>
+            <button class="btn btn-secondary" onclick="installPWA()">Install App</button>
+            <button class="btn btn-secondary" onclick="dismissInstallBanner()" style="margin-left: 10px;">Maybe Later</button>
+        </div>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <div class="stat-label">Vocabulary Words</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <div class="stat-label">Learning Categories</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">Offline Ready</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">📱</span>
+                    <div class="stat-label">Mobile Optimized</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title">🚀 Learning Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📚</span>
+                    <h3>Comprehensive Vocabulary</h3>
+                    <p>W-words, professions, food & drinks, city locations - all with pronunciation guides and memory tips.</p>
+                    <a href="content/vocabulary/index.html" class="btn btn-primary">Explore Vocabulary</a>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📖</span>
+                    <h3>Grammar Made Easy</h3>
+                    <p>Master German articles (der/die/das) and verb conjugations with clear explanations and examples.</p>
+                    <a href="content/grammar/index.html" class="btn btn-primary">Learn Grammar</a>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Interactive Practice</h3>
+                    <p>Test your knowledge with quizzes and flashcards. Track your progress as you learn.</p>
+                    <a href="content/practice/index.html" class="btn btn-primary">Start Practicing</a>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3>Mobile Optimized</h3>
+                    <p>Responsive tables with horizontal scroll. Perfect for learning on-the-go with your phone or tablet.</p>
+                    <a href="#" class="btn btn-primary">Try on Mobile</a>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📥</span>
+                    <h3>Download Excel</h3>
+                    <p>Export any vocabulary section to Excel for offline study or importing into your favorite flashcard app.</p>
+                    <a href="content/vocabulary/index.html" class="btn btn-primary">Download Content</a>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🔄</span>
+                    <h3>Offline Ready</h3>
+                    <p>PWA technology means you can access all content even without an internet connection.</p>
+                    <a href="#" class="btn btn-primary" onclick="checkOfflineStatus()">Check Status</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 German Learning Hub. Built with ❤️ for language learners.</p>
+        <p>📧 Feedback? <a href="mailto:feedback@germanhub.com" style="color: #20c997;">Let us know!</a></p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (!navContainer.contains(event.target) && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // PWA Installation
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallBanner();
+        });
+
+        function showInstallBanner() {
+            const banner = document.getElementById('installBanner');
+            banner.classList.add('show');
+        }
+
+        function dismissInstallBanner() {
+            const banner = document.getElementById('installBanner');
+            banner.classList.remove('show');
+            localStorage.setItem('installBannerDismissed', 'true');
+        }
+
+        async function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response to the install prompt: ${outcome}`);
+                deferredPrompt = null;
+                dismissInstallBanner();
+            }
+        }
+
+        // Check if install banner was previously dismissed
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('installBannerDismissed') === 'true') {
+                const banner = document.getElementById('installBanner');
+                banner.style.display = 'none';
+            }
+        });
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Offline Status Check
+        function checkOfflineStatus() {
+            if (navigator.onLine) {
+                alert('✅ Online: You\'re connected to the internet.\n🔄 The app will also work offline once cached!');
+            } else {
+                alert('📱 Offline: You\'re browsing offline!\n✨ All content is still accessible thanks to PWA technology.');
+            }
+        }
+
+        // Update online/offline status
+        window.addEventListener('online', () => {
+            console.log('Back online');
+        });
+
+        window.addEventListener('offline', () => {
+            console.log('Gone offline');
+        });
+    </script>
+</body>
+</html>

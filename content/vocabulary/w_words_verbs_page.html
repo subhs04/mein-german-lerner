@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German W-Words & Verbs | German Learning Hub</title>
+    <meta name="description" content="Learn German question words and essential verbs with interactive mindmap, conjugations, and memory tips">
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="../../manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header - Consistent styling */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .logo .flag {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #495057;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-list li {
+            margin: 10px 0;
+        }
+        
+        .mobile-nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-list a:hover, .mobile-nav-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-separator {
+            color: #adb5bd;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #495057;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Responsive Tables Container */
+        .table-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #495057;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 600px;
+        }
+        
+        .vocab-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 12px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 14px;
+        }
+        
+        .vocab-table td {
+            padding: 15px 12px;
+            border: 1px solid #e9ecef;
+            vertical-align: top;
+            background: white;
+        }
+        
+        .vocab-table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+        
+        .vocab-table tr:hover td {
+            background: #e3f2fd;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+        
+        .german-word {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .pronunciation {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        
+        .meaning {
+            color: #495057;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .conjugation {
+            font-size: 12px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 8px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+            margin-top: 5px;
+        }
+        
+        .memory-tip {
+            font-size: 11px;
+            color: #e74c3c;
+            font-style: italic;
+            margin-top: 8px;
+            background: rgba(231, 76, 60, 0.1);
+            padding: 6px 8px;
+            border-radius: 4px;
+            border-left: 3px solid #e74c3c;
+        }
+        
+        .word-type {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        
+        /* Mobile Accordion for Tables */
+        .mobile-accordion {
+            display: none;
+        }
+        
+        .accordion-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .accordion-content.active {
+            max-height: 500px;
+        }
+        
+        .accordion-body {
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .word-detail {
+            margin-bottom: 15px;
+        }
+        
+        .word-detail:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Tips Section */
+        .tips-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tip-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .tip-card h4 {
+            color: #495057;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tip-card p {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .table-container {
+                display: none;
+            }
+            
+            .mobile-accordion {
+                display: block;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 20px 10px;
+            }
+            
+            .accordion-header {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .accordion-body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="../../index.html" class="logo">
+                <span class="flag">🇩🇪</span>
+                German Hub
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="../practice/index.html">🎯 Practice</a></li>
+                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+            
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-list">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="../practice/index.html">🎯 Practice</a></li>
+                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav">
+                <a href="../../index.html">🏠 Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="index.html">📚 Vocabulary</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>🤔 W-Words & Verbs</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>🤔 German W-Words & Essential Verbs</h1>
+            <p>Master German question words and the most important verbs with conjugations, pronunciation guides, and memory tips to accelerate your learning.</p>
+            <button class="download-btn" onclick="downloadWWordsExcel()">
+                📥 Download Excel File
+            </button>
+        </section>
+
+        <!-- W-Question Words Table -->
+        <div class="table-container">
+            <h2 class="section-title">🤔 W-Question Words</h2>
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>German Word</th>
+                        <th>English Meaning</th>
+                        <th>Pronunciation</th>
+                        <th>Memory Tip</th>
+                        <th>Example Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="german-word">WO</div>
+                            <div class="word-type">Question Word</div>
+                        </td>
+                        <td class="meaning">WHERE (location)</td>
+                        <td class="pronunciation">[voh]</td>
+                        <td class="memory-tip">💡 Think: "Where?" = WO</td>
+                        <td>Wo ist das Museum?<br><em>(Where is the museum?)</em></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="german-word">WOHIN</div>
+                            <div class="word-type">Question Word</div>
+                        </td>
+                        <td class="meaning">WHERE TO (direction)</td>
+                        <td class="pronunciation">[voh-HIN]</td>
+                        <td class="memory-tip">💡 WO + HIN = where + to</td>
+                        <td>Wohin gehst du?<br><em>(Where are you going to?)</em></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="german-word">WOHER</div>
+                            <div class="word-type">Question Word</div>
+                        </td>
+                        <td class="meaning">WHERE FROM (origin)</td>
+                        <td class="pronunciation">[voh-HEHR]</td>
+                        <td class="memory-tip">💡 WO + HER = where + from</td>
+                        <td>Woher kommst du?<br><em>(Where are you from?)</em></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="german-word">WAS</div>
+                            <div class="word-type">Question Word</div>
+                        </td>
+                        <td class="meaning">WHAT</td>
+                        <td class="pronunciation">[vas]</td>
+                        <td class="memory-tip">💡 WAS = WHAT (both start with W)</td>
+                        <td>Was machst du?<br><em>(What are you doing?)</em></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="german-word">WER</div>
+                            <div class="word-type">Question Word</div>
+                        </td>
+                        <td class="meaning">WHO</td>
+                        <td class="pronunciation">[vehr]</td>
+                        <td class="memory-tip">💡 WER = WHO (sounds like "where")</td>
+                        <td>Wer ist das?<br><em>(Who is that?)</em></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="german-word">WANN</div>
+                            <div class="word-type">Question Word</div>
+                        </td>
+                        <td class="meaning">WHEN</td>
+                        <td class="pronunciation">[van]</td>
+                        <td class="memory-tip">💡 WANN = WHEN (double N)</td>
+                        <td>Wann kommst du?<br><em>(When are you coming?)</em></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Essential Verbs Table -->
+        <div class="table-container">
+            <h2 class="section-title">🗣️ Essential Verbs</h2>
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>German Verb</th>
+                        <th>English Meaning</th>
+                        <th>Pronunciation</th>
+                        <th>Present Tense Conjugation</th>
+                        <th>Memory Tip</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="german-word">SEIN</div>
+                            <div class="word-type">Auxiliary Verb</div>
+                        </td>
+                        <td class="meaning">TO BE</td>
+                        <td class="pronunciation">[zine]</td>
+                        <td>
+                            <div class="conjugation">
+                                ich BIN • du BIST • er/sie/es IST<br>
+                                wir SIND • ihr SEID • sie SIND
+                            </div>
+                        </td>
+                        <td class="memory-tip">💡 Most important verb in German!</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="german-word">HABEN</div>
+                            <div class="word-type">Auxiliary Verb</div>
+                        </td>
+                        <td class="meaning">TO HAVE</td>
+                        <td class="pronunciation">[HAH-ben]</td>
+                        <td>
+                            <div class="conjugation">
+                                ich HABE • du HAST • er/sie/es HAT<br>
+                                wir HABEN • ihr HABT • sie HABEN
+                            </div>
+                        </td>
+                        <td class="memory-tip">💡 HAT = has (like English "hat")</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="german-word">WERDEN</div>
+                            <div class="word-type">Auxiliary Verb</div>
+                        </td>
+                        <td class="meaning">TO BECOME</td>
+                        <td class="pronunciation">[VEHR-den]</td>
+                        <td>
+                            <div class="conjugation">
+                                ich WERDE • du WIRST • er/sie/es WIRD<br>
+                                wir WERDEN • ihr WERDET • sie WERDEN
+                            </div>
+                        </td>
+                        <td class="memory-tip">💡 Used for future tense!</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="german-word">GEHEN</div>
+                            <div class="word-type">Motion Verb</div>
+                        </td>
+                        <td class="meaning">TO GO / TO WALK</td>
+                        <td class="pronunciation">[GAY-en]</td>
+                        <td>
+                            <div class="conjugation">
+                                ich GEHE • du GEHST • er/sie/es GEHT<br>
+                                wir GEHEN • ihr GEHT • sie GEHEN
+                            </div>
+                        </td>
+                        <td class="memory-tip">💡 GEHT = goes (sounds like "gate")</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="german-word">KOMMEN</div>
+                            <div class="word-type">Motion Verb</div>
+                        </td>
+                        <td class="meaning">TO COME</td>
+                        <td class="pronunciation">[KOM-men]</td>
+                        <td>
+                            <div class="conjugation">
+                                ich KOMME • du KOMMST • er/sie/es KOMMT<br>
+                                wir KOMMEN • ihr KOMMT • sie KOMMEN
+                            </div>
+                        </td>
+                        <td class="memory-tip">💡 KOMM = come (similar to English)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Mobile Accordion Version -->
+        <div class="mobile-accordion">
+            <h2 class="section-title">🤔 W-Question Words</h2>
+            
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>WO - WHERE (location)</span>
+                    <span>▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="word-detail">
+                            <div class="german-word">WO</div>
+                            <div class="pronunciation">[voh]</div>
+                            <div class="meaning">WHERE (location)</div>
+                            <div class="memory-tip">💡 Think: "Where?" = WO</div>
+                            <p><strong>Example:</strong> Wo ist das Museum? <em>(Where is the museum?)</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>WOHIN - WHERE TO (direction)</span>
+                    <span>▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="word-detail">
+                            <div class="german-word">WOHIN</div>
+                            <div class="pronunciation">[voh-HIN]</div>
+                            <div class="meaning">WHERE TO (direction)</div>
+                            <div class="memory-tip">💡 WO + HIN = where + to</div>
+                            <p><strong>Example:</strong> Wohin gehst du? <em>(Where are you going to?)</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>SEIN - TO BE</span>
+                    <span>▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="word-detail">
+                            <div class="german-word">SEIN</div>
+                            <div class="pronunciation">[zine]</div>
+                            <div class="meaning">TO BE</div>
+                            <div class="conjugation">
+                                ich BIN • du BIST • er/sie/es IST<br>
+                                wir SIND • ihr SEID • sie SIND
+                            </div>
+                            <div class="memory-tip">💡 Most important verb in German!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Tips Section -->
+        <section class="tips-section">
+            <h2 class="section-title">💡 Learning Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>🎯 W-Word Patterns</h4>
+                    <p>Notice how German W-words often start with "W" like English. WO (where), WAS (what), WER (who) - the patterns help with memory!</p>
+                </div>
+                <div class="tip-card">
+                    <h4>🔄 Verb Practice</h4>
+                    <p>Practice the three auxiliary verbs (sein, haben, werden) daily. They're used in almost every conversation and form the foundation of German grammar.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>🗣️ Pronunciation Focus</h4>
+                    <p>The "W" in German sounds like "V" in English. Practice saying "voh" for WO and "vas" for WAS until it becomes natural.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>📝 Daily Usage</h4>
+                    <p>Try asking yourself questions in German using these W-words. "Wo bin ich?" (Where am I?) "Was mache ich?" (What am I doing?)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (!navContainer.contains(event.target) && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Accordion Toggle for Mobile
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const arrow = element.querySelector('span:last-child');
+            
+            // Close all other accordions
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('span:last-child').textContent = '▼';
+                }
+            });
+            
+            // Toggle current accordion
+            content.classList.toggle('active');
+            arrow.textContent = content.classList.contains('active') ? '▲' : '▼';
+        }
+
+        // Download Excel Function
+        function downloadWWordsExcel() {
+            const csvContent = `German Word,English Meaning,Pronunciation,Memory Tip,Type,Example
+WO,WHERE (location),[voh],"Think: Where? = WO",Question Word,"Wo ist das Museum? (Where is the museum?)"
+WOHIN,WHERE TO (direction),[voh-HIN],"WO + HIN = where + to",Question Word,"Wohin gehst du? (Where are you going to?)"
+WOHER,WHERE FROM (origin),[voh-HEHR],"WO + HER = where + from",Question Word,"Woher kommst du? (Where are you from?)"
+WAS,WHAT,[vas],"WAS = WHAT (both start with W)",Question Word,"Was machst du? (What are you doing?)"
+WER,WHO,[vehr],"WER = WHO (sounds like where)",Question Word,"Wer ist das? (Who is that?)"
+WANN,WHEN,[van],"WANN = WHEN (double N)",Question Word,"Wann kommst du? (When are you coming?)"
+SEIN,TO BE,[zine],"Most important verb in German!",Auxiliary Verb,"ich BIN • du BIST • er/sie/es IST"
+HABEN,TO HAVE,[HAH-ben],"HAT = has (like English hat)",Auxiliary Verb,"ich HABE • du HAST • er/sie/es HAT"
+WERDEN,TO BECOME,[VEHR-den],"Used for future tense!",Auxiliary Verb,"ich WERDE • du WIRST • er/sie/es WIRD"
+GEHEN,TO GO/WALK,[GAY-en],"GEHT = goes (sounds like gate)",Motion Verb,"ich GEHE • du GEHST • er/sie/es GEHT"
+KOMMEN,TO COME,[KOM-men],"KOMM = come (similar to English)",Motion Verb,"ich KOMME • du KOMMST • er/sie/es KOMMT"`;
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'german-w-words-verbs.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show success message
+            showDownloadSuccess('W-Words & Verbs');
+        }
+
+        function showDownloadSuccess(category) {
+            const message = document.createElement('div');
+            message.style.cssText = `
+                position: fixed;
+                top: 90px;
+                right: 20px;
+                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-weight: 500;
+                animation: slideIn 0.3s ease;
+            `;
+            message.innerHTML = `✅ ${category} vocabulary downloaded!`;
+            
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(message);
+                }, 300);
+            }, 3000);
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+            
