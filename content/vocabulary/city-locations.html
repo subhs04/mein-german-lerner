@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German City Locations & Landmarks | German Learning Hub</title>
+    <meta name="description" content="Learn German city locations, landmarks, and places with articles, pronunciation, and examples">
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="../../manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header with Navigation */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .logo .flag {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #495057;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-list li {
+            margin: 10px 0;
+        }
+        
+        .mobile-nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-list a:hover, .mobile-nav-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-separator {
+            color: #adb5bd;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #495057;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Article Sections */
+        .article-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .article-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .article-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .article-header h2 {
+            color: #495057;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .article-description {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .article-description p {
+            color: #495057;
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        /* Table Styling */
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .vocab-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .vocab-table th {
+            color: white;
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .vocab-table td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+        
+        .vocab-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+        
+        .vocab-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .vocab-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* German Word Styling */
+        .german-word {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .plural-word {
+            font-weight: bold;
+            color: #34495e;
+            font-size: 15px;
+        }
+        
+        .english-meaning {
+            color: #495057;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .pronunciation {
+            color: #7f8c8d;
+            font-style: italic;
+            font-size: 13px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Example Section */
+        .example-section {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .example-section h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .example {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .example-german {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .example-english {
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .main-content {
+                padding: 20px 15px;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .article-section {
+                padding: 20px;
+            }
+            
+            .vocab-table {
+                font-size: 14px;
+            }
+            
+            .vocab-table th,
+            .vocab-table td {
+                padding: 12px 10px;
+            }
+            
+            /* Make table scrollable on mobile */
+            .table-container {
+                overflow-x: auto;
+                margin: 0 -20px;
+                padding: 0 20px;
+            }
+            
+            .quick-stats {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 15px 10px;
+            }
+            
+            .article-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .vocab-table th,
+            .vocab-table td {
+                padding: 10px 8px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="../../index.html" class="logo">
+                <span class="flag">🇩🇪</span>
+                German Hub
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="../practice/index.html">🎯 Practice</a></li>
+                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+            
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-list">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="../practice/index.html">🎯 Practice</a></li>
+                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav">
+                <a href="../../index.html">🏠 Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="index.html">📚 Vocabulary</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>🏙️ City Locations</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>🏙️ German City Locations & Landmarks</h1>
+            <p>Navigate German cities with confidence. Learn essential vocabulary for landmarks, public places, and transportation organized by German articles (der/die/das).</p>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="quick-stats">
+            <div class="stat-card">
+                <span class="stat-number">56</span>
+                <div class="stat-label">Total Locations</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">3</span>
+                <div class="stat-label">Article Groups</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">100%</span>
+                <div class="stat-label">With Pronunciation</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">🗺️</span>
+                <div class="stat-label">Travel Ready</div>
+            </div>
+        </section>
+
+        <!-- DIE (Feminine) Section -->
+        <section class="article-section">
+            <div class="article-header">
+                <span class="article-icon">♀️</span>
+                <h2>DIE - Feminine Articles</h2>
+            </div>
+            <div class="article-description">
+                <p>Feminine nouns use "die" in nominative case. Notice how many public buildings and infrastructure use feminine articles.</p>
+            </div>
+            <div class="table-container">
+                <table class="vocab-table">
+                    <thead>
+                        <tr>
+                            <th>Singular</th>
+                            <th>Plural</th>
+                            <th>English Meaning</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="german-word">die Kirche</div></td>
+                            <td><div class="plural-word">die Kirchen</div></td>
+                            <td><div class="english-meaning">the church</div></td>
+                            <td><div class="pronunciation">dee KEER-kheh</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Brücke</div></td>
+                            <td><div class="plural-word">die Brücken</div></td>
+                            <td><div class="english-meaning">the bridge</div></td>
+                            <td><div class="pronunciation">dee BRUEK-keh</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Landungsbrücke</div></td>
+                            <td><div class="plural-word">die Landungsbrücken</div></td>
+                            <td><div class="english-meaning">the landing bridge/pier</div></td>
+                            <td><div class="pronunciation">dee LAN-dungs-bruek-keh</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Kunsthalle</div></td>
+                            <td><div class="plural-word">die Kunsthallen</div></td>
+                            <td><div class="english-meaning">the art gallery</div></td>
+                            <td><div class="pronunciation">dee KUNST-hal-leh</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Bank</div></td>
+                            <td><div class="plural-word">die Banken</div></td>
+                            <td><div class="english-meaning">the bank</div></td>
+                            <td><div class="pronunciation">dee bank</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Insel</div></td>
+                            <td><div class="plural-word">die Inseln</div></td>
+                            <td><div class="english-meaning">the island</div></td>
+                            <td><div class="pronunciation">dee IN-zel</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Bibliothek</div></td>
+                            <td><div class="plural-word">die Bibliotheken</div></td>
+                            <td><div class="english-meaning">the library</div></td>
+                            <td><div class="pronunciation">dee bib-lee-o-TEHK</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Schule</div></td>
+                            <td><div class="plural-word">die Schulen</div></td>
+                            <td><div class="english-meaning">the school</div></td>
+                            <td><div class="pronunciation">dee SHOO-leh</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Post</div></td>
+                            <td><div class="plural-word">die Posts</div></td>
+                            <td><div class="english-meaning">the post office</div></td>
+                            <td><div class="pronunciation">dee post</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Autobahn</div></td>
+                            <td><div class="plural-word">die Autobahnen</div></td>
+                            <td><div class="english-meaning">the highway</div></td>
+                            <td><div class="pronunciation">dee AU-to-bahn</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">die Haltestelle</div></td>
+                            <td><div class="plural-word">die Haltestellen</div></td>
+                            <td><div class="english-meaning">the bus/tram stop</div></td>
+                            <td><div class="pronunciation">dee HAL-teh-shtel-leh</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- DAS (Neuter) Section -->
+        <section class="article-section">
+            <div class="article-header">
+                <span class="article-icon">⚪</span>
+                <h2>DAS - Neuter Articles</h2>
+            </div>
+            <div class="article-description">
+                <p>Neuter nouns use "das" in nominative case. Many cultural buildings and facilities are neuter in German.</p>
+            </div>
+            <div class="table-container">
+                <table class="vocab-table">
+                    <thead>
+                        <tr>
+                            <th>Singular</th>
+                            <th>Plural</th>
+                            <th>English Meaning</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="german-word">das Museum</div></td>
+                            <td><div class="plural-word">die Museen</div></td>
+                            <td><div class="english-meaning">the museum</div></td>
+                            <td><div class="pronunciation">das mu-ZEH-um</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Planetarium</div></td>
+                            <td><div class="plural-word">die Planetarien</div></td>
+                            <td><div class="english-meaning">the planetarium</div></td>
+                            <td><div class="pronunciation">das pla-neh-TAH-ree-um</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Rathaus</div></td>
+                            <td><div class="plural-word">die Rathäuser</div></td>
+                            <td><div class="english-meaning">the town hall</div></td>
+                            <td><div class="pronunciation">das RAHT-haus</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Theater</div></td>
+                            <td><div class="plural-word">die Theater</div></td>
+                            <td><div class="english-meaning">the theater</div></td>
+                            <td><div class="pronunciation">das teh-AH-ter</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Konzerthaus</div></td>
+                            <td><div class="plural-word">die Konzerthäuser</div></td>
+                            <td><div class="english-meaning">the concert hall</div></td>
+                            <td><div class="pronunciation">das kon-TSERT-haus</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Einkaufszentrum</div></td>
+                            <td><div class="plural-word">die Einkaufszentren</div></td>
+                            <td><div class="english-meaning">the shopping center</div></td>
+                            <td><div class="pronunciation">das EIN-kaufs-tsen-trum</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Hotel</div></td>
+                            <td><div class="plural-word">die Hotels</div></td>
+                            <td><div class="english-meaning">the hotel</div></td>
+                            <td><div class="pronunciation">das ho-TEL</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Krankenhaus</div></td>
+                            <td><div class="plural-word">die Krankenhäuser</div></td>
+                            <td><div class="english-meaning">the hospital</div></td>
+                            <td><div class="pronunciation">das KRANK-en-haus</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Restaurant</div></td>
+                            <td><div class="plural-word">die Restaurants</div></td>
+                            <td><div class="english-meaning">the restaurant</div></td>
+                            <td><div class="pronunciation">das res-tau-RANT</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Meer</div></td>
+                            <td><div class="plural-word">die Meere</div></td>
+                            <td><div class="english-meaning">the sea</div></td>
+                            <td><div class="pronunciation">das mehr</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">das Denkmal</div></td>
+                            <td><div class="plural-word">die Denkmäler</div></td>
+                            <td><div class="english-meaning">the monument</div></td>
+                            <td><div class="pronunciation">das DENK-mal</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- DER (Masculine) Section -->
+        <section class="article-section">
+            <div class="article-header">
+                <span class="article-icon">♂️</span>
+                <h2>DER - Masculine Articles</h2>
+            </div>
+            <div class="article-description">
+                <p>Masculine nouns use "der" in nominative case. Many outdoor spaces and transportation hubs are masculine.</p>
+            </div>
+            <div class="table-container">
+                <table class="vocab-table">
+                    <thead>
+                        <tr>
+                            <th>Singular</th>
+                            <th>Plural</th>
+                            <th>English Meaning</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="german-word">der Markt</div></td>
+                            <td><div class="plural-word">die Märkte</div></td>
+                            <td><div class="english-meaning">the market</div></td>
+                            <td><div class="pronunciation">der markt</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Turm</div></td>
+                            <td><div class="plural-word">die Türme</div></td>
+                            <td><div class="english-meaning">the tower</div></td>
+                            <td><div class="pronunciation">der toorm</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Tierpark</div></td>
+                            <td><div class="plural-word">die Tierparks</div></td>
+                            <td><div class="english-meaning">the zoo</div></td>
+                            <td><div class="pronunciation">der TEER-park</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Zoo</div></td>
+                            <td><div class="plural-word">die Zoos</div></td>
+                            <td><div class="english-meaning">the zoo</div></td>
+                            <td><div class="pronunciation">der tsoh</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Bahnhof</div></td>
+                            <td><div class="plural-word">die Bahnhöfe</div></td>
+                            <td><div class="english-meaning">the train station</div></td>
+                            <td><div class="pronunciation">der BAHN-hof</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Friedhof</div></td>
+                            <td><div class="plural-word">die Friedhöfe</div></td>
+                            <td><div class="english-meaning">the cemetery</div></td>
+                            <td><div class="pronunciation">der FREED-hof</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Hafen</div></td>
+                            <td><div class="plural-word">die Häfen</div></td>
+                            <td><div class="english-meaning">the harbor/port</div></td>
+                            <td><div class="pronunciation">der HAH-fen</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Garten</div></td>
+                            <td><div class="plural-word">die Gärten</div></td>
+                            <td><div class="english-meaning">the garden</div></td>
+                            <td><div class="pronunciation">der GAR-ten</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Park</div></td>
+                            <td><div class="plural-word">die Parks</div></td>
+                            <td><div class="english-meaning">the park</div></td>
+                            <td><div class="pronunciation">der park</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Spielplatz</div></td>
+                            <td><div class="plural-word">die Spielplätze</div></td>
+                            <td><div class="english-meaning">the playground</div></td>
+                            <td><div class="pronunciation">der SHPEEL-plats</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Flughafen</div></td>
+                            <td><div class="plural-word">die Flughäfen</div></td>
+                            <td><div class="english-meaning">the airport</div></td>
+                            <td><div class="pronunciation">der FLOOK-hah-fen</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Fluss</div></td>
+                            <td><div class="plural-word">die Flüsse</div></td>
+                            <td><div class="english-meaning">the river</div></td>
+                            <td><div class="pronunciation">der fluss</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Strand</div></td>
+                            <td><div class="plural-word">die Strände</div></td>
+                            <td><div class="english-meaning">the beach</div></td>
+                            <td><div class="pronunciation">der shtrant</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="german-word">der Parkplatz</div></td>
+                            <td><div class="plural-word">die Parkplätze</div></td>
+                            <td><div class="english-meaning">the parking lot</div></td>
+                            <td><div class="pronunciation">der PARK-plats</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Example Usage Section -->
+        <section class="example-section">
+            <h3>💬 Common Usage Examples</h3>
+            <div class="example">
+                <div class="example-german">Wo ist der Bahnhof?</div>
+                <div class="example-english">Where is the train station?</div>
+            </div>
+            <div class="example">
+                <div class="example-german">Die Kirche ist sehr alt.</div>
+                <div class="example-english">The church is very old.</div>
+            </div>
+            <div class="example">
+                <div class="example-german">Das Museum ist um 10 Uhr geöffnet.</div>
+                <div class="example-english">The museum opens at 10 o'clock.</div>
+            </div>
+            <div class="example">
+                <div class="example-german">Ich treffe dich im Park.</div>
+                <div class="example-english">I'll meet you in the park.</div>
+            </div>
+            <div class="example">
+                <div class="example-german">Die Bibliothek hat viele Bücher.</div>
+                <div class="example-english">The library has many books.</div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (!navContainer.contains(event.target) && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

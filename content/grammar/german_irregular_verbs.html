@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Irregular Verbs | German Learning Hub</title>
+    <meta name="description" content="Master German irregular verbs with comprehensive conjugation tables and interactive practice">
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="../../manifest.json">
+    
+    <style>
+        /* Header with Navigation */
+        .header-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin: -20px -20px 0 -20px;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .logo .flag {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #495057;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-list li {
+            margin: 10px 0;
+        }
+        
+        .mobile-nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-list a:hover, .mobile-nav-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+            margin: 0 -20px 20px -20px;
+        }
+        
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-separator {
+            color: #adb5bd;
+        }
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .verb-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+        }
+        
+        .verb-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .verb-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .verb-btn.active {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            transform: scale(1.05);
+        }
+        
+        .verb-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .verb-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .verb-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-left: 6px solid #667eea;
+        }
+        
+        .verb-title {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 10px;
+        }
+        
+        .verb-infinitive {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .verb-meaning {
+            font-size: 18px;
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        .verb-pronunciation {
+            font-size: 16px;
+            color: #495057;
+            margin-top: 5px;
+        }
+        
+        .conjugation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .conjugation-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .conjugation-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: middle;
+        }
+        
+        .conjugation-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .pronoun {
+            font-weight: bold;
+            color: #495057;
+            font-size: 16px;
+            width: 25%;
+        }
+        
+        .verb-form {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .pronunciation {
+            font-style: italic;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .stem-change {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            padding: 3px 6px;
+            border-radius: 4px;
+            color: #856404;
+            font-weight: bold;
+        }
+        
+        .pattern-note {
+            background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .pattern-note h4 {
+            color: #0c5460;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .pattern-note p {
+            color: #0c5460;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .pronunciation-guide {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .pronunciation-guide h3 {
+            color: #1976d2;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 22px;
+        }
+        
+        .sound-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .sound-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .sound-symbol {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        
+        .sound-description {
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .sound-example {
+            font-style: italic;
+            color: #495057;
+            font-size: 13px;
+            margin-top: 3px;
+        }
+        
+        .practice-section {
+            background: linear-gradient(135deg, #f0fff0, #e0ffe0);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .practice-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .practice-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .verb-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .verb-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .conjugation-table {
+                font-size: 14px;
+            }
+            
+            .conjugation-table th,
+            .conjugation-table td {
+                padding: 12px 8px;
+            }
+            
+            .sound-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header-nav">
+        <nav class="nav-container">
+            <a href="../../index.html" class="logo">
+                <span class="flag">🇩🇪</span>
+                German Hub
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="../vocabulary/index.html">📚 Vocabulary</a></li>
+                <li><a href="index.html" class="active">📖 Grammar</a></li>
+                <li><a href="../practice/index.html">🎯 Practice</a></li>
+                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+            
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-list">
+                <li><a href="../vocabulary/index.html">📚 Vocabulary</a></li>
+                <li><a href="index.html" class="active">📖 Grammar</a></li>
+                <li><a href="../practice/index.html">🎯 Practice</a></li>
+                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav">
+                <a href="../../index.html">🏠 Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="index.html">📖 Grammar</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>🔄 Irregular Verbs</span>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🔄 Unregelmäßige Verben</h1>
+            <p>Interactive German Irregular Verbs with Pronunciation Guide</p>
+        </div>
+        
+        <div class="verb-selector">
+            <button class="verb-btn active" onclick="showVerb('fahren')">fahren</button>
+            <button class="verb-btn" onclick="showVerb('schlafen')">schlafen</button>
+            <button class="verb-btn" onclick="showVerb('laufen')">laufen</button>
+            <button class="verb-btn" onclick="showVerb('sehen')">sehen</button>
+            <button class="verb-btn" onclick="showVerb('lesen')">lesen</button>
+            <button class="verb-btn" onclick="showVerb('sprechen')">sprechen</button>
+            <button class="verb-btn" onclick="showVerb('essen')">essen</button>
+            <button class="verb-btn" onclick="showVerb('geben')">geben</button>
+        </div>
+        
+        <!-- fahren -->
+        <div class="verb-section active" id="fahren">
+            <div class="verb-card">
+                <div class="verb-title">
+                    <div class="verb-infinitive">fahren</div>
+                    <div class="verb-meaning">to drive / to travel</div>
+                    <div class="verb-pronunciation">[FAH-ren]</div>
+                </div>
+                
+                <table class="conjugation-table">
+                    <thead>
+                        <tr>
+                            <th>Pronoun</th>
+                            <th>Verb Form</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pronoun">ich</td>
+                            <td>
+                                <div class="verb-form">fahre</div>
+                            </td>
+                            <td class="pronunciation">ikh FAH-ruh</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">du</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">fährst</span></div>
+                            </td>
+                            <td class="pronunciation">doo FAEHRST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">er/sie/es</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">fährt</span></div>
+                            </td>
+                            <td class="pronunciation">air/zee/es FAEHRT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">wir</td>
+                            <td>
+                                <div class="verb-form">fahren</div>
+                            </td>
+                            <td class="pronunciation">veer FAH-ren</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">ihr</td>
+                            <td>
+                                <div class="verb-form">fahrt</div>
+                            </td>
+                            <td class="pronunciation">eer FAHRT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">sie/Sie</td>
+                            <td>
+                                <div class="verb-form">fahren</div>
+                            </td>
+                            <td class="pronunciation">zee/ZEE FAH-ren</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pattern-note">
+                    <h4>🔄 Stem Change Pattern:</h4>
+                    <p><strong>a → ä</strong> in du and er/sie/es forms</p>
+                    <p>Example: fahren → du <strong>fährst</strong>, er <strong>fährt</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- schlafen -->
+        <div class="verb-section" id="schlafen">
+            <div class="verb-card">
+                <div class="verb-title">
+                    <div class="verb-infinitive">schlafen</div>
+                    <div class="verb-meaning">to sleep</div>
+                    <div class="verb-pronunciation">[SHLAH-fen]</div>
+                </div>
+                
+                <table class="conjugation-table">
+                    <thead>
+                        <tr>
+                            <th>Pronoun</th>
+                            <th>Verb Form</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pronoun">ich</td>
+                            <td>
+                                <div class="verb-form">schlafe</div>
+                            </td>
+                            <td class="pronunciation">ikh SHLAH-fuh</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">du</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">schläfst</span></div>
+                            </td>
+                            <td class="pronunciation">doo SHLAEFST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">er/sie/es</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">schläft</span></div>
+                            </td>
+                            <td class="pronunciation">air/zee/es SHLAEFT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">wir</td>
+                            <td>
+                                <div class="verb-form">schlafen</div>
+                            </td>
+                            <td class="pronunciation">veer SHLAH-fen</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">ihr</td>
+                            <td>
+                                <div class="verb-form">schlaft</div>
+                            </td>
+                            <td class="pronunciation">eer SHLAHFT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">sie/Sie</td>
+                            <td>
+                                <div class="verb-form">schlafen</div>
+                            </td>
+                            <td class="pronunciation">zee/ZEE SHLAH-fen</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pattern-note">
+                    <h4>🔄 Stem Change Pattern:</h4>
+                    <p><strong>a → ä</strong> in du and er/sie/es forms</p>
+                    <p>Example: schlafen → du <strong>schläfst</strong>, er <strong>schläft</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- laufen -->
+        <div class="verb-section" id="laufen">
+            <div class="verb-card">
+                <div class="verb-title">
+                    <div class="verb-infinitive">laufen</div>
+                    <div class="verb-meaning">to run / to walk</div>
+                    <div class="verb-pronunciation">[LOW-fen]</div>
+                </div>
+                
+                <table class="conjugation-table">
+                    <thead>
+                        <tr>
+                            <th>Pronoun</th>
+                            <th>Verb Form</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pronoun">ich</td>
+                            <td>
+                                <div class="verb-form">laufe</div>
+                            </td>
+                            <td class="pronunciation">ikh LOW-fuh</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">du</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">läufst</span></div>
+                            </td>
+                            <td class="pronunciation">doo LOYFST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">er/sie/es</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">läuft</span></div>
+                            </td>
+                            <td class="pronunciation">air/zee/es LOYFT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">wir</td>
+                            <td>
+                                <div class="verb-form">laufen</div>
+                            </td>
+                            <td class="pronunciation">veer LOW-fen</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">ihr</td>
+                            <td>
+                                <div class="verb-form">lauft</div>
+                            </td>
+                            <td class="pronunciation">eer LOWFT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">sie/Sie</td>
+                            <td>
+                                <div class="verb-form">laufen</div>
+                            </td>
+                            <td class="pronunciation">zee/ZEE LOW-fen</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pattern-note">
+                    <h4>🔄 Stem Change Pattern:</h4>
+                    <p><strong>au → äu</strong> in du and er/sie/es forms</p>
+                    <p>Example: laufen → du <strong>läufst</strong>, er <strong>läuft</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- sehen -->
+        <div class="verb-section" id="sehen">
+            <div class="verb-card">
+                <div class="verb-title">
+                    <div class="verb-infinitive">sehen</div>
+                    <div class="verb-meaning">to see</div>
+                    <div class="verb-pronunciation">[ZAY-en]</div>
+                </div>
+                
+                <table class="conjugation-table">
+                    <thead>
+                        <tr>
+                            <th>Pronoun</th>
+                            <th>Verb Form</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pronoun">ich</td>
+                            <td>
+                                <div class="verb-form">sehe</div>
+                            </td>
+                            <td class="pronunciation">ikh ZAY-uh</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">du</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">siehst</span></div>
+                            </td>
+                            <td class="pronunciation">doo ZEEST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">er/sie/es</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">sieht</span></div>
+                            </td>
+                            <td class="pronunciation">air/zee/es ZEET</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">wir</td>
+                            <td>
+                                <div class="verb-form">sehen</div>
+                            </td>
+                            <td class="pronunciation">veer ZAY-en</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">ihr</td>
+                            <td>
+                                <div class="verb-form">seht</div>
+                            </td>
+                            <td class="pronunciation">eer ZAYT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">sie/Sie</td>
+                            <td>
+                                <div class="verb-form">sehen</div>
+                            </td>
+                            <td class="pronunciation">zee/ZEE ZAY-en</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pattern-note">
+                    <h4>🔄 Stem Change Pattern:</h4>
+                    <p><strong>e → ie</strong> in du and er/sie/es forms</p>
+                    <p>Example: sehen → du <strong>siehst</strong>, er <strong>sieht</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- lesen -->
+        <div class="verb-section" id="lesen">
+            <div class="verb-card">
+                <div class="verb-title">
+                    <div class="verb-infinitive">lesen</div>
+                    <div class="verb-meaning">to read</div>
+                    <div class="verb-pronunciation">[LAY-zen]</div>
+                </div>
+                
+                <table class="conjugation-table">
+                    <thead>
+                        <tr>
+                            <th>Pronoun</th>
+                            <th>Verb Form</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pronoun">ich</td>
+                            <td>
+                                <div class="verb-form">lese</div>
+                            </td>
+                            <td class="pronunciation">ikh LAY-zuh</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">du</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">liest</span></div>
+                            </td>
+                            <td class="pronunciation">doo LEEST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">er/sie/es</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">liest</span></div>
+                            </td>
+                            <td class="pronunciation">air/zee/es LEEST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">wir</td>
+                            <td>
+                                <div class="verb-form">lesen</div>
+                            </td>
+                            <td class="pronunciation">veer LAY-zen</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">ihr</td>
+                            <td>
+                                <div class="verb-form">lest</div>
+                            </td>
+                            <td class="pronunciation">eer LAYST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">sie/Sie</td>
+                            <td>
+                                <div class="verb-form">lesen</div>
+                            </td>
+                            <td class="pronunciation">zee/ZEE LAY-zen</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pattern-note">
+                    <h4>🔄 Stem Change Pattern:</h4>
+                    <p><strong>e → ie</strong> in du and er/sie/es forms</p>
+                    <p>Example: lesen → du <strong>liest</strong>, er <strong>liest</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- sprechen -->
+        <div class="verb-section" id="sprechen">
+            <div class="verb-card">
+                <div class="verb-title">
+                    <div class="verb-infinitive">sprechen</div>
+                    <div class="verb-meaning">to speak</div>
+                    <div class="verb-pronunciation">[SHPREH-khen]</div>
+                </div>
+                
+                <table class="conjugation-table">
+                    <thead>
+                        <tr>
+                            <th>Pronoun</th>
+                            <th>Verb Form</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pronoun">ich</td>
+                            <td>
+                                <div class="verb-form">spreche</div>
+                            </td>
+                            <td class="pronunciation">ikh SHPREH-khuh</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">du</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">sprichst</span></div>
+                            </td>
+                            <td class="pronunciation">doo SHPRIKHST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">er/sie/es</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">spricht</span></div>
+                            </td>
+                            <td class="pronunciation">air/zee/es SHPRIKHT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">wir</td>
+                            <td>
+                                <div class="verb-form">sprechen</div>
+                            </td>
+                            <td class="pronunciation">veer SHPREH-khen</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">ihr</td>
+                            <td>
+                                <div class="verb-form">sprecht</div>
+                            </td>
+                            <td class="pronunciation">eer SHPREKHT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">sie/Sie</td>
+                            <td>
+                                <div class="verb-form">sprechen</div>
+                            </td>
+                            <td class="pronunciation">zee/ZEE SHPREH-khen</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pattern-note">
+                    <h4>🔄 Stem Change Pattern:</h4>
+                    <p><strong>e → i</strong> in du and er/sie/es forms</p>
+                    <p>Example: sprechen → du <strong>sprichst</strong>, er <strong>spricht</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- essen -->
+        <div class="verb-section" id="essen">
+            <div class="verb-card">
+                <div class="verb-title">
+                    <div class="verb-infinitive">essen</div>
+                    <div class="verb-meaning">to eat</div>
+                    <div class="verb-pronunciation">[ES-sen]</div>
+                </div>
+                
+                <table class="conjugation-table">
+                    <thead>
+                        <tr>
+                            <th>Pronoun</th>
+                            <th>Verb Form</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pronoun">ich</td>
+                            <td>
+                                <div class="verb-form">esse</div>
+                            </td>
+                            <td class="pronunciation">ikh ES-suh</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">du</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">isst</span></div>
+                            </td>
+                            <td class="pronunciation">doo IST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">er/sie/es</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">isst</span></div>
+                            </td>
+                            <td class="pronunciation">air/zee/es IST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">wir</td>
+                            <td>
+                                <div class="verb-form">essen</div>
+                            </td>
+                            <td class="pronunciation">veer ES-sen</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">ihr</td>
+                            <td>
+                                <div class="verb-form">esst</div>
+                            </td>
+                            <td class="pronunciation">eer EST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">sie/Sie</td>
+                            <td>
+                                <div class="verb-form">essen</div>
+                            </td>
+                            <td class="pronunciation">zee/ZEE ES-sen</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pattern-note">
+                    <h4>🔄 Stem Change Pattern:</h4>
+                    <p><strong>e → i</strong> in du and er/sie/es forms</p>
+                    <p>Example: essen → du <strong>isst</strong>, er <strong>isst</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- geben -->
+        <div class="verb-section" id="geben">
+            <div class="verb-card">
+                <div class="verb-title">
+                    <div class="verb-infinitive">geben</div>
+                    <div class="verb-meaning">to give</div>
+                    <div class="verb-pronunciation">[GAY-ben]</div>
+                </div>
+                
+                <table class="conjugation-table">
+                    <thead>
+                        <tr>
+                            <th>Pronoun</th>
+                            <th>Verb Form</th>
+                            <th>Pronunciation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pronoun">ich</td>
+                            <td>
+                                <div class="verb-form">gebe</div>
+                            </td>
+                            <td class="pronunciation">ikh GAY-buh</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">du</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">gibst</span></div>
+                            </td>
+                            <td class="pronunciation">doo GIPST</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">er/sie/es</td>
+                            <td>
+                                <div class="verb-form"><span class="stem-change">gibt</span></div>
+                            </td>
+                            <td class="pronunciation">air/zee/es GIPT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">wir</td>
+                            <td>
+                                <div class="verb-form">geben</div>
+                            </td>
+                            <td class="pronunciation">veer GAY-ben</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">ihr</td>
+                            <td>
+                                <div class="verb-form">gebt</div>
+                            </td>
+                            <td class="pronunciation">eer GAYBT</td>
+                        </tr>
+                        <tr>
+                            <td class="pronoun">sie/Sie</td>
+                            <td>
+                                <div class="verb-form">geben</div>
+                            </td>
+                            <td class="pronunciation">zee/ZEE GAY-ben</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pattern-note">
+                    <h4>🔄 Stem Change Pattern:</h4>
+                    <p><strong>e → i</strong> in du and er/sie/es forms</p>
+                    <p>Example: geben → du <strong>gibst</strong>, er <strong>gibt</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pronunciation Guide -->
+        <div class="pronunciation-guide">
+            <h3>🔊 German Pronunciation Guide</h3>
+            <div class="sound-grid">
+                <div class="sound-card">
+                    <div class="sound-symbol">ä</div>
+                    <div class="sound-description">like "a" in "cat" but more open</div>
+                    <div class="sound-example">FAEH, LAEF, SHLAEF</div>
+                </div>
+                <div class="sound-card">
+                    <div class="sound-symbol">ö</div>
+                    <div class="sound-description">like "ur" in "fur" but rounder</div>
+                    <div class="sound-example">(not used in these verbs)</div>
+                </div>
+                <div class="sound-card">
+                    <div class="sound-symbol">ü</div>
+                    <div class="sound-description">like "oo" but with rounded lips</div>
+                    <div class="sound-example">(not used in these verbs)</div>
+                </div>
+                <div class="sound-card">
+                    <div class="sound-symbol">au</div>
+                    <div class="sound-description">like "ow" in "cow"</div>
+                    <div class="sound-example">LOW</div>
+                </div>
+                <div class="sound-card">
+                    <div class="sound-symbol">äu</div>
+                    <div class="sound-description">like "oy" in "boy"</div>
+                    <div class="sound-example">LOY</div>
+                </div>
+                <div class="sound-card">
+                    <div class="sound-symbol">ie</div>
+                    <div class="sound-description">like "ee" in "see"</div>
+                    <div class="sound-example">LEES, ZEES</div>
+                </div>
+                <div class="sound-card">
+                    <div class="sound-symbol">ch</div>
+                    <div class="sound-description">like clearing your throat gently</div>
+                    <div class="sound-example">SHPREH-khen</div>
+                </div>
+                <div class="sound-card">
+                    <div class="sound-symbol">sch</div>
+                    <div class="sound-description">like "sh" in "ship"</div>
+                    <div class="sound-example">SHLAH, SHPREH</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px; font-style: italic; color: #6c757d;">
+                💡 Capital letters indicate stressed syllables
+            </div>
+        </div>
+        
+        <div class="practice-section">
+            <h3>🎯 Practice Your Irregular Verbs!</h3>
+            <p>Test your knowledge with these interactive exercises</p>
+            <button class="practice-btn" onclick="startQuiz()">📝 Conjugation Quiz</button>
+            <button class="practice-btn" onclick="startPronunciation()">🔊 Pronunciation Practice</button>
+            <button class="practice-btn" onclick="startMemory()">🧠 Memory Game</button>
+        </div>
+    </div>
+    
+    <script>
+        function showVerb(verbName) {
+            // Hide all verb sections
+            const sections = document.querySelectorAll('.verb-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.verb-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected verb section
+            document.getElementById(verbName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        function startQuiz() {
+            alert('🎯 Conjugation Quiz coming soon! Practice conjugating irregular verbs with instant feedback.');
+        }
+        
+        function startPronunciation() {
+            alert('🔊 Pronunciation Practice coming soon! Listen and repeat the correct pronunciation of each verb form.');
+        }
+        
+        function startMemory() {
+            alert('🧠 Memory Game coming soon! Match verb forms with their correct pronunciations and meanings.');
+        }
+        
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (!navContainer.contains(event.target) && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Add hover effect to conjugation rows
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.conjugation-table tr');
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#f8f9fa';
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'all 0.2s ease';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
