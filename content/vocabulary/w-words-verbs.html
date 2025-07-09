@@ -427,8 +427,8 @@
             <ul class="nav-menu">
                 <li><a href="index.html" class="active">📚 Vocabulary</a></li>
                 <li><a href="../grammar/index.html">📖 Grammar</a></li>
-                <li><a href="../practice/index.html">🎯 Practice</a></li>
-                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
             </ul>
             
             <div class="hamburger" onclick="toggleMobileMenu()">
@@ -442,8 +442,8 @@
             <ul class="mobile-nav-list">
                 <li><a href="index.html" class="active">📚 Vocabulary</a></li>
                 <li><a href="../grammar/index.html">📖 Grammar</a></li>
-                <li><a href="../practice/index.html">🎯 Practice</a></li>
-                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
             </ul>
         </div>
     </header>
@@ -859,6 +859,11 @@
     </div>
     
     <script>
+        // Under Construction Alert
+        function showUnderConstructionAlert(sectionName) {
+            alert(`🚧 ${sectionName} Section Under Construction 🚧\n\nThis section is currently being developed and will be available soon!\n\nStay tuned for exciting German learning tools and practice exercises.`);
+        }
+
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const hamburger = document.querySelector('.hamburger');

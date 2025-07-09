@@ -442,8 +442,8 @@
             <ul class="nav-menu">
                 <li><a href="content/vocabulary/index.html">📚 Vocabulary</a></li>
                 <li><a href="content/grammar/index.html">📖 Grammar</a></li>
-                <li><a href="content/practice/index.html">🎯 Practice</a></li>
-                <li><a href="content/tools/settings.html">⚙️ Tools</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
             </ul>
             
             <!-- Mobile Hamburger -->
@@ -459,8 +459,8 @@
             <ul class="mobile-nav-list">
                 <li><a href="content/vocabulary/index.html">📚 Vocabulary</a></li>
                 <li><a href="content/grammar/index.html">📖 Grammar</a></li>
-                <li><a href="content/practice/index.html">🎯 Practice</a></li>
-                <li><a href="content/tools/settings.html">⚙️ Tools</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
             </ul>
         </div>
     </header>
@@ -475,7 +475,7 @@
                 <a href="content/vocabulary/index.html" class="btn btn-primary">
                     📚 Start Learning Vocabulary
                 </a>
-                <a href="content/practice/index.html" class="btn btn-secondary">
+                <a href="#" onclick="showUnderConstructionAlert('Practice'); return false;" class="btn btn-secondary">
                     🎯 Take a Practice Quiz
                 </a>
             </div>
@@ -525,7 +525,7 @@
                     <span class="feature-icon">🎯</span>
                     <h3>Interactive Practice</h3>
                     <p>Test your knowledge with quizzes and flashcards. Track your progress as you learn.</p>
-                    <a href="content/practice/index.html" class="btn btn-primary">Start Practicing</a>
+                    <a href="#" onclick="showUnderConstructionAlert('Practice'); return false;" class="btn btn-primary">Start Practicing</a>
                 </div>
                 
             </div>
@@ -539,6 +539,11 @@
     </footer>
 
     <script>
+        // Under Construction Alert
+        function showUnderConstructionAlert(sectionName) {
+            alert(`🚧 ${sectionName} Section Under Construction 🚧\n\nThis section is currently being developed and will be available soon!\n\nStay tuned for exciting German learning tools and practice exercises.`);
+        }
+
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const hamburger = document.querySelector('.hamburger');
