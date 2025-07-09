@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Food, Drinks & Vehicles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        /* Header with Navigation - Consistent across all pages */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .logo .flag {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #495057;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-list li {
+            margin: 10px 0;
+        }
+        
+        .mobile-nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-list a:hover, .mobile-nav-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-separator {
+            color: #adb5bd;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .section-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: #495057;
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .category-card {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-card.fruits { border-left-color: #ff6b6b; }
+        .category-card.vegetables { border-left-color: #4ecdc4; }
+        .category-card.meat { border-left-color: #45b7d1; }
+        .category-card.dairy { border-left-color: #f9ca24; }
+        .category-card.drinks { border-left-color: #6c5ce7; }
+        .category-card.bread { border-left-color: #a55eea; }
+        .category-card.common { border-left-color: #26de81; }
+        .category-card.vehicles { border-left-color: #fd79a8; }
+        
+        .category-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2d3436;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .word-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .word-item:hover {
+            background: rgba(255,255,255,0.9);
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+        
+        .word-left {
+            flex: 1;
+        }
+        
+        .german-word {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2d3436;
+            margin-bottom: 3px;
+        }
+        
+        .pronunciation {
+            font-size: 14px;
+            color: #636e72;
+            font-style: italic;
+        }
+        
+        .english-word {
+            font-size: 16px;
+            color: #74b9ff;
+            font-weight: 500;
+        }
+        
+        .gender-tag {
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            margin-left: 10px;
+        }
+        
+        .gender-tag.der { background: #ff6b6b; }
+        .gender-tag.die { background: #4ecdc4; }
+        .gender-tag.das { background: #45b7d1; }
+        
+        .search-box {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .search-input {
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 400px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: #667eea;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .word-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .english-word {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="../../index.html" class="logo">
+                <span class="flag">🇩🇪</span>
+                German Hub
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="../practice/index.html">🎯 Practice</a></li>
+                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+            
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-list">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="../practice/index.html">🎯 Practice</a></li>
+                <li><a href="../tools/settings.html">⚙️ Tools</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav">
+                <a href="../../index.html">🏠 Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="index.html">📚 Vocabulary</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>🍎 Food, Drinks & Vehicles</span>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🍎 German Food, Drinks & Vehicles</h1>
+            <p>Learn essential German vocabulary for everyday items</p>
+        </div>
+        
+        <div class="section-tabs">
+            <button class="tab active" onclick="showSection('food')">🍎 Food & Drinks</button>
+            <button class="tab" onclick="showSection('vehicles')">🚗 Vehicles</button>
+            <button class="tab" onclick="showSection('common')">💬 Common Food Words</button>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search German words..." onkeyup="searchWords()">
+        </div>
+        
+        <!-- Food & Drinks Section -->
+        <div class="content-section active" id="food">
+            <div class="category-grid">
+                <!-- Fruits -->
+                <div class="category-card fruits">
+                    <div class="category-title">🍎 Fruits (Obst)</div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Apfel <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr AH-pfel</div>
+                        </div>
+                        <div class="english-word">apple</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Banane <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee ba-NAH-neh</div>
+                        </div>
+                        <div class="english-word">banana</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Orange <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee oh-RAHN-zheh</div>
+                        </div>
+                        <div class="english-word">orange</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Erdbeere <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee EHRT-beh-reh</div>
+                        </div>
+                        <div class="english-word">strawberry</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Traube <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee TROW-beh</div>
+                        </div>
+                        <div class="english-word">grape</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Birne <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee BEER-neh</div>
+                        </div>
+                        <div class="english-word">pear</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Zitrone <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee tsi-TROH-neh</div>
+                        </div>
+                        <div class="english-word">lemon</div>
+                    </div>
+                </div>
+                
+                <!-- Vegetables -->
+                <div class="category-card vegetables">
+                    <div class="category-title">🥕 Vegetables (Gemüse)</div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Karotte <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee ka-ROT-teh</div>
+                        </div>
+                        <div class="english-word">carrot</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Tomate <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee to-MAH-teh</div>
+                        </div>
+                        <div class="english-word">tomato</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Kartoffel <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee kar-TOF-fel</div>
+                        </div>
+                        <div class="english-word">potato</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Zwiebel <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee TSVEE-bel</div>
+                        </div>
+                        <div class="english-word">onion</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Salat <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr za-LAHT</div>
+                        </div>
+                        <div class="english-word">lettuce/salad</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Kohl <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr kohl</div>
+                        </div>
+                        <div class="english-word">cabbage</div>
+                    </div>
+                </div>
+                
+                <!-- Meat & Fish -->
+                <div class="category-card meat">
+                    <div class="category-title">🥩 Meat & Fish (Fleisch & Fisch)</div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Fleisch <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das flysh</div>
+                        </div>
+                        <div class="english-word">meat</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Hähnchen <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das HEHN-khen</div>
+                        </div>
+                        <div class="english-word">chicken</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Rindfleisch <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das RINT-flysh</div>
+                        </div>
+                        <div class="english-word">beef</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Fisch <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr fish</div>
+                        </div>
+                        <div class="english-word">fish</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Wurst <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee voorst</div>
+                        </div>
+                        <div class="english-word">sausage</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Ei <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das eye</div>
+                        </div>
+                        <div class="english-word">egg</div>
+                    </div>
+                </div>
+                
+                <!-- Dairy -->
+                <div class="category-card dairy">
+                    <div class="category-title">🥛 Dairy (Milchprodukte)</div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Milch <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee milkh</div>
+                        </div>
+                        <div class="english-word">milk</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Käse <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr KEH-zeh</div>
+                        </div>
+                        <div class="english-word">cheese</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Butter <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee BUT-ter</div>
+                        </div>
+                        <div class="english-word">butter</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Joghurt <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr YOH-goort</div>
+                        </div>
+                        <div class="english-word">yogurt</div>
+                    </div>
+                </div>
+                
+                <!-- Bread & Grains -->
+                <div class="category-card bread">
+                    <div class="category-title">🍞 Bread & Grains (Brot & Getreide)</div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Brot <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das broht</div>
+                        </div>
+                        <div class="english-word">bread</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Brötchen <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das BRURT-khen</div>
+                        </div>
+                        <div class="english-word">roll</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Reis <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr ryss</div>
+                        </div>
+                        <div class="english-word">rice</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Nudel <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee NOO-del</div>
+                        </div>
+                        <div class="english-word">pasta/noodle</div>
+                    </div>
+                </div>
+                
+                <!-- Drinks -->
+                <div class="category-card drinks">
+                    <div class="category-title">🥤 Drinks (Getränke)</div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Wasser <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das VAS-ser</div>
+                        </div>
+                        <div class="english-word">water</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Saft <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr zahft</div>
+                        </div>
+                        <div class="english-word">juice</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Kaffee <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr ka-FEH</div>
+                        </div>
+                        <div class="english-word">coffee</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Tee <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr teh</div>
+                        </div>
+                        <div class="english-word">tea</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Bier <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das beer</div>
+                        </div>
+                        <div class="english-word">beer</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Wein <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr vyn</div>
+                        </div>
+                        <div class="english-word">wine</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vehicles Section -->
+        <div class="content-section" id="vehicles">
+            <div class="category-grid">
+                <div class="category-card vehicles">
+                    <div class="category-title">🚗 Vehicles (Fahrzeuge)</div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Auto <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das AU-to</div>
+                        </div>
+                        <div class="english-word">car</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Bus <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr boos</div>
+                        </div>
+                        <div class="english-word">bus</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der Zug <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr tsook</div>
+                        </div>
+                        <div class="english-word">train</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Flugzeug <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das FLOOK-tsoyk</div>
+                        </div>
+                        <div class="english-word">airplane</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Fahrrad <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das FAH-raht</div>
+                        </div>
+                        <div class="english-word">bicycle</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Motorrad <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das mo-TOR-raht</div>
+                        </div>
+                        <div class="english-word">motorcycle</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Schiff <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das shif</div>
+                        </div>
+                        <div class="english-word">ship</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Boot <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das boht</div>
+                        </div>
+                        <div class="english-word">boat</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Taxi <span class="gender-tag das">das</span></div>
+                            <div class="pronunciation">das TAK-see</div>
+                        </div>
+                        <div class="english-word">taxi</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die Straßenbahn <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee SHTRAHS-sen-bahn</div>
+                        </div>
+                        <div class="english-word">tram</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">die U-Bahn <span class="gender-tag die">die</span></div>
+                            <div class="pronunciation">dee OO-bahn</div>
+                        </div>
+                        <div class="english-word">subway</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">der LKW <span class="gender-tag der">der</span></div>
+                            <div class="pronunciation">dehr el-ka-VEH</div>
+                        </div>
+                        <div class="english-word">truck</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Common Food Words Section -->
+        <div class="content-section" id="common">
+            <div class="category-grid">
+                <div class="category-card common">
+                    <div class="category-title">💬 Common Food Words</div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">lecker</div>
+                            <div class="pronunciation">LEK-ker</div>
+                        </div>
+                        <div class="english-word">delicious/tasty</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">gut</div>
+                            <div class="pronunciation">goot</div>
+                        </div>
+                        <div class="english-word">good</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">schlecht</div>
+                            <div class="pronunciation">shlekht</div>
+                        </div>
+                        <div class="english-word">bad</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">süß</div>
+                            <div class="pronunciation">zoos</div>
+                        </div>
+                        <div class="english-word">sweet</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">sauer</div>
+                            <div class="pronunciation">ZOW-er</div>
+                        </div>
+                        <div class="english-word">sour</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">salzig</div>
+                            <div class="pronunciation">ZAHL-tsikh</div>
+                        </div>
+                        <div class="english-word">salty</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">scharf</div>
+                            <div class="pronunciation">sharf</div>
+                        </div>
+                        <div class="english-word">spicy/hot</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">heiß</div>
+                            <div class="pronunciation">hyss</div>
+                        </div>
+                        <div class="english-word">hot (temperature)</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">kalt</div>
+                            <div class="pronunciation">kalt</div>
+                        </div>
+                        <div class="english-word">cold</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">frisch</div>
+                            <div class="pronunciation">frish</div>
+                        </div>
+                        <div class="english-word">fresh</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">hungrig</div>
+                            <div class="pronunciation">HUNG-rikh</div>
+                        </div>
+                        <div class="english-word">hungry</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">durstig</div>
+                            <div class="pronunciation">DOOR-stikh</div>
+                        </div>
+                        <div class="english-word">thirsty</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">satt</div>
+                            <div class="pronunciation">zaht</div>
+                        </div>
+                        <div class="english-word">full/satisfied</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Essen</div>
+                            <div class="pronunciation">das ES-sen</div>
+                        </div>
+                        <div class="english-word">food/meal</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">das Trinken</div>
+                            <div class="pronunciation">das TRIN-ken</div>
+                        </div>
+                        <div class="english-word">drinking/beverage</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">kochen</div>
+                            <div class="pronunciation">KO-khen</div>
+                        </div>
+                        <div class="english-word">to cook</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">essen</div>
+                            <div class="pronunciation">ES-sen</div>
+                        </div>
+                        <div class="english-word">to eat</div>
+                    </div>
+                    <div class="word-item">
+                        <div class="word-left">
+                            <div class="german-word">trinken</div>
+                            <div class="pronunciation">TRIN-ken</div>
+                        </div>
+                        <div class="english-word">to drink</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Food Words</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Vehicles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">18</div>
+                <div class="stat-label">Common Phrases</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Categories</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (!navContainer.contains(event.target) && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+        
+        function searchWords() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            const wordItems = document.querySelectorAll('.word-item');
+            
+            wordItems.forEach(item => {
+                const germanWord = item.querySelector('.german-word').textContent.toLowerCase();
+                const englishWord = item.querySelector('.english-word').textContent.toLowerCase();
+                
+                if (germanWord.includes(searchTerm) || englishWord.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        // Add click sound effect simulation
+        document.querySelectorAll('.word-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '1') showSection('food');
+            if (e.key === '2') showSection('vehicles'); 
+            if (e.key === '3') showSection('common');
+        });
+    </script>
+</body>
+</html>
+                            

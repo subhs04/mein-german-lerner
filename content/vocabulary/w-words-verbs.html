@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>German W-Words & Verbs | German Learning Hub</title>
-    <meta name="description" content="Learn German question words and essential verbs with interactive mindmap, conjugations, and memory tips">
-    <meta name="theme-color" content="#667eea">
-    <link rel="manifest" href="../../manifest.json">
-    
+    <title>German W-Words - Complete Reference</title>
     <style>
         * {
             margin: 0;
@@ -16,14 +12,13 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
-            line-height: 1.6;
         }
         
-        /* Header - Consistent styling */
+        /* Header with Navigation - Consistent across all pages */
         .header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -75,10 +70,15 @@
             gap: 8px;
         }
         
-        .nav-menu a:hover, .nav-menu a.active {
+        .nav-menu a:hover {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             transform: translateY(-2px);
+        }
+        
+        .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
         
         .hamburger {
@@ -153,7 +153,7 @@
             color: white;
         }
         
-        /* Breadcrumb */
+        /* Breadcrumb Navigation */
         .breadcrumb {
             background: rgba(255, 255, 255, 0.9);
             padding: 15px 0;
@@ -188,256 +188,176 @@
             color: #adb5bd;
         }
         
-        /* Main Content */
-        .main-content {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .page-header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-        
-        .page-header h1 {
-            font-size: 2.5rem;
-            color: #495057;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .page-header p {
-            font-size: 1.1rem;
-            color: #6c757d;
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-        
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        /* Responsive Tables Container */
-        .table-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            margin: 30px 0;
-            overflow-x: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            margin-top: 20px;
         }
         
-        .section-title {
-            font-size: 1.5rem;
-            color: #495057;
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .category-card {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .question-words { border-left-color: #e74c3c; }
+        .place-direction { border-left-color: #3498db; }
+        .time-words { border-left-color: #f39c12; }
+        .relative-pronouns { border-left-color: #27ae60; }
+        .other-words { border-left-color: #9b59b6; }
+        
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .vocab-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-            min-width: 600px;
+        .word-item {
+            background: rgba(255,255,255,0.7);
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid currentColor;
+            transition: all 0.3s ease;
         }
         
-        .vocab-table th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 12px;
-            text-align: center;
-            font-weight: bold;
-            border: 1px solid rgba(255,255,255,0.2);
-            font-size: 14px;
-        }
-        
-        .vocab-table td {
-            padding: 15px 12px;
-            border: 1px solid #e9ecef;
-            vertical-align: top;
-            background: white;
-        }
-        
-        .vocab-table tr:nth-child(even) td {
-            background: #f8f9fa;
-        }
-        
-        .vocab-table tr:hover td {
-            background: #e3f2fd;
-            transform: scale(1.01);
-            transition: all 0.2s ease;
+        .word-item:hover {
+            transform: translateX(5px);
+            background: rgba(255,255,255,0.9);
         }
         
         .german-word {
             font-weight: bold;
+            font-size: 1.2em;
             color: #2c3e50;
-            font-size: 16px;
             margin-bottom: 5px;
         }
         
-        .pronunciation {
-            font-style: italic;
+        .meaning {
             color: #7f8c8d;
-            font-size: 13px;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .pronunciation {
+            font-family: monospace;
+            background: rgba(0,0,0,0.05);
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            color: #495057;
             margin-bottom: 8px;
         }
         
-        .meaning {
-            color: #495057;
-            font-weight: 500;
-            text-align: center;
-        }
-        
-        .conjugation {
-            font-size: 12px;
-            background: rgba(102, 126, 234, 0.1);
-            padding: 8px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            line-height: 1.4;
-            margin-top: 5px;
+        .example {
+            font-style: italic;
+            color: #28a745;
+            font-size: 0.9em;
+            background: rgba(40, 167, 69, 0.1);
+            padding: 5px 8px;
+            border-radius: 3px;
+            margin-bottom: 5px;
         }
         
         .memory-tip {
-            font-size: 11px;
-            color: #e74c3c;
-            font-style: italic;
-            margin-top: 8px;
-            background: rgba(231, 76, 60, 0.1);
-            padding: 6px 8px;
-            border-radius: 4px;
-            border-left: 3px solid #e74c3c;
+            font-size: 0.8em;
+            color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+            padding: 4px 6px;
+            border-radius: 3px;
+            font-weight: 500;
         }
         
-        .word-type {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 5px;
-        }
-        
-        /* Mobile Accordion for Tables */
-        .mobile-accordion {
-            display: none;
-        }
-        
-        .accordion-item {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-        
-        .accordion-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-        }
-        
-        .accordion-header:hover {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
-        }
-        
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .accordion-content.active {
-            max-height: 500px;
-        }
-        
-        .accordion-body {
-            padding: 20px;
-            border-top: 1px solid #e9ecef;
-        }
-        
-        .word-detail {
-            margin-bottom: 15px;
-        }
-        
-        .word-detail:last-child {
-            margin-bottom: 0;
-        }
-        
-        /* Tips Section */
-        .tips-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-        
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .tip-card {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 20px;
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
             border-radius: 10px;
-            border-left: 4px solid #667eea;
+            font-size: 16px;
+            margin-bottom: 25px;
+            background: rgba(255,255,255,0.9);
+            transition: border-color 0.3s ease;
         }
         
-        .tip-card h4 {
-            color: #495057;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
-        .tip-card p {
-            color: #6c757d;
-            line-height: 1.6;
+        .quick-reference {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
         }
         
-        /* Responsive Design */
+        .quick-reference h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .quick-item {
+            background: rgba(255,255,255,0.8);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        .quick-item strong {
+            color: #1976d2;
+        }
+        
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -447,40 +367,51 @@
                 display: flex;
             }
             
-            .table-container {
-                display: none;
-            }
-            
-            .mobile-accordion {
-                display: block;
-            }
-            
-            .page-header {
-                padding: 30px 20px;
-            }
-            
-            .page-header h1 {
-                font-size: 2rem;
-            }
-            
-            .tips-grid {
+            .categories-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
             }
         }
         
-        @media (max-width: 480px) {
-            .main-content {
-                padding: 20px 10px;
-            }
-            
-            .accordion-header {
-                padding: 12px 15px;
-                font-size: 14px;
-            }
-            
-            .accordion-body {
-                padding: 15px;
-            }
+        .highlight {
+            background: rgba(255, 235, 59, 0.3) !important;
+            transform: translateX(10px) !important;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .filter-btn.inactive {
+            background: #6c757d;
         }
     </style>
 </head>
@@ -530,274 +461,403 @@
         </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Page Header -->
-        <section class="page-header">
-            <h1>🤔 German W-Words & Essential Verbs</h1>
-            <p>Master German question words and the most important verbs with conjugations, pronunciation guides, and memory tips to accelerate your learning.</p>
-            <button class="download-btn" onclick="downloadWWordsExcel()">
-                📥 Download Excel File
-            </button>
-        </section>
-
-        <!-- W-Question Words Table -->
-        <div class="table-container">
-            <h2 class="section-title">🤔 W-Question Words</h2>
-            <table class="vocab-table">
-                <thead>
-                    <tr>
-                        <th>German Word</th>
-                        <th>English Meaning</th>
-                        <th>Pronunciation</th>
-                        <th>Memory Tip</th>
-                        <th>Example Usage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="german-word">WO</div>
-                            <div class="word-type">Question Word</div>
-                        </td>
-                        <td class="meaning">WHERE (location)</td>
-                        <td class="pronunciation">[voh]</td>
-                        <td class="memory-tip">💡 Think: "Where?" = WO</td>
-                        <td>Wo ist das Museum?<br><em>(Where is the museum?)</em></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="german-word">WOHIN</div>
-                            <div class="word-type">Question Word</div>
-                        </td>
-                        <td class="meaning">WHERE TO (direction)</td>
-                        <td class="pronunciation">[voh-HIN]</td>
-                        <td class="memory-tip">💡 WO + HIN = where + to</td>
-                        <td>Wohin gehst du?<br><em>(Where are you going to?)</em></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="german-word">WOHER</div>
-                            <div class="word-type">Question Word</div>
-                        </td>
-                        <td class="meaning">WHERE FROM (origin)</td>
-                        <td class="pronunciation">[voh-HEHR]</td>
-                        <td class="memory-tip">💡 WO + HER = where + from</td>
-                        <td>Woher kommst du?<br><em>(Where are you from?)</em></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="german-word">WAS</div>
-                            <div class="word-type">Question Word</div>
-                        </td>
-                        <td class="meaning">WHAT</td>
-                        <td class="pronunciation">[vas]</td>
-                        <td class="memory-tip">💡 WAS = WHAT (both start with W)</td>
-                        <td>Was machst du?<br><em>(What are you doing?)</em></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="german-word">WER</div>
-                            <div class="word-type">Question Word</div>
-                        </td>
-                        <td class="meaning">WHO</td>
-                        <td class="pronunciation">[vehr]</td>
-                        <td class="memory-tip">💡 WER = WHO (sounds like "where")</td>
-                        <td>Wer ist das?<br><em>(Who is that?)</em></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="german-word">WANN</div>
-                            <div class="word-type">Question Word</div>
-                        </td>
-                        <td class="meaning">WHEN</td>
-                        <td class="pronunciation">[van]</td>
-                        <td class="memory-tip">💡 WANN = WHEN (double N)</td>
-                        <td>Wann kommst du?<br><em>(When are you coming?)</em></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="container">
+        <div class="header">
+            <h1>🇩🇪 German W-Words Complete Guide</h1>
+            <p>Master all essential W-words for questions, directions, time, and relationships</p>
         </div>
-
-        <!-- Essential Verbs Table -->
-        <div class="table-container">
-            <h2 class="section-title">🗣️ Essential Verbs</h2>
-            <table class="vocab-table">
-                <thead>
-                    <tr>
-                        <th>German Verb</th>
-                        <th>English Meaning</th>
-                        <th>Pronunciation</th>
-                        <th>Present Tense Conjugation</th>
-                        <th>Memory Tip</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="german-word">SEIN</div>
-                            <div class="word-type">Auxiliary Verb</div>
-                        </td>
-                        <td class="meaning">TO BE</td>
-                        <td class="pronunciation">[zine]</td>
-                        <td>
-                            <div class="conjugation">
-                                ich BIN • du BIST • er/sie/es IST<br>
-                                wir SIND • ihr SEID • sie SIND
-                            </div>
-                        </td>
-                        <td class="memory-tip">💡 Most important verb in German!</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="german-word">HABEN</div>
-                            <div class="word-type">Auxiliary Verb</div>
-                        </td>
-                        <td class="meaning">TO HAVE</td>
-                        <td class="pronunciation">[HAH-ben]</td>
-                        <td>
-                            <div class="conjugation">
-                                ich HABE • du HAST • er/sie/es HAT<br>
-                                wir HABEN • ihr HABT • sie HABEN
-                            </div>
-                        </td>
-                        <td class="memory-tip">💡 HAT = has (like English "hat")</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="german-word">WERDEN</div>
-                            <div class="word-type">Auxiliary Verb</div>
-                        </td>
-                        <td class="meaning">TO BECOME</td>
-                        <td class="pronunciation">[VEHR-den]</td>
-                        <td>
-                            <div class="conjugation">
-                                ich WERDE • du WIRST • er/sie/es WIRD<br>
-                                wir WERDEN • ihr WERDET • sie WERDEN
-                            </div>
-                        </td>
-                        <td class="memory-tip">💡 Used for future tense!</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="german-word">GEHEN</div>
-                            <div class="word-type">Motion Verb</div>
-                        </td>
-                        <td class="meaning">TO GO / TO WALK</td>
-                        <td class="pronunciation">[GAY-en]</td>
-                        <td>
-                            <div class="conjugation">
-                                ich GEHE • du GEHST • er/sie/es GEHT<br>
-                                wir GEHEN • ihr GEHT • sie GEHEN
-                            </div>
-                        </td>
-                        <td class="memory-tip">💡 GEHT = goes (sounds like "gate")</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="german-word">KOMMEN</div>
-                            <div class="word-type">Motion Verb</div>
-                        </td>
-                        <td class="meaning">TO COME</td>
-                        <td class="pronunciation">[KOM-men]</td>
-                        <td>
-                            <div class="conjugation">
-                                ich KOMME • du KOMMST • er/sie/es KOMMT<br>
-                                wir KOMMEN • ihr KOMMT • sie KOMMEN
-                            </div>
-                        </td>
-                        <td class="memory-tip">💡 KOMM = come (similar to English)</td>
-                    </tr>
-                </tbody>
-            </table>
+        
+        <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search for any W-word..." onkeyup="searchWords()">
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterCategory('all')">All Words</button>
+            <button class="filter-btn" onclick="filterCategory('question-words')">Questions</button>
+            <button class="filter-btn" onclick="filterCategory('place-direction')">Place & Direction</button>
+            <button class="filter-btn" onclick="filterCategory('time-words')">Time</button>
+            <button class="filter-btn" onclick="filterCategory('relative-pronouns')">Relatives</button>
+            <button class="filter-btn" onclick="filterCategory('other-words')">Others</button>
         </div>
-
-        <!-- Mobile Accordion Version -->
-        <div class="mobile-accordion">
-            <h2 class="section-title">🤔 W-Question Words</h2>
+        
+        <div class="categories-grid">
+            <!-- Question Words -->
+            <div class="category-card question-words" data-category="question-words">
+                <div class="category-title">
+                    <span>❓</span>Question Words (Fragewörter)
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WER</div>
+                    <div class="meaning">WHO (person - subject)</div>
+                    <div class="pronunciation">[vehr]</div>
+                    <div class="example">Wer ist das? - Who is that?</div>
+                    <div class="memory-tip">💡 WER = WHO (both ask about people)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WEN</div>
+                    <div class="meaning">WHO/WHOM (person - accusative object)</div>
+                    <div class="pronunciation">[vehn]</div>
+                    <div class="example">Wen siehst du? - Who(m) do you see?</div>
+                    <div class="memory-tip">💡 WEN = WHOM (accusative case)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WEM</div>
+                    <div class="meaning">WHO/WHOM (person - dative object)</div>
+                    <div class="pronunciation">[vehm]</div>
+                    <div class="example">Wem hilfst du? - Who are you helping?</div>
+                    <div class="memory-tip">💡 WEM = TO WHOM (dative case)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WESSEN</div>
+                    <div class="meaning">WHOSE (possession)</div>
+                    <div class="pronunciation">[VEH-sen]</div>
+                    <div class="example">Wessen Auto ist das? - Whose car is that?</div>
+                    <div class="memory-tip">💡 WESSEN = WHOSE (genitive case)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WAS</div>
+                    <div class="meaning">WHAT (thing)</div>
+                    <div class="pronunciation">[vas]</div>
+                    <div class="example">Was machst du? - What are you doing?</div>
+                    <div class="memory-tip">💡 WAS = WHAT (both start with W)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WELCH-</div>
+                    <div class="meaning">WHICH (selection)</div>
+                    <div class="pronunciation">[velsh]</div>
+                    <div class="example">Welches Buch? - Which book?</div>
+                    <div class="memory-tip">💡 Changes ending: welcher/welche/welches</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WIE</div>
+                    <div class="meaning">HOW</div>
+                    <div class="pronunciation">[vee]</div>
+                    <div class="example">Wie geht's? - How are you?</div>
+                    <div class="memory-tip">💡 WIE = HOW (sounds like "we")</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WIE VIEL</div>
+                    <div class="meaning">HOW MUCH</div>
+                    <div class="pronunciation">[vee feel]</div>
+                    <div class="example">Wie viel kostet das? - How much does that cost?</div>
+                    <div class="memory-tip">💡 WIE VIEL = HOW MUCH (quantity)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WIE VIELE</div>
+                    <div class="meaning">HOW MANY</div>
+                    <div class="pronunciation">[vee FEE-leh]</div>
+                    <div class="example">Wie viele Bücher? - How many books?</div>
+                    <div class="memory-tip">💡 WIE VIELE = HOW MANY (countable)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WARUM</div>
+                    <div class="meaning">WHY</div>
+                    <div class="pronunciation">[va-ROOM]</div>
+                    <div class="example">Warum fragst du? - Why do you ask?</div>
+                    <div class="memory-tip">💡 WARUM = WHY (reason)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WIESO</div>
+                    <div class="meaning">WHY/HOW COME</div>
+                    <div class="pronunciation">[vee-ZOH]</div>
+                    <div class="example">Wieso nicht? - Why not?</div>
+                    <div class="memory-tip">💡 WIESO = WHY (informal)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WESHALB</div>
+                    <div class="meaning">WHY/FOR WHAT REASON</div>
+                    <div class="pronunciation">[VES-halp]</div>
+                    <div class="example">Weshalb kommst du so spät? - Why are you so late?</div>
+                    <div class="memory-tip">💡 WESHALB = WHY (formal reason)</div>
+                </div>
+            </div>
             
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>WO - WHERE (location)</span>
-                    <span>▼</span>
+            <!-- Place and Direction -->
+            <div class="category-card place-direction" data-category="place-direction">
+                <div class="category-title">
+                    <span>📍</span>Place & Direction (Ort & Richtung)
                 </div>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        <div class="word-detail">
-                            <div class="german-word">WO</div>
-                            <div class="pronunciation">[voh]</div>
-                            <div class="meaning">WHERE (location)</div>
-                            <div class="memory-tip">💡 Think: "Where?" = WO</div>
-                            <p><strong>Example:</strong> Wo ist das Museum? <em>(Where is the museum?)</em></p>
-                        </div>
-                    </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WO</div>
+                    <div class="meaning">WHERE (location - static)</div>
+                    <div class="pronunciation">[voh]</div>
+                    <div class="example">Wo wohnst du? - Where do you live?</div>
+                    <div class="memory-tip">💡 WO = WHERE (static location)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WOHIN</div>
+                    <div class="meaning">WHERE TO (direction - going to)</div>
+                    <div class="pronunciation">[vo-HIN]</div>
+                    <div class="example">Wohin gehst du? - Where are you going?</div>
+                    <div class="memory-tip">💡 WO + HIN = WHERE + TO</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WOHER</div>
+                    <div class="meaning">WHERE FROM (origin - coming from)</div>
+                    <div class="pronunciation">[vo-HEHR]</div>
+                    <div class="example">Woher kommst du? - Where are you from?</div>
+                    <div class="memory-tip">💡 WO + HER = WHERE + FROM</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WODURCH</div>
+                    <div class="meaning">THROUGH WHAT/WHEREBY</div>
+                    <div class="pronunciation">[vo-DOORKH]</div>
+                    <div class="example">Wodurch hast du das gelernt? - How did you learn that?</div>
+                    <div class="memory-tip">💡 WO + DURCH = WHERE + THROUGH</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WORAUF</div>
+                    <div class="meaning">ON WHAT/WHAT...ON</div>
+                    <div class="pronunciation">[vo-ROWF]</div>
+                    <div class="example">Worauf wartest du? - What are you waiting for?</div>
+                    <div class="memory-tip">💡 WO + AUF = WHERE + ON</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WORIN</div>
+                    <div class="meaning">IN WHAT/WHEREIN</div>
+                    <div class="pronunciation">[vo-RIN]</div>
+                    <div class="example">Worin besteht der Unterschied? - What's the difference?</div>
+                    <div class="memory-tip">💡 WO + IN = WHERE + IN</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WOBEI</div>
+                    <div class="meaning">WHEREBY/WHILE DOING</div>
+                    <div class="pronunciation">[vo-BYE]</div>
+                    <div class="example">Wobei kann ich helfen? - How can I help?</div>
+                    <div class="memory-tip">💡 WO + BEI = WHERE + AT/WHILE</div>
                 </div>
             </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>WOHIN - WHERE TO (direction)</span>
-                    <span>▼</span>
+            
+            <!-- Time Words -->
+            <div class="category-card time-words" data-category="time-words">
+                <div class="category-title">
+                    <span>⏰</span>Time Words (Zeitwörter)
                 </div>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        <div class="word-detail">
-                            <div class="german-word">WOHIN</div>
-                            <div class="pronunciation">[voh-HIN]</div>
-                            <div class="meaning">WHERE TO (direction)</div>
-                            <div class="memory-tip">💡 WO + HIN = where + to</div>
-                            <p><strong>Example:</strong> Wohin gehst du? <em>(Where are you going to?)</em></p>
-                        </div>
-                    </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WANN</div>
+                    <div class="meaning">WHEN (specific time)</div>
+                    <div class="pronunciation">[van]</div>
+                    <div class="example">Wann kommst du? - When are you coming?</div>
+                    <div class="memory-tip">💡 WANN = WHEN (double N for specific time)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WENN</div>
+                    <div class="meaning">WHEN/IF (conditional, repeated)</div>
+                    <div class="pronunciation">[ven]</div>
+                    <div class="example">Wenn ich Zeit habe... - When/If I have time...</div>
+                    <div class="memory-tip">💡 WENN = IF/WHEN (conditions, habits)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WIE LANGE</div>
+                    <div class="meaning">HOW LONG (duration)</div>
+                    <div class="pronunciation">[vee LAN-geh]</div>
+                    <div class="example">Wie lange dauert das? - How long does that take?</div>
+                    <div class="memory-tip">💡 WIE LANGE = HOW LONG (time duration)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WIE OFT</div>
+                    <div class="meaning">HOW OFTEN (frequency)</div>
+                    <div class="pronunciation">[vee oft]</div>
+                    <div class="example">Wie oft gehst du ins Kino? - How often do you go to the cinema?</div>
+                    <div class="memory-tip">💡 WIE OFT = HOW OFTEN (frequency)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WIE SPÄT</div>
+                    <div class="meaning">WHAT TIME (clock time)</div>
+                    <div class="pronunciation">[vee shpayt]</div>
+                    <div class="example">Wie spät ist es? - What time is it?</div>
+                    <div class="memory-tip">💡 WIE SPÄT = WHAT TIME (clock)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WOCHENTAG</div>
+                    <div class="meaning">WHAT DAY (day of week)</div>
+                    <div class="pronunciation">[VO-khen-tahk]</div>
+                    <div class="example">Welcher Wochentag ist heute? - What day is today?</div>
+                    <div class="memory-tip">💡 WOCHEN + TAG = WEEK + DAY</div>
                 </div>
             </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>SEIN - TO BE</span>
-                    <span>▼</span>
+            
+            <!-- Relative Pronouns -->
+            <div class="category-card relative-pronouns" data-category="relative-pronouns">
+                <div class="category-title">
+                    <span>🔗</span>Relative Pronouns (Relativpronomen)
                 </div>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        <div class="word-detail">
-                            <div class="german-word">SEIN</div>
-                            <div class="pronunciation">[zine]</div>
-                            <div class="meaning">TO BE</div>
-                            <div class="conjugation">
-                                ich BIN • du BIST • er/sie/es IST<br>
-                                wir SIND • ihr SEID • sie SIND
-                            </div>
-                            <div class="memory-tip">💡 Most important verb in German!</div>
-                        </div>
-                    </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WAS (relative)</div>
+                    <div class="meaning">THAT/WHICH (refers to whole clause)</div>
+                    <div class="pronunciation">[vas]</div>
+                    <div class="example">Das, was er sagt... - That which he says...</div>
+                    <div class="memory-tip">💡 WAS as relative pronoun for neuter/unknown</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WO (relative)</div>
+                    <div class="meaning">WHERE (relative location)</div>
+                    <div class="pronunciation">[voh]</div>
+                    <div class="example">Die Stadt, wo ich wohne... - The city where I live...</div>
+                    <div class="memory-tip">💡 WO in relative clauses = WHERE</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WOZU</div>
+                    <div class="meaning">FOR WHAT PURPOSE/WHY</div>
+                    <div class="pronunciation">[vo-TSOO]</div>
+                    <div class="example">Wozu brauchst du das? - What do you need that for?</div>
+                    <div class="memory-tip">💡 WO + ZU = WHERE + TO (purpose)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WOMIT</div>
+                    <div class="meaning">WITH WHAT</div>
+                    <div class="pronunciation">[vo-MIT]</div>
+                    <div class="example">Womit schreibst du? - What are you writing with?</div>
+                    <div class="memory-tip">💡 WO + MIT = WHERE + WITH</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WOVON</div>
+                    <div class="meaning">OF WHAT/FROM WHAT</div>
+                    <div class="pronunciation">[vo-FON]</div>
+                    <div class="example">Wovon sprichst du? - What are you talking about?</div>
+                    <div class="memory-tip">💡 WO + VON = WHERE + FROM/OF</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WOFÜR</div>
+                    <div class="meaning">FOR WHAT</div>
+                    <div class="pronunciation">[vo-FUER]</div>
+                    <div class="example">Wofür ist das gut? - What is that good for?</div>
+                    <div class="memory-tip">💡 WO + FÜR = WHERE + FOR</div>
+                </div>
+            </div>
+            
+            <!-- Other Important W-Words -->
+            <div class="category-card other-words" data-category="other-words">
+                <div class="category-title">
+                    <span>💫</span>Other Important W-Words
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WÄHREND</div>
+                    <div class="meaning">DURING/WHILE</div>
+                    <div class="pronunciation">[VAY-rent]</div>
+                    <div class="example">Während des Essens... - During the meal...</div>
+                    <div class="memory-tip">💡 WÄHREND = DURING (temporal)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WEGEN</div>
+                    <div class="meaning">BECAUSE OF/DUE TO</div>
+                    <div class="pronunciation">[VAY-gen]</div>
+                    <div class="example">Wegen des Regens... - Because of the rain...</div>
+                    <div class="memory-tip">💡 WEGEN = BECAUSE OF (reason)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WIE</div>
+                    <div class="meaning">LIKE/AS (comparison)</div>
+                    <div class="pronunciation">[vee]</div>
+                    <div class="example">So groß wie ich - As big as me</div>
+                    <div class="memory-tip">💡 WIE = LIKE/AS (comparisons)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WOMÖGLICH</div>
+                    <div class="meaning">POSSIBLY/PERHAPS</div>
+                    <div class="pronunciation">[vo-MÖGH-likh]</div>
+                    <div class="example">Womöglich regnet es. - It might rain.</div>
+                    <div class="memory-tip">💡 WO + MÖGLICH = WHERE + POSSIBLE</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WEDER</div>
+                    <div class="meaning">NEITHER</div>
+                    <div class="pronunciation">[VAY-der]</div>
+                    <div class="example">Weder... noch... - Neither... nor...</div>
+                    <div class="memory-tip">💡 WEDER...NOCH = NEITHER...NOR</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WEITER</div>
+                    <div class="meaning">FURTHER/CONTINUE</div>
+                    <div class="pronunciation">[VY-ter]</div>
+                    <div class="example">Weiter so! - Keep it up!</div>
+                    <div class="memory-tip">💡 WEITER = FURTHER (continuation)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WIEDER</div>
+                    <div class="meaning">AGAIN</div>
+                    <div class="pronunciation">[VEE-der]</div>
+                    <div class="example">Bis morgen wieder! - See you again tomorrow!</div>
+                    <div class="memory-tip">💡 WIEDER = AGAIN (repetition)</div>
+                </div>
+                
+                <div class="word-item">
+                    <div class="german-word">WICHTIG</div>
+                    <div class="meaning">IMPORTANT</div>
+                    <div class="pronunciation">[VIKH-tikh]</div>
+                    <div class="example">Das ist wichtig. - That is important.</div>
+                    <div class="memory-tip">💡 WICHTIG = IMPORTANT (significance)</div>
                 </div>
             </div>
         </div>
-
-        <!-- Learning Tips Section -->
-        <section class="tips-section">
-            <h2 class="section-title">💡 Learning Tips</h2>
-            <div class="tips-grid">
-                <div class="tip-card">
-                    <h4>🎯 W-Word Patterns</h4>
-                    <p>Notice how German W-words often start with "W" like English. WO (where), WAS (what), WER (who) - the patterns help with memory!</p>
+        
+        <div class="quick-reference">
+            <h3>🚀 Quick Reference Patterns</h3>
+            <div class="quick-grid">
+                <div class="quick-item">
+                    <strong>WO-</strong> compounds<br>
+                    Ask about location/method
                 </div>
-                <div class="tip-card">
-                    <h4>🔄 Verb Practice</h4>
-                    <p>Practice the three auxiliary verbs (sein, haben, werden) daily. They're used in almost every conversation and form the foundation of German grammar.</p>
+                <div class="quick-item">
+                    <strong>WIE-</strong> compounds<br>
+                    Ask about manner/quantity
                 </div>
-                <div class="tip-card">
-                    <h4>🗣️ Pronunciation Focus</h4>
-                    <p>The "W" in German sounds like "V" in English. Practice saying "voh" for WO and "vas" for WAS until it becomes natural.</p>
+                <div class="quick-item">
+                    <strong>WER/WEN/WEM</strong><br>
+                    Different cases for "who"
                 </div>
-                <div class="tip-card">
-                    <h4>📝 Daily Usage</h4>
-                    <p>Try asking yourself questions in German using these W-words. "Wo bin ich?" (Where am I?) "Was mache ich?" (What am I doing?)</p>
+                <div class="quick-item">
+                    <strong>WANN vs WENN</strong><br>
+                    Specific vs conditional time
+                </div>
+                <div class="quick-item">
+                    <strong>WO/WOHIN/WOHER</strong><br>
+                    Static/to/from location
+                </div>
+                <div class="quick-item">
+                    <strong>WARUM/WIESO</strong><br>
+                    Formal vs informal "why"
                 </div>
             </div>
-        </section>
-    </main>
-
+        </div>
+    </div>
+    
     <script>
         // Mobile Menu Toggle
         function toggleMobileMenu() {
@@ -820,94 +880,82 @@
             }
         });
 
-        // Accordion Toggle for Mobile
-        function toggleAccordion(element) {
-            const content = element.nextElementSibling;
-            const arrow = element.querySelector('span:last-child');
+        function searchWords() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const wordItems = document.querySelectorAll('.word-item');
             
-            // Close all other accordions
-            document.querySelectorAll('.accordion-content').forEach(item => {
-                if (item !== content) {
-                    item.classList.remove('active');
-                    item.previousElementSibling.querySelector('span:last-child').textContent = '▼';
+            wordItems.forEach(item => {
+                const germanWord = item.querySelector('.german-word').textContent.toLowerCase();
+                const meaning = item.querySelector('.meaning').textContent.toLowerCase();
+                const example = item.querySelector('.example')?.textContent.toLowerCase() || '';
+                
+                if (germanWord.includes(searchTerm) || meaning.includes(searchTerm) || example.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    if (searchTerm) {
+                        item.classList.add('highlight');
+                    } else {
+                        item.classList.remove('highlight');
+                    }
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('highlight');
                 }
             });
-            
-            // Toggle current accordion
-            content.classList.toggle('active');
-            arrow.textContent = content.classList.contains('active') ? '▲' : '▼';
         }
-
-        // Download Excel Function
-        function downloadWWordsExcel() {
-            const csvContent = `German Word,English Meaning,Pronunciation,Memory Tip,Type,Example
-WO,WHERE (location),[voh],"Think: Where? = WO",Question Word,"Wo ist das Museum? (Where is the museum?)"
-WOHIN,WHERE TO (direction),[voh-HIN],"WO + HIN = where + to",Question Word,"Wohin gehst du? (Where are you going to?)"
-WOHER,WHERE FROM (origin),[voh-HEHR],"WO + HER = where + from",Question Word,"Woher kommst du? (Where are you from?)"
-WAS,WHAT,[vas],"WAS = WHAT (both start with W)",Question Word,"Was machst du? (What are you doing?)"
-WER,WHO,[vehr],"WER = WHO (sounds like where)",Question Word,"Wer ist das? (Who is that?)"
-WANN,WHEN,[van],"WANN = WHEN (double N)",Question Word,"Wann kommst du? (When are you coming?)"
-SEIN,TO BE,[zine],"Most important verb in German!",Auxiliary Verb,"ich BIN • du BIST • er/sie/es IST"
-HABEN,TO HAVE,[HAH-ben],"HAT = has (like English hat)",Auxiliary Verb,"ich HABE • du HAST • er/sie/es HAT"
-WERDEN,TO BECOME,[VEHR-den],"Used for future tense!",Auxiliary Verb,"ich WERDE • du WIRST • er/sie/es WIRD"
-GEHEN,TO GO/WALK,[GAY-en],"GEHT = goes (sounds like gate)",Motion Verb,"ich GEHE • du GEHST • er/sie/es GEHT"
-KOMMEN,TO COME,[KOM-men],"KOMM = come (similar to English)",Motion Verb,"ich KOMME • du KOMMST • er/sie/es KOMMT"`;
+        
+        function filterCategory(category) {
+            const categories = document.querySelectorAll('.category-card');
+            const buttons = document.querySelectorAll('.filter-btn');
             
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', 'german-w-words-verbs.csv');
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            // Update button states
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('inactive');
+            });
+            event.target.classList.add('active');
+            event.target.classList.remove('inactive');
             
-            // Show success message
-            showDownloadSuccess('W-Words & Verbs');
+            // Show/hide categories
+            categories.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
-
-        function showDownloadSuccess(category) {
-            const message = document.createElement('div');
-            message.style.cssText = `
-                position: fixed;
-                top: 90px;
-                right: 20px;
-                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-                color: white;
-                padding: 15px 20px;
-                border-radius: 10px;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-                z-index: 1000;
-                font-weight: 500;
-                animation: slideIn 0.3s ease;
-            `;
-            message.innerHTML = `✅ ${category} vocabulary downloaded!`;
-            
-            document.body.appendChild(message);
-            
-            setTimeout(() => {
-                message.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    document.body.removeChild(message);
-                }, 300);
-            }, 3000);
-        }
-
-        // Add CSS animations
+        
+        // Add click effects to word items
+        document.querySelectorAll('.word-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove previous selections
+                document.querySelectorAll('.word-item').forEach(i => i.classList.remove('selected'));
+                // Add selection to clicked item
+                this.classList.add('selected');
+                
+                // Optional: speak the German word if speech synthesis is available
+                if ('speechSynthesis' in window) {
+                    const germanWord = this.querySelector('.german-word').textContent;
+                    const utterance = new SpeechSynthesisUtterance(germanWord);
+                    utterance.lang = 'de-DE';
+                    utterance.rate = 0.8;
+                    speechSynthesis.speak(utterance);
+                }
+            });
+        });
+        
+        // Add some additional styles for selected items
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
+            .word-item.selected {
+                background: rgba(102, 126, 234, 0.2) !important;
+                border-left-color: #667eea !important;
+                transform: translateX(8px) !important;
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
             }
         `;
         document.head.appendChild(style);
     </script>
 </body>
 </html>
-            
