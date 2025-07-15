@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family & Classroom | German Learning Hub</title>
+    <meta name="description" content="Learn German family relationships, classroom vocabulary, and personal information with pronunciation guides">
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="../../manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header - Consistent styling */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .logo .flag {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #495057;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-list a:hover, .mobile-nav-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-separator {
+            color: #adb5bd;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #495057;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        /* Tab Navigation */
+        .tab-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #495057;
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .tab:hover:not(.active) {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+        
+        /* Search Box */
+        .search-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #495057;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+            background: white;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 12px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        td {
+            padding: 15px 12px;
+            border: 1px solid #e9ecef;
+            vertical-align: top;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+        
+        tr:hover td {
+            background: #e3f2fd;
+            transform: scale(1.01);
+        }
+        
+        .category-name {
+            font-weight: bold;
+            text-align: center;
+            background: #f0f8ff !important;
+            color: #495057;
+            min-width: 120px;
+        }
+        
+        .german-word {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        
+        .pronunciation {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        
+        .meaning {
+            text-align: center;
+            font-weight: bold;
+            background: #f0f8ff !important;
+            color: #495057;
+        }
+        
+        /* Accordion for articles */
+        .article-category {
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .article-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .article-header:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+        
+        .article-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .article-category.expanded .article-content {
+            max-height: 2000px;
+        }
+        
+        .article-category.expanded .article-header span {
+            transform: rotate(180deg);
+        }
+        
+        .article-header span {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            table {
+                min-width: 700px;
+                font-size: 13px;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+            }
+            
+            .german-word {
+                font-size: 14px;
+            }
+            
+            .pronunciation {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 20px 10px;
+            }
+            
+            .content-section {
+                padding: 20px 15px;
+            }
+            
+            table {
+                min-width: 600px;
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 10px 6px;
+            }
+            
+            .german-word {
+                font-size: 13px;
+            }
+            
+            .pronunciation {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="../../index.html" class="logo">
+                <span class="flag">🇩🇪</span>
+                German Hub
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
+            </ul>
+            
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-list">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav">
+                <a href="../../index.html">🏠 Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="index.html">📚 Vocabulary</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>👨‍👩‍👧‍👦 Family & Classroom</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>👨‍👩‍👧‍👦 Family & Classroom</h1>
+            <p>Learn family relationships, classroom vocabulary, and personal information. Essential vocabulary for describing yourself and your surroundings in German.</p>
+        </section>
+
+        <!-- Search Container -->
+        <div class="search-container">
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search vocabulary (family, classroom, personal info)...">
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('family')">👨‍👩‍👧‍👦 Family</button>
+                <button class="tab" onclick="showTab('classroom')">✏️ Classroom</button>
+                <button class="tab" onclick="showTab('personal')">📝 Personal Info</button>
+            </div>
+        </div>
+
+        <!-- Family Tab -->
+        <div class="tab-content active" id="family">
+            <div class="content-section">
+                <h2 class="section-title">👨‍👩‍👧‍👦 Family Relationships</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Relationship</th>
+                                <th>Masculine Singular</th>
+                                <th>Masculine Plural</th>
+                                <th>Feminine Singular</th>
+                                <th>Feminine Plural</th>
+                                <th>English Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="category-name">Parents</td>
+                                <td><div class="german-word">der Vater</div><div class="pronunciation">dehr FAH-ter</div></td>
+                                <td><div class="german-word">die Väter</div><div class="pronunciation">dee VAH-ter</div></td>
+                                <td><div class="german-word">die Mutter</div><div class="pronunciation">dee MUT-ter</div></td>
+                                <td><div class="german-word">die Mütter</div><div class="pronunciation">dee MUE-ter</div></td>
+                                <td class="meaning">Father / Mother</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Children</td>
+                                <td><div class="german-word">der Sohn</div><div class="pronunciation">dehr zohn</div></td>
+                                <td><div class="german-word">die Söhne</div><div class="pronunciation">dee ZOH-neh</div></td>
+                                <td><div class="german-word">die Tochter</div><div class="pronunciation">dee TOKH-ter</div></td>
+                                <td><div class="german-word">die Töchter</div><div class="pronunciation">dee TERKH-ter</div></td>
+                                <td class="meaning">Son / Daughter</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Siblings</td>
+                                <td><div class="german-word">der Bruder</div><div class="pronunciation">dehr BROO-der</div></td>
+                                <td><div class="german-word">die Brüder</div><div class="pronunciation">dee BRUE-der</div></td>
+                                <td><div class="german-word">die Schwester</div><div class="pronunciation">dee SHVES-ter</div></td>
+                                <td><div class="german-word">die Schwestern</div><div class="pronunciation">dee SHVES-tern</div></td>
+                                <td class="meaning">Brother / Sister</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Grandparents</td>
+                                <td><div class="german-word">der Großvater</div><div class="pronunciation">dehr GROHS-fah-ter</div></td>
+                                <td><div class="german-word">die Großväter</div><div class="pronunciation">dee GROHS-fah-ter</div></td>
+                                <td><div class="german-word">die Großmutter</div><div class="pronunciation">dee GROHS-mut-ter</div></td>
+                                <td><div class="german-word">die Großmütter</div><div class="pronunciation">dee GROHS-mue-ter</div></td>
+                                <td class="meaning">Grandfather / Grandmother</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Uncle/Aunt</td>
+                                <td><div class="german-word">der Onkel</div><div class="pronunciation">dehr ON-kel</div></td>
+                                <td><div class="german-word">die Onkel</div><div class="pronunciation">dee ON-kel</div></td>
+                                <td><div class="german-word">die Tante</div><div class="pronunciation">dee TAN-teh</div></td>
+                                <td><div class="german-word">die Tanten</div><div class="pronunciation">dee TAN-ten</div></td>
+                                <td class="meaning">Uncle / Aunt</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Cousins</td>
+                                <td><div class="german-word">der Cousin</div><div class="pronunciation">dehr koo-ZEHN</div></td>
+                                <td><div class="german-word">die Cousins</div><div class="pronunciation">dee koo-ZEHNS</div></td>
+                                <td><div class="german-word">die Cousine</div><div class="pronunciation">dee koo-ZEE-neh</div></td>
+                                <td><div class="german-word">die Cousinen</div><div class="pronunciation">dee koo-ZEE-nen</div></td>
+                                <td class="meaning">Male Cousin / Female Cousin</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Nephew/Niece</td>
+                                <td><div class="german-word">der Neffe</div><div class="pronunciation">dehr NEF-feh</div></td>
+                                <td><div class="german-word">die Neffen</div><div class="pronunciation">dee NEF-fen</div></td>
+                                <td><div class="german-word">die Nichte</div><div class="pronunciation">dee NIKH-teh</div></td>
+                                <td><div class="german-word">die Nichten</div><div class="pronunciation">dee NIKH-ten</div></td>
+                                <td class="meaning">Nephew / Niece</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Spouse</td>
+                                <td><div class="german-word">der Ehemann</div><div class="pronunciation">dehr EH-eh-man</div></td>
+                                <td><div class="german-word">die Ehemänner</div><div class="pronunciation">dee EH-eh-men-er</div></td>
+                                <td><div class="german-word">die Ehefrau</div><div class="pronunciation">dee EH-eh-frow</div></td>
+                                <td><div class="german-word">die Ehefrauen</div><div class="pronunciation">dee EH-eh-frow-en</div></td>
+                                <td class="meaning">Husband / Wife</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">In-Laws (Parents)</td>
+                                <td><div class="german-word">der Schwiegervater</div><div class="pronunciation">dehr SHVEE-ger-fah-ter</div></td>
+                                <td><div class="german-word">die Schwiegerväter</div><div class="pronunciation">dee SHVEE-ger-fah-ter</div></td>
+                                <td><div class="german-word">die Schwiegermutter</div><div class="pronunciation">dee SHVEE-ger-mut-ter</div></td>
+                                <td><div class="german-word">die Schwiegermütter</div><div class="pronunciation">dee SHVEE-ger-mue-ter</div></td>
+                                <td class="meaning">Father-in-law / Mother-in-law</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">In-Laws (Children)</td>
+                                <td><div class="german-word">der Schwiegersohn</div><div class="pronunciation">dehr SHVEE-ger-zohn</div></td>
+                                <td><div class="german-word">die Schwiegersöhne</div><div class="pronunciation">dee SHVEE-ger-zoh-neh</div></td>
+                                <td><div class="german-word">die Schwiegertochter</div><div class="pronunciation">dee SHVEE-ger-tokh-ter</div></td>
+                                <td><div class="german-word">die Schwiegertöchter</div><div class="pronunciation">dee SHVEE-ger-terkh-ter</div></td>
+                                <td class="meaning">Son-in-law / Daughter-in-law</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Grandchildren</td>
+                                <td><div class="german-word">der Enkelsohn</div><div class="pronunciation">dehr EN-kel-zohn</div></td>
+                                <td><div class="german-word">die Enkelsöhne</div><div class="pronunciation">dee EN-kel-zoh-neh</div></td>
+                                <td><div class="german-word">die Enkeltochter</div><div class="pronunciation">dee EN-kel-tokh-ter</div></td>
+                                <td><div class="german-word">die Enkeltöchter</div><div class="pronunciation">dee EN-kel-terkh-ter</div></td>
+                                <td class="meaning">Grandson / Granddaughter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Classroom Tab -->
+        <div class="tab-content" id="classroom">
+            <div class="content-section">
+                <h2 class="section-title">✏️ Classroom Vocabulary by Articles</h2>
+                
+                <div class="article-category expanded" id="der-items">
+                    <div class="article-header" onclick="toggleCategory('der-items')">
+                        <h3>🔵 DER Articles (Masculine)</h3>
+                        <span>▼</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr><th>Category</th><th>Singular</th><th>Plural</th><th>English Meaning</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="category-name">Writing Tools</td>
+                                        <td><div class="german-word">der Bleistift</div><div class="pronunciation">dehr BLIE-shtift</div></td>
+                                        <td><div class="german-word">die Bleistifte</div><div class="pronunciation">dee BLIE-shtif-teh</div></td>
+                                        <td class="meaning">Pencil</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Writing Tools</td>
+                                        <td><div class="german-word">der Kuli</div><div class="pronunciation">dehr KOO-lee</div></td>
+                                        <td><div class="german-word">die Kulis</div><div class="pronunciation">dee KOO-lees</div></td>
+                                        <td class="meaning">Ballpoint pen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Writing Tools</td>
+                                        <td><div class="german-word">der Filzstift</div><div class="pronunciation">dehr FILTS-shtift</div></td>
+                                        <td><div class="german-word">die Filzstifte</div><div class="pronunciation">dee FILTS-shtif-teh</div></td>
+                                        <td class="meaning">Felt-tip pen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Writing Tools</td>
+                                        <td><div class="german-word">der Marker</div><div class="pronunciation">dehr MAR-ker</div></td>
+                                        <td><div class="german-word">die Marker</div><div class="pronunciation">dee MAR-ker</div></td>
+                                        <td class="meaning">Marker</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Tools</td>
+                                        <td><div class="german-word">der Radiergummi</div><div class="pronunciation">dehr rah-DEER-gum-mee</div></td>
+                                        <td><div class="german-word">die Radiergummis</div><div class="pronunciation">dee rah-DEER-gum-mees</div></td>
+                                        <td class="meaning">Eraser</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Tools</td>
+                                        <td><div class="german-word">der Spitzer</div><div class="pronunciation">dehr SHPIT-ser</div></td>
+                                        <td><div class="german-word">die Spitzer</div><div class="pronunciation">dee SHPIT-ser</div></td>
+                                        <td class="meaning">Pencil sharpener</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Storage</td>
+                                        <td><div class="german-word">der Ordner</div><div class="pronunciation">dehr ORD-ner</div></td>
+                                        <td><div class="german-word">die Ordner</div><div class="pronunciation">dee ORD-ner</div></td>
+                                        <td class="meaning">Folder/Binder</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Furniture</td>
+                                        <td><div class="german-word">der Stuhl</div><div class="pronunciation">dehr shtool</div></td>
+                                        <td><div class="german-word">die Stühle</div><div class="pronunciation">dee SHTUE-leh</div></td>
+                                        <td class="meaning">Chair</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Furniture</td>
+                                        <td><div class="german-word">der Tisch</div><div class="pronunciation">dehr tish</div></td>
+                                        <td><div class="german-word">die Tische</div><div class="pronunciation">dee TI-sheh</div></td>
+                                        <td class="meaning">Table/Desk</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Technology</td>
+                                        <td><div class="german-word">der Computer</div><div class="pronunciation">dehr kom-PYOO-ter</div></td>
+                                        <td><div class="german-word">die Computer</div><div class="pronunciation">dee kom-PYOO-ter</div></td>
+                                        <td class="meaning">Computer</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Technology</td>
+                                        <td><div class="german-word">der Taschenrechner</div><div class="pronunciation">dehr TAH-shen-rekh-ner</div></td>
+                                        <td><div class="german-word">die Taschenrechner</div><div class="pronunciation">dee TAH-shen-rekh-ner</div></td>
+                                        <td class="meaning">Calculator</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-category" id="die-items">
+                    <div class="article-header" onclick="toggleCategory('die-items')">
+                        <h3>🔴 DIE Articles (Feminine)</h3>
+                        <span>▼</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr><th>Category</th><th>Singular</th><th>Plural</th><th>English Meaning</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="category-name">Tools</td>
+                                        <td><div class="german-word">die Schere</div><div class="pronunciation">dee SHEH-reh</div></td>
+                                        <td><div class="german-word">die Scheren</div><div class="pronunciation">dee SHEH-ren</div></td>
+                                        <td class="meaning">Scissors</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Classroom</td>
+                                        <td><div class="german-word">die Tafel</div><div class="pronunciation">dee TAH-fel</div></td>
+                                        <td><div class="german-word">die Tafeln</div><div class="pronunciation">dee TAH-feln</div></td>
+                                        <td class="meaning">Blackboard</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Storage</td>
+                                        <td><div class="german-word">die Tasche</div><div class="pronunciation">dee TAH-sheh</div></td>
+                                        <td><div class="german-word">die Taschen</div><div class="pronunciation">dee TAH-shen</div></td>
+                                        <td class="meaning">Bag</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Office Supplies</td>
+                                        <td><div class="german-word">die Büroklammer</div><div class="pronunciation">dee BUE-roh-klam-mer</div></td>
+                                        <td><div class="german-word">die Büroklammern</div><div class="pronunciation">dee BUE-roh-klam-mern</div></td>
+                                        <td class="meaning">Paper clip</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Classroom</td>
+                                        <td><div class="german-word">die Tür</div><div class="pronunciation">dee tuer</div></td>
+                                        <td><div class="german-word">die Türen</div><div class="pronunciation">dee TUE-ren</div></td>
+                                        <td class="meaning">Door</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-category" id="das-items">
+                    <div class="article-header" onclick="toggleCategory('das-items')">
+                        <h3>🟢 DAS Articles (Neuter)</h3>
+                        <span>▼</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr><th>Category</th><th>Singular</th><th>Plural</th><th>English Meaning</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="category-name">Books</td>
+                                        <td><div class="german-word">das Buch</div><div class="pronunciation">das bookh</div></td>
+                                        <td><div class="german-word">die Bücher</div><div class="pronunciation">dee BUE-kher</div></td>
+                                        <td class="meaning">Book</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Notebooks</td>
+                                        <td><div class="german-word">das Heft</div><div class="pronunciation">das heft</div></td>
+                                        <td><div class="german-word">die Hefte</div><div class="pronunciation">dee HEF-teh</div></td>
+                                        <td class="meaning">Notebook</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Reference</td>
+                                        <td><div class="german-word">das Wörterbuch</div><div class="pronunciation">das VER-ter-bookh</div></td>
+                                        <td><div class="german-word">die Wörterbücher</div><div class="pronunciation">dee VER-ter-bue-kher</div></td>
+                                        <td class="meaning">Dictionary</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Tools</td>
+                                        <td><div class="german-word">das Lineal</div><div class="pronunciation">das lee-neh-AHL</div></td>
+                                        <td><div class="german-word">die Lineale</div><div class="pronunciation">dee lee-neh-AH-leh</div></td>
+                                        <td class="meaning">Ruler</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Storage</td>
+                                        <td><div class="german-word">das Mäppchen</div><div class="pronunciation">das MEHP-khen</div></td>
+                                        <td><div class="german-word">die Mäppchen</div><div class="pronunciation">dee MEHP-khen</div></td>
+                                        <td class="meaning">Pencil case</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="category-name">Classroom</td>
+                                        <td><div class="german-word">das Fenster</div><div class="pronunciation">das FEN-ster</div></td>
+                                        <td><div class="german-word">die Fenster</div><div class="pronunciation">dee FEN-ster</div></td>
+                                        <td class="meaning">Window</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Info Tab -->
+        <div class="tab-content" id="personal">
+            <div class="content-section">
+                <h2 class="section-title">👤 Basic Personal Information</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>Category</th><th>German Term</th><th>English Meaning</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="category-name">Name</td>
+                                <td><div class="german-word">der Name</div><div class="pronunciation">dehr NAH-meh</div></td>
+                                <td class="meaning">Name</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">First Name</td>
+                                <td><div class="german-word">der Vorname</div><div class="pronunciation">dehr FOR-nah-meh</div></td>
+                                <td class="meaning">First name</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Last Name</td>
+                                <td><div class="german-word">der Nachname</div><div class="pronunciation">dehr NAHKH-nah-meh</div></td>
+                                <td class="meaning">Last name</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Age</td>
+                                <td><div class="german-word">das Alter</div><div class="pronunciation">das AL-ter</div></td>
+                                <td class="meaning">Age</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Birthplace</td>
+                                <td><div class="german-word">der Geburtsort</div><div class="pronunciation">dehr geh-BOORTS-ort</div></td>
+                                <td class="meaning">Place of birth</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Birth Date</td>
+                                <td><div class="german-word">das Geburtsdatum</div><div class="pronunciation">das geh-BOORTS-dah-tum</div></td>
+                                <td class="meaning">Date of birth</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Address</td>
+                                <td><div class="german-word">die Adresse</div><div class="pronunciation">dee ah-DREH-seh</div></td>
+                                <td class="meaning">Address</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">💑 Marital Status</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>Status</th><th>German Term</th><th>English Meaning</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="category-name">Single</td>
+                                <td><div class="german-word">ledig</div><div class="pronunciation">LEH-dikh</div></td>
+                                <td class="meaning">Single</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Engaged</td>
+                                <td><div class="german-word">verlobt</div><div class="pronunciation">fer-LOHPT</div></td>
+                                <td class="meaning">Engaged</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Married</td>
+                                <td><div class="german-word">verheiratet</div><div class="pronunciation">fer-HIGH-rah-tet</div></td>
+                                <td class="meaning">Married</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Divorced</td>
+                                <td><div class="german-word">geschieden</div><div class="pronunciation">geh-SHEE-den</div></td>
+                                <td class="meaning">Divorced</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Widowed</td>
+                                <td><div class="german-word">verwitwet</div><div class="pronunciation">fer-VIT-vet</div></td>
+                                <td class="meaning">Widowed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">🌍 Nationality & Languages</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>Category</th><th>German Term</th><th>English Meaning</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="category-name">Nationality</td>
+                                <td><div class="german-word">die Staatsangehörigkeit</div><div class="pronunciation">dee SHTAHTS-an-geh-hö-rikh-kite</div></td>
+                                <td class="meaning">Nationality</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Languages</td>
+                                <td><div class="german-word">die Sprachen</div><div class="pronunciation">dee SHPRAH-khen</div></td>
+                                <td class="meaning">Languages</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Mother Tongue</td>
+                                <td><div class="german-word">die Muttersprache</div><div class="pronunciation">dee MUT-ter-shprah-kheh</div></td>
+                                <td class="meaning">Mother tongue</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Foreign Language</td>
+                                <td><div class="german-word">die Fremdsprache</div><div class="pronunciation">dee FREMDT-shprah-kheh</div></td>
+                                <td class="meaning">Foreign language</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">🎓 Education & Work</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>Category</th><th>German Term</th><th>English Meaning</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="category-name">Profession</td>
+                                <td><div class="german-word">der Beruf</div><div class="pronunciation">dehr beh-ROOF</div></td>
+                                <td class="meaning">Profession</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Education</td>
+                                <td><div class="german-word">die Ausbildung</div><div class="pronunciation">dee OWS-bil-dung</div></td>
+                                <td class="meaning">Training/Education</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Studies</td>
+                                <td><div class="german-word">das Studium</div><div class="pronunciation">das SHTOO-dee-um</div></td>
+                                <td class="meaning">Studies</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Student</td>
+                                <td><div class="german-word">der Student</div><div class="pronunciation">dehr shtoo-DENT</div></td>
+                                <td class="meaning">Student</td>
+                            </tr>
+                            <tr>
+                                <td class="category-name">Unemployed</td>
+                                <td><div class="german-word">arbeitslos</div><div class="pronunciation">AR-baits-lohs</div></td>
+                                <td class="meaning">Unemployed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Under Construction Alert
+        function showUnderConstructionAlert(sectionName) {
+            alert(`🚧 ${sectionName} Section Under Construction 🚧\n\nThis section is currently being developed and will be available soon!\n\nStay tuned for exciting German learning tools and practice exercises.`);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (!navContainer.contains(event.target) && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active to clicked tab
+            event.target.classList.add('active');
+        }
+        
+        // Accordion functionality
+        function toggleCategory(categoryId) {
+            const category = document.getElementById(categoryId);
+            category.classList.toggle('expanded');
+        }
+        
+        // Search functionality
+        document.getElementById('searchBox').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            // Show all elements if search is empty
+            if (searchTerm === '') {
+                document.querySelectorAll('tbody tr, .content-section').forEach(el => {
+                    el.style.display = '';
+                });
+                document.querySelectorAll('table').forEach(table => {
+                    table.style.display = '';
+                });
+                // Collapse all accordions when search is cleared
+                document.querySelectorAll('.article-category').forEach(cat => {
+                    cat.classList.remove('expanded');
+                });
+                return;
+            }
+            
+            // Hide/show table rows based on search
+            document.querySelectorAll('tbody tr').forEach(row => {
+                if (row.textContent.toLowerCase().includes(searchTerm)) {
+                    row.style.display = '';
+                    
+                    // Expand collapsed categories if match found
+                    const category = row.closest('.article-category');
+                    if (category) {
+                        category.classList.add('expanded');
+                    }
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // Hide tables that have no visible rows
+            document.querySelectorAll('table').forEach(table => {
+                const visibleRows = table.querySelectorAll('tbody tr:not([style*="display: none"])');
+                if (visibleRows.length === 0) {
+                    table.style.display = 'none';
+                } else {
+                    table.style.display = '';
+                }
+            });
+
+            // Hide content sections that have no visible tables
+            document.querySelectorAll('.content-section').forEach(section => {
+                const visibleTables = section.querySelectorAll('table:not([style*="display: none"])');
+                if (visibleTables.length === 0) {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = '';
+                }
+            });
+        });
+
+        // Cache refresh functionality
+        async function refreshCache() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    const registration = await navigator.serviceWorker.ready;
+                    if (registration.active) {
+                        const messageChannel = new MessageChannel();
+                        
+                        messageChannel.port1.onmessage = function(event) {
+                            if (event.data.success) {
+                                console.log('✅ Cache refreshed successfully');
+                                setTimeout(() => window.location.reload(), 1000);
+                            } else {
+                                console.error('❌ Cache refresh failed:', event.data.error);
+                            }
+                        };
+                        
+                        registration.active.postMessage(
+                            { type: 'FORCE_CACHE_REFRESH' },
+                            [messageChannel.port2]
+                        );
+                    }
+                } catch (error) {
+                    console.error('Cache refresh error:', error);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

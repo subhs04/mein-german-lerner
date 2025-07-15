@@ -10,6 +10,7 @@ const urlsToCache = [
   './content/vocabulary/city-locations.html',
   './content/vocabulary/food_drinks_vehicles.html',
   './content/vocabulary/german_time_days.html',
+  './content/vocabulary/family_classroomArticles.html',
   './content/grammar/index.html',
   './content/grammar/german_irregular_verbs.html'
 ];
