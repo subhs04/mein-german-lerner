@@ -622,9 +622,6 @@
         <section class="page-header">
             <h1>👨‍💼 German Professions</h1>
             <p>Master job titles in German with masculine and feminine forms, plus plural variations. Essential vocabulary for workplace conversations and career discussions.</p>
-            <button class="download-btn" onclick="downloadProfessionsExcel()">
-                📥 Download Excel File
-            </button>
         </section>
 
         <!-- Desktop Table -->
@@ -959,87 +956,6 @@
             }
         });
 
-        // Download Excel Function
-        function downloadProfessionsExcel() {
-            const csvContent = `Profession,Masculine Singular,Masculine Plural,Feminine Singular,Feminine Plural,English Meaning,Pronunciation (M),Pronunciation (F)
-Secretary,der Sekretär,die Sekretäre,die Sekretärin,die Sekretärinnen,Secretary,dehr zeh-kreh-TAHR,dee zeh-kreh-TAH-rin
-Manager,der Manager,die Manager,die Managerin,die Managerinnen,Manager,dehr MAH-nah-gher,dee MAH-nah-ghe-rin
-Salesperson,der Verkäufer,die Verkäufer,die Verkäuferin,die Verkäuferinnen,Salesperson,dehr fehr-KOY-fehr,dee fehr-KOY-feh-rin
-Teacher,der Lehrer,die Lehrer,die Lehrerin,die Lehrerinnen,Teacher,dehr LEH-rehr,dee LEH-reh-rin
-Doctor,der Arzt,die Ärzte,die Ärztin,die Ärztinnen,Doctor/Physician,dehr ARTST,dee EHRT-sin
-Engineer,der Ingenieur,die Ingenieure,die Ingenieurin,die Ingenieurinnen,Engineer,dehr in-zheh-nee-OHR,dee in-zheh-nee-OH-rin
-Police Officer,der Polizist,die Polizisten,die Polizistin,die Polizistinnen,Police Officer,dehr po-li-TSIST,dee po-li-TSIS-tin
-Writer,der Schriftsteller,die Schriftsteller,die Schriftstellerin,die Schriftstellerinnen,Writer/Author,dehr SHRIFTS-shtel-lehr,dee SHRIFTS-shtel-leh-rin
-Journalist,der Journalist,die Journalisten,die Journalistin,die Journalistinnen,Journalist,dehr zhoor-nah-LIST,dee zhoor-nah-LIS-tin
-Baker,der Bäcker,die Bäcker,die Bäckerin,die Bäckerinnen,Baker,dehr BEH-ker,dee BEH-keh-rin
-Architect,der Architekt,die Architekten,die Architektin,die Architektinnen,Architect,dehr ar-shi-TEKT,dee ar-shi-TEK-tin
-Cook/Chef,der Koch,die Köche,die Köchin,die Köchinnen,Cook/Chef,dehr KOKH,dee KOH-khin
-Nurse,der Krankenpfleger,die Krankenpfleger,die Krankenschwester,die Krankenschwestern,Nurse,dehr KRAN-ken-pfleh-gehr,dee KRAN-ken-shves-ter
-Businessman,der Geschäftsmann,die Geschäftsmänner,die Geschäftsfrau,die Geschäftsfrauen,Businessperson,dehr geh-SHEHFTS-man,dee geh-SHEHFTS-frow
-Pilot,der Pilot,die Piloten,die Pilotin,die Pilotinnen,Pilot,dehr pee-LOHT,dee pee-LOH-tin
-Singer,der Sänger,die Sänger,die Sängerin,die Sängerinnen,Singer,dehr ZENG-ehr,dee ZENG-eh-rin
-Hairdresser,der Friseur,die Friseure,die Friseurin,die Friseurinnen,Hairdresser,dehr fri-ZOHR,dee fri-ZOH-rin
-Taxi Driver,der Taxifahrer,die Taxifahrer,die Taxifahrerin,die Taxifahrerinnen,Taxi Driver,dehr TAK-see-fah-rehr,dee TAK-see-fah-reh-rin
-Waiter/Server,der Kellner,die Kellner,die Kellnerin,die Kellnerinnen,Waiter/Server,dehr KEL-nehr,dee KEL-neh-rin
-Flight Attendant,der Flugbegleiter,die Flugbegleiter,die Flugbegleiterin,die Flugbegleiterinnen,Flight Attendant,dehr FLOOK-beh-gly-ter,dee FLOOK-beh-gly-teh-rin
-Bank Employee,der Bankangestellte,die Bankangestellten,die Bankangestellte,die Bankangestellten,Bank Employee,dehr BANK-an-geh-shtel-teh,dee BANK-an-geh-shtel-teh
-Student,der Schüler,die Schüler,die Schülerin,die Schülerinnen,Student/Pupil,dehr SHOO-lehr,dee SHOO-leh-rin
-Programmer,der Programmierer,die Programmierer,die Programmiererin,die Programmiererinnen,Programmer,dehr pro-grah-MEE-rehr,dee pro-grah-MEE-reh-rin`;
-            
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', 'german-professions.csv');
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Show success message
-            showDownloadSuccess('Professions');
-        }
-
-        function showDownloadSuccess(category) {
-            const message = document.createElement('div');
-            message.style.cssText = `
-                position: fixed;
-                top: 90px;
-                right: 20px;
-                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-                color: white;
-                padding: 15px 20px;
-                border-radius: 10px;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-                z-index: 1000;
-                font-weight: 500;
-                animation: slideIn 0.3s ease;
-            `;
-            message.innerHTML = `✅ ${category} vocabulary downloaded!`;
-            
-            document.body.appendChild(message);
-            
-            setTimeout(() => {
-                message.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    document.body.removeChild(message);
-                }, 300);
-            }, 3000);
-        }
-
-        // Add CSS animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>

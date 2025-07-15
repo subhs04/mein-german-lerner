@@ -599,9 +599,6 @@
                     <a href="german_irregular_verbs.html" class="btn btn-primary">
                         📖 Study Now
                     </a>
-                    <button class="btn btn-secondary" onclick="downloadGrammarPDF('irregular-verbs')">
-                        📥 Download PDF
-                    </button>
                 </div>
             </div>
 
@@ -626,9 +623,6 @@
                     <a href="german_articles.html" class="btn btn-primary">
                         📖 Study Now
                     </a>
-                    <button class="btn btn-secondary" onclick="downloadGrammarPDF('articles')">
-                        📥 Download PDF
-                    </button>
                 </div>
             </div>
 
@@ -653,9 +647,6 @@
                     <a href="german_sentence_structure.html" class="btn btn-primary">
                         📖 Study Now
                     </a>
-                    <button class="btn btn-secondary" onclick="downloadGrammarPDF('sentence-structure')">
-                        📥 Download PDF
-                    </button>
                 </div>
             </div>
         </section>
@@ -688,56 +679,6 @@
             }
         });
 
-        // PDF Download Function (placeholder)
-        function downloadGrammarPDF(category) {
-            // This would integrate with a PDF generation system
-            const message = `PDF download for ${category.replace('-', ' ')} would be implemented here.`;
-            
-            // Show success message
-            showDownloadSuccess(category);
-        }
-
-        function showDownloadSuccess(category) {
-            // Create a temporary success message
-            const message = document.createElement('div');
-            message.style.cssText = `
-                position: fixed;
-                top: 90px;
-                right: 20px;
-                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-                color: white;
-                padding: 15px 20px;
-                border-radius: 10px;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-                z-index: 1000;
-                font-weight: 500;
-                animation: slideIn 0.3s ease;
-            `;
-            message.innerHTML = `✅ ${category.replace('-', ' ')} PDF download started!`;
-            
-            document.body.appendChild(message);
-            
-            setTimeout(() => {
-                message.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    document.body.removeChild(message);
-                }, 300);
-            }, 3000);
-        }
-
-        // Add CSS animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>

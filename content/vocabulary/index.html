@@ -574,8 +574,8 @@
                     <div class="label">With Pronunciation</div>
                 </div>
                 <div class="stat-card">
-                    <span class="number">📥</span>
-                    <div class="label">Excel Download</div>
+                    <span class="number">🎓</span>
+                    <div class="label">Interactive</div>
                 </div>
             </div>
         </section>
@@ -603,9 +603,6 @@
                     <a href="w-words-verbs.html" class="btn btn-primary">
                         📖 Study Now
                     </a>
-                    <button class="btn btn-secondary" onclick="downloadExcel('w-words-verbs')">
-                        📥 Download Excel
-                    </button>
                 </div>
             </div>
 
@@ -630,9 +627,6 @@
                     <a href="professions.html" class="btn btn-primary">
                         📖 Study Now
                     </a>
-                    <button class="btn btn-secondary" onclick="downloadExcel('professions')">
-                        📥 Download Excel
-                    </button>
                 </div>
             </div>
 
@@ -657,9 +651,6 @@
                     <a href="food_drinks_vehicles.html" class="btn btn-primary">
                         📖 Study Now
                     </a>
-                    <button class="btn btn-secondary" onclick="downloadExcel('food-drinks')">
-                        📥 Download Excel
-                    </button>
                 </div>
             </div>
 
@@ -684,9 +675,6 @@
                     <a href="city-locations.html" class="btn btn-primary">
                         📖 Study Now
                     </a>
-                    <button class="btn btn-secondary" onclick="downloadExcel('city-locations')">
-                        📥 Download Excel
-                    </button>
                 </div>
             </div>
             
@@ -711,9 +699,6 @@
                     <a href="german_time_days.html" class="btn btn-primary">
                         📖 Study Now
                     </a>
-                    <button class="btn btn-secondary" onclick="downloadExcel('time-days')">
-                        📥 Download Excel
-                    </button>
                 </div>
             </div>
         </section>
@@ -746,172 +731,34 @@
             }
         });
 
-        // Excel Download Function
-        function downloadExcel(category) {
-            // This would integrate with your vocabulary data
-            const vocabData = getVocabularyData(category);
-            
-            // Create CSV content (Excel-compatible)
-            let csvContent = '';
-            
-            switch(category) {
-                case 'w-words-verbs':
-                    csvContent = createWWordsCSV();
-                    break;
-                case 'professions':
-                    csvContent = createProfessionsCSV();
-                    break;
-                case 'food-drinks':
-                    csvContent = createFoodDrinksCSV();
-                    break;
-                case 'city-locations':
-                    csvContent = createCityLocationsCSV();
-                    break;
-                case 'time-days':
-                    csvContent = createTimeDaysCSV();
-                    break;
+        // Cache refresh functionality
+        async function refreshCache() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    const registration = await navigator.serviceWorker.ready;
+                    if (registration.active) {
+                        const messageChannel = new MessageChannel();
+                        
+                        messageChannel.port1.onmessage = function(event) {
+                            if (event.data.success) {
+                                console.log('✅ Cache refreshed successfully');
+                                setTimeout(() => window.location.reload(), 1000);
+                            } else {
+                                console.error('❌ Cache refresh failed:', event.data.error);
+                            }
+                        };
+                        
+                        registration.active.postMessage(
+                            { type: 'FORCE_CACHE_REFRESH' },
+                            [messageChannel.port2]
+                        );
+                    }
+                } catch (error) {
+                    console.error('Cache refresh error:', error);
+                }
             }
-            
-            // Download the file
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', `german-${category}.csv`);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Show success message
-            showDownloadSuccess(category);
         }
 
-        function createWWordsCSV() {
-            return `German Word,English Meaning,Pronunciation,Memory Tip,Type
-WO,WHERE (location),voh,"Think: Where? = WO",Question Word
-WOHIN,WHERE TO (direction),voh-HIN,"WO + HIN = where + to",Question Word
-WOHER,WHERE FROM (origin),voh-HEHR,"WO + HER = where + from",Question Word
-WAS,WHAT,vas,"WAS = WHAT (both start with W)",Question Word
-WER,WHO,vehr,"WER = WHO (sounds like where)",Question Word
-WANN,WHEN,van,"WANN = WHEN (double N)",Question Word
-SEIN,TO BE,zine,"Most important verb in German!",Verb
-HABEN,TO HAVE,HAH-ben,"HAT = has (like English hat)",Verb
-WERDEN,TO BECOME,VEHR-den,"Used for future tense!",Verb
-GEHEN,TO GO/WALK,GAY-en,"GEHT = goes (sounds like gate)",Verb
-KOMMEN,TO COME,KOM-men,"KOMM = come (similar to English)",Verb`;
-        }
-
-        function createProfessionsCSV() {
-            return `Profession,Masculine Singular,Masculine Plural,Feminine Singular,Feminine Plural,English Meaning
-Secretary,der Sekretär,die Sekretäre,die Sekretärin,die Sekretärinnen,Secretary
-Manager,der Manager,die Manager,die Managerin,die Managerinnen,Manager
-Salesperson,der Verkäufer,die Verkäufer,die Verkäuferin,die Verkäuferinnen,Salesperson
-Teacher,der Lehrer,die Lehrer,die Lehrerin,die Lehrerinnen,Teacher
-Doctor,der Arzt,die Ärzte,die Ärztin,die Ärztinnen,Doctor
-Engineer,der Ingenieur,die Ingenieure,die Ingenieurin,die Ingenieurinnen,Engineer`;
-        }
-
-        function createFoodDrinksCSV() {
-            return `German Word,English Meaning,Article,Pronunciation,Category
-das Brot,bread,das,broht,Bakery
-die Milch,milk,die,milkh,Dairy
-der Apfel,apple,der,AHP-fel,Fruits
-das Wasser,water,das,VAH-ser,Drinks
-der Käse,cheese,der,KAY-zeh,Dairy`;
-        }
-
-        function createCityLocationsCSV() {
-            return `German Word,English Meaning,Article,Pronunciation,Category
-die Kirche,church,die,KEER-kheh,Feminine
-die Brücke,bridge,die,BRUEK-keh,Feminine
-die Bank,bank,die,bank,Feminine
-die Bibliothek,library,die,bib-lee-o-TEHK,Feminine
-die Schule,school,die,SHOO-leh,Feminine
-die Post,post office,die,post,Feminine
-die Autobahn,highway,die,AU-to-bahn,Feminine
-die Haltestelle,bus/tram stop,die,HAL-teh-shtel-leh,Feminine
-das Museum,museum,das,mu-ZEH-um,Neuter
-das Rathaus,town hall,das,RAHT-haus,Neuter
-das Theater,theater,das,teh-AH-ter,Neuter
-das Hotel,hotel,das,ho-TEL,Neuter
-das Krankenhaus,hospital,das,KRANK-en-haus,Neuter
-das Restaurant,restaurant,das,res-tau-RANT,Neuter
-der Bahnhof,train station,der,BAHN-hof,Masculine
-der Markt,market,der,markt,Masculine
-der Turm,tower,der,toorm,Masculine
-der Zoo,zoo,der,tsoh,Masculine
-der Hafen,harbor/port,der,HAH-fen,Masculine
-der Park,park,der,park,Masculine
-der Flughafen,airport,der,FLOOK-hah-fen,Masculine
-der Strand,beach,der,shtrant,Masculine`;
-        }
-
-        function createTimeDaysCSV() {
-            return `German Word,English Meaning,Article,Pronunciation,Category
-die Zeit,time,die,tsait,Time Vocabulary
-die Uhr,clock/watch,die,oor,Time Vocabulary
-die Stunde,hour,die,SHTUN-deh,Time Vocabulary
-die Minute,minute,die,mi-NOO-teh,Time Vocabulary
-der Montag,Monday,der,MOHN-tahk,Days of Week
-der Dienstag,Tuesday,der,DEENS-tahk,Days of Week
-der Mittwoch,Wednesday,der,MIT-vokh,Days of Week
-der Donnerstag,Thursday,der,DON-ners-tahk,Days of Week
-der Freitag,Friday,der,FRAI-tahk,Days of Week
-der Samstag,Saturday,der,ZAHMS-tahk,Days of Week
-der Sonntag,Sunday,der,ZON-tahk,Days of Week
-der Morgen,morning,der,MOR-gen,Parts of Day
-der Mittag,noon,der,MI-tahk,Parts of Day
-der Abend,evening,der,AH-bent,Parts of Day
-die Nacht,night,die,nahkht,Parts of Day
-heute,today,,HOY-teh,Time Expressions
-gestern,yesterday,,GESS-tern,Time Expressions
-morgen,tomorrow,,MOR-gen,Time Expressions
-früh,early,,frueh,Time Expressions
-spät,late,,shpaet,Time Expressions`;
-        }
-
-        function showDownloadSuccess(category) {
-            // Create a temporary success message
-            const message = document.createElement('div');
-            message.style.cssText = `
-                position: fixed;
-                top: 90px;
-                right: 20px;
-                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-                color: white;
-                padding: 15px 20px;
-                border-radius: 10px;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-                z-index: 1000;
-                font-weight: 500;
-                animation: slideIn 0.3s ease;
-            `;
-            message.innerHTML = `✅ ${category.replace('-', ' ')} vocabulary downloaded!`;
-            
-            document.body.appendChild(message);
-            
-            setTimeout(() => {
-                message.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    document.body.removeChild(message);
-                }, 300);
-            }, 3000);
-        }
-
-        // Add CSS animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>

@@ -535,7 +535,8 @@
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 German Learning Hub. Built with ❤️ for language learners.</p>
-        <p>📧 Feedback? <a href="mailto:feedback@germanhub.com" style="color: #20c997;">Let us know!</a></p>
+        <p>📧 Feedback? <a href="mailto:feedback@germanhub.com" style="color: #20c997;">Let us know!</a> | 
+        <button onclick="refreshCache()" style="background: none; border: none; color: #20c997; cursor: pointer; text-decoration: underline; font-size: inherit;">🔄 Refresh App</button></p>
     </footer>
 
     <script>
@@ -860,12 +861,134 @@
                         // Check for updates
                         registration.addEventListener('updatefound', () => {
                             console.log('🔄 SW update found');
+                            showUpdateNotification();
                         });
                     })
                     .catch((registrationError) => {
                         console.error('❌ SW registration failed:', registrationError);
                     });
             });
+        }
+
+        // Cache refresh functionality
+        async function refreshCache() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    const registration = await navigator.serviceWorker.ready;
+                    if (registration.active) {
+                        // Create a message channel
+                        const messageChannel = new MessageChannel();
+                        
+                        // Listen for response
+                        messageChannel.port1.onmessage = function(event) {
+                            if (event.data.success) {
+                                console.log('✅ Cache refreshed successfully');
+                                showCacheRefreshSuccess();
+                                // Reload page to get fresh content
+                                setTimeout(() => window.location.reload(), 1000);
+                            } else {
+                                console.error('❌ Cache refresh failed:', event.data.error);
+                                showCacheRefreshError();
+                            }
+                        };
+                        
+                        // Send message to service worker
+                        registration.active.postMessage(
+                            { type: 'FORCE_CACHE_REFRESH' },
+                            [messageChannel.port2]
+                        );
+                    }
+                } catch (error) {
+                    console.error('Cache refresh error:', error);
+                    showCacheRefreshError();
+                }
+            }
+        }
+
+        function showUpdateNotification() {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                z-index: 10000;
+                font-weight: 500;
+                max-width: 300px;
+            `;
+            notification.innerHTML = `
+                🔄 App updated! 
+                <button onclick="refreshCache()" style="
+                    background: rgba(255,255,255,0.2);
+                    color: white;
+                    border: none;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    margin-left: 10px;
+                    cursor: pointer;
+                ">Refresh</button>
+                <button onclick="this.parentElement.remove()" style="
+                    background: none;
+                    color: white;
+                    border: none;
+                    float: right;
+                    cursor: pointer;
+                    font-size: 18px;
+                ">×</button>
+            `;
+            document.body.appendChild(notification);
+        }
+
+        function showCacheRefreshSuccess() {
+            const message = document.createElement('div');
+            message.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                z-index: 10000;
+                font-weight: 500;
+            `;
+            message.innerHTML = '✅ Cache refreshed! Page will reload...';
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                if (message.parentElement) {
+                    message.parentElement.removeChild(message);
+                }
+            }, 3000);
+        }
+
+        function showCacheRefreshError() {
+            const message = document.createElement('div');
+            message.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                z-index: 10000;
+                font-weight: 500;
+            `;
+            message.innerHTML = '❌ Cache refresh failed. Please try reloading the page.';
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                if (message.parentElement) {
+                    message.parentElement.removeChild(message);
+                }
+            }, 5000);
         }
 
         // Offline Status Check

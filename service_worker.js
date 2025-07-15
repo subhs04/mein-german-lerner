@@ -1,4 +1,4 @@
-const CACHE_NAME = 'german-hub-v1.0.2';
+const CACHE_NAME = 'german-hub-v1.0.3';
 const urlsToCache = [
   './',
   './index.html',
@@ -6,8 +6,16 @@ const urlsToCache = [
   './content/vocabulary/index.html',
   './content/vocabulary/profession_page.html',
   './content/vocabulary/professions.html',
-  './content/vocabulary/w_words_verbs_page.html'
+  './content/vocabulary/w-words-verbs.html',
+  './content/vocabulary/city-locations.html',
+  './content/vocabulary/food_drinks_vehicles.html',
+  './content/vocabulary/german_time_days.html',
+  './content/grammar/index.html',
+  './content/grammar/german_irregular_verbs.html'
 ];
+
+// Maximum cache age in milliseconds (1 hour)
+const MAX_CACHE_AGE = 60 * 60 * 1000;
 
 // Install event - cache resources
 self.addEventListener('install', event => {
@@ -41,7 +49,20 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Fetch event - serve from cache with network fallback
+// Helper function to check if cached response is fresh
+function isCacheFresh(response) {
+  if (!response) return false;
+  
+  const cachedDate = response.headers.get('date');
+  if (!cachedDate) return false;
+  
+  const cacheTime = new Date(cachedDate).getTime();
+  const now = Date.now();
+  
+  return (now - cacheTime) < MAX_CACHE_AGE;
+}
+
+// Fetch event - network-first strategy with cache freshness check
 self.addEventListener('fetch', event => {
   // Skip non-GET requests
   if (event.request.method !== 'GET') {
@@ -54,40 +75,85 @@ self.addEventListener('fetch', event => {
   }
 
   event.respondWith(
+    // Check cache first to see if we have fresh content
     caches.match(event.request)
-      .then(response => {
-        // Return cached version or fetch from network
-        if (response) {
-          console.log('Serving from cache:', event.request.url);
-          return response;
+      .then(cachedResponse => {
+        // If we have fresh cached content, serve it but also update in background
+        if (cachedResponse && isCacheFresh(cachedResponse)) {
+          console.log('Serving fresh cache for:', event.request.url);
+          
+          // Update cache in background
+          fetch(event.request)
+            .then(response => {
+              if (response && response.status === 200 && response.type === 'basic') {
+                const responseToCache = response.clone();
+                caches.open(CACHE_NAME)
+                  .then(cache => cache.put(event.request, responseToCache));
+              }
+            })
+            .catch(() => {}); // Silently fail background updates
+          
+          return cachedResponse;
         }
-
-        return fetch(event.request).then(response => {
-          // Check if we received a valid response
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-
-          // Clone the response for caching
-          const responseToCache = response.clone();
-
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseToCache);
-            });
-
-          return response;
-        });
-      })
-      .catch(error => {
-        console.error('Fetch failed:', error);
         
-        // Return offline page for navigation requests
-        if (event.request.destination === 'document') {
-          return caches.match('/index.html');
-        }
+        // Try network first for stale or missing cache
+        return fetch(event.request)
+          .then(response => {
+            // Check if we received a valid response
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+
+            console.log('Serving from network and updating cache:', event.request.url);
+            
+            // Clone the response for caching
+            const responseToCache = response.clone();
+
+            // Update cache with fresh content
+            caches.open(CACHE_NAME)
+              .then(cache => {
+                cache.put(event.request, responseToCache);
+              });
+
+            return response;
+          })
+          .catch(error => {
+            console.log('Network failed, serving from cache:', event.request.url);
+            
+            // Network failed, serve stale cache if available
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            
+            // Return offline page for navigation requests when nothing in cache
+            if (event.request.destination === 'document') {
+              return caches.match('./index.html');
+            }
+            
+            throw error;
+          });
       })
   );
+});
+
+// Handle messages from the main thread
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'FORCE_CACHE_REFRESH') {
+    console.log('Force refreshing cache...');
+    
+    // Delete current cache and force fresh fetch
+    caches.delete(CACHE_NAME)
+      .then(() => {
+        return caches.open(CACHE_NAME);
+      })
+      .then(() => {
+        event.ports[0].postMessage({ success: true });
+      })
+      .catch(error => {
+        console.error('Failed to refresh cache:', error);
+        event.ports[0].postMessage({ success: false, error: error.message });
+      });
+  }
 });
 
 // Handle background sync for future features
