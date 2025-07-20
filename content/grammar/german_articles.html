@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Articles & Cases | German Learning Hub</title>
+    <meta name="description" content="Master German articles, cases, and possessive pronouns with comprehensive tables and examples">
+    <meta name="theme-color" content="#667eea">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header - Consistent styling */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .logo .flag {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #495057;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-list a:hover, .mobile-nav-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-separator {
+            color: #adb5bd;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #495057;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        /* Tab Navigation */
+        .tab-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #495057;
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .tab:hover:not(.active) {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #495057;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .concept-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .concept-title {
+            font-size: 1.3rem;
+            color: #495057;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .concept-explanation {
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .example-box {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .note-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .note-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 600px;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 12px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 12px 10px;
+            border: 1px solid #e9ecef;
+            vertical-align: top;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+        
+        tr:hover td {
+            background: #e3f2fd;
+        }
+        
+        .case-name {
+            font-weight: bold;
+            text-align: center;
+            background: #f0f8ff !important;
+            color: #495057;
+        }
+        
+        .person-label {
+            font-weight: bold;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb) !important;
+            color: #1976d2;
+            text-align: center;
+        }
+        
+        .german-form {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .example-text {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .article-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+        
+        .article-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .article-examples {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .article-examples li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        .article-examples li:last-child {
+            border-bottom: none;
+        }
+        
+        .german-text {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .english-text {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            .content-section {
+                padding: 20px 15px;
+            }
+            
+            .article-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            table {
+                font-size: 13px;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="../../index.html" class="logo">
+                <span class="flag">🇩🇪</span>
+                German Hub
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="../vocabulary/index.html">📚 Vocabulary</a></li>
+                <li><a href="index.html" class="active">📖 Grammar</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
+            </ul>
+            
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-list">
+                <li><a href="../vocabulary/index.html">📚 Vocabulary</a></li>
+                <li><a href="index.html" class="active">📖 Grammar</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav">
+                <a href="../../index.html">🏠 Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="index.html">📖 Grammar</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>📝 Articles & Cases</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>📝 German Articles & Cases</h1>
+            <p>Master the foundation of German grammar: definite, indefinite, and possessive articles across all cases with comprehensive examples and clear rules.</p>
+        </section>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('basics')">📝 Article Basics</button>
+                <button class="tab" onclick="showTab('cases')">🔄 Cases Overview</button>
+                <button class="tab" onclick="showTab('possessive')">👥 Possessive Articles</button>
+                <button class="tab" onclick="showTab('advanced')">🎯 Advanced Rules</button>
+            </div>
+        </div>
+
+        <!-- Article Basics Tab -->
+        <div class="tab-content active" id="basics">
+            <!-- Types of Articles -->
+            <div class="content-section">
+                <h2 class="section-title">📖 Types of German Articles</h2>
+                
+                <div class="concept-box">
+                    <div class="concept-title">1. Bestimmter Artikel (Definite Article) - "THE"</div>
+                    <div class="concept-explanation">
+                        Used when referring to specific, known things. Equivalent to "the" in English.
+                    </div>
+                    <div class="example-box">
+                        <div class="example-title">Examples:</div>
+                        <div><strong>Der</strong> Hund spielt. (The dog plays) - specific dog we know</div>
+                        <div><strong>Die</strong> Schule ist groß. (The school is big) - specific school</div>
+                        <div><strong>Das</strong> Auto ist rot. (The car is red) - specific car</div>
+                    </div>
+                </div>
+
+                <div class="concept-box">
+                    <div class="concept-title">2. Unbestimmter Artikel (Indefinite Article) - "A/AN"</div>
+                    <div class="concept-explanation">
+                        Used when referring to non-specific things or introducing something for the first time. Equivalent to "a/an" in English.
+                    </div>
+                    <div class="example-box">
+                        <div class="example-title">Examples:</div>
+                        <div><strong>Ein</strong> Hund spielt. (A dog plays) - any dog, not specific</div>
+                        <div><strong>Eine</strong> Schule ist groß. (A school is big) - any school</div>
+                        <div><strong>Ein</strong> Auto ist rot. (A car is red) - any car</div>
+                    </div>
+                </div>
+
+                <div class="concept-box">
+                    <div class="concept-title">3. Negationsartikel (Negative Article) - "NO/NOT A"</div>
+                    <div class="concept-explanation">
+                        Used to negate nouns, meaning "no" or "not a/an". Similar to indefinite article but negative.
+                    </div>
+                    <div class="example-box">
+                        <div class="example-title">Examples:</div>
+                        <div><strong>Kein</strong> Hund spielt. (No dog plays) - no dog at all</div>
+                        <div><strong>Keine</strong> Schule ist groß. (No school is big) - no school</div>
+                        <div><strong>Kein</strong> Auto ist rot. (No car is red) - no car</div>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <div class="note-title">💡 Key Understanding:</div>
+                    <div><strong>Definite vs Indefinite:</strong> Think of "Humayun's Tomb" vs "a tomb"</div>
+                    <div>• <strong>Humayun's Tomb</strong> = <em>Das Humayun-Mausoleum</em> (specific, famous tomb we all know)</div>
+                    <div>• <strong>A tomb</strong> = <em>Ein Mausoleum</em> (any tomb, not specific)</div>
+                    <div>• <strong>No tomb</strong> = <em>Kein Mausoleum</em> (negating the existence)</div>
+                </div>
+            </div>
+
+            <!-- Article Comparison Chart -->
+            <div class="content-section">
+                <h2 class="section-title">📊 Article Forms Comparison</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Gender</th>
+                                <th>Definite (the)</th>
+                                <th>Indefinite (a/an)</th>
+                                <th>Negative (no/not a)</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="case-name">Masculine</td>
+                                <td><div class="german-form">der</div></td>
+                                <td><div class="german-form">ein</div></td>
+                                <td><div class="german-form">kein</div></td>
+                                <td><div class="example-text">der/ein/kein Mann (the/a/no man)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="case-name">Feminine</td>
+                                <td><div class="german-form">die</div></td>
+                                <td><div class="german-form">eine</div></td>
+                                <td><div class="german-form">keine</div></td>
+                                <td><div class="example-text">die/eine/keine Frau (the/a/no woman)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="case-name">Neuter</td>
+                                <td><div class="german-form">das</div></td>
+                                <td><div class="german-form">ein</div></td>
+                                <td><div class="german-form">kein</div></td>
+                                <td><div class="example-text">das/ein/kein Kind (the/a/no child)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="case-name">Plural</td>
+                                <td><div class="german-form">die</div></td>
+                                <td><div class="german-form">—</div></td>
+                                <td><div class="german-form">keine</div></td>
+                                <td><div class="example-text">die/—/keine Kinder (the/—/no children)</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box">
+                    <div class="note-title">📝 Important Rules:</div>
+                    <div>• <strong>No plural indefinite article:</strong> We say "Kinder spielen" (children play), not "*eine Kinder"</div>
+                    <div>• <strong>Kein follows ein pattern:</strong> kein (masc/neut), keine (fem/plural)</div>
+                    <div>• <strong>Gender must be memorized:</strong> Every noun has a fixed gender that doesn't change</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cases Overview Tab -->
+        <div class="tab-content" id="cases">
+            <div class="content-section">
+                <h2 class="section-title">🔄 German Cases Explained</h2>
+                
+                <div class="concept-box">
+                    <div class="concept-title">Nominativ (Nominative Case) - THE SUBJECT</div>
+                    <div class="concept-explanation">
+                        The subject of the sentence - who or what is performing the action.
+                    </div>
+                    <div class="example-box">
+                        <div class="example-title">How to identify:</div>
+                        <div>Ask "Wer oder was?" (Who or what?) does the action</div>
+                        <div><strong>Der Mann</strong> liest. → <em>Wer liest? Der Mann.</em></div>
+                    </div>
+                </div>
+
+                <div class="concept-box">
+                    <div class="concept-title">Akkusativ (Accusative Case) - THE DIRECT OBJECT</div>
+                    <div class="concept-explanation">
+                        The direct object - who or what receives the action directly.
+                    </div>
+                    <div class="example-box">
+                        <div class="example-title">How to identify:</div>
+                        <div>Ask "Wen oder was?" (Whom or what?) receives the action</div>
+                        <div>Ich sehe <strong>den Mann</strong>. → <em>Wen sehe ich? Den Mann.</em></div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Case</th>
+                                <th>Masculine</th>
+                                <th>Feminine</th>
+                                <th>Neuter</th>
+                                <th>Plural</th>
+                                <th>Question</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="case-name">Nominativ</td>
+                                <td><div class="german-form">der/ein</div><div class="example-text">der Mann</div></td>
+                                <td><div class="german-form">die/eine</div><div class="example-text">die Frau</div></td>
+                                <td><div class="german-form">das/ein</div><div class="example-text">das Kind</div></td>
+                                <td><div class="german-form">die/—</div><div class="example-text">die Kinder</div></td>
+                                <td><div class="example-text">Wer oder was?</div></td>
+                            </tr>
+                            <tr>
+                                <td class="case-name">Akkusativ</td>
+                                <td><div class="german-form">den/einen</div><div class="example-text">den Mann</div></td>
+                                <td><div class="german-form">die/eine</div><div class="example-text">die Frau</div></td>
+                                <td><div class="german-form">das/ein</div><div class="example-text">das Kind</div></td>
+                                <td><div class="german-form">die/—</div><div class="example-text">die Kinder</div></td>
+                                <td><div class="example-text">Wen oder was?</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box">
+                    <div class="note-title">⚠️ Critical Rule:</div>
+                    <div><strong>Only masculine articles change in Akkusativ!</strong></div>
+                    <div>• der → den (definite)</div>
+                    <div>• ein → einen (indefinite)</div>
+                    <div>• kein → keinen (negative)</div>
+                    <div>• Feminine, neuter, and plural stay the same!</div>
+                </div>
+                <div class="note-box">
+                    <div class="note-title">🚨 Critical Rule: Subject NEVER Changes Case!</div>
+                    <div><strong>Common Beginner Mistake:</strong> Thinking the subject changes when an object is added</div>
+                    <div
+                        style="margin: 10px 0; padding: 15px; background: rgba(231, 76, 60, 0.1); border-left: 4px solid #e74c3c; border-radius: 5px;">
+                        <div>❌ <strong>Wrong thinking:</strong></div>
+                        <div>"Der Hund spielt" → "Der Hund spielt Fußball" → "Den Hund spielt Fußball"</div>
+                    </div>
+                    <div
+                        style="margin: 10px 0; padding: 15px; background: rgba(39, 174, 96, 0.1); border-left: 4px solid #27ae60; border-radius: 5px;">
+                        <div>✅ <strong>Correct:</strong></div>
+                        <div><strong>Der Hund</strong> spielt. (subject stays Nominativ)</div>
+                        <div><strong>Der Hund</strong> spielt mit <strong>den Fußball</strong>. (subject still Nominativ, object becomes
+                            Akkusativ)</div>
+                            <div>(The dog plays with the football - specific ball object)</div>
+                    </div>
+                    <div><strong>Remember:</strong> The subject is ALWAYS the "doer" and stays in Nominativ. Only the direct object
+                        (what receives the action) becomes Akkusativ.</div>                      
+                    <div><strong>Memory trick:</strong> "The dog always remains 'der Hund' no matter what it does - it's what the dog
+                        does TO that changes!"</div>
+                </div>
+                </div>
+
+            <div class="content-section">
+                <h2 class="section-title">🎯 Case Examples in Context</h2>
+                
+                <div class="article-comparison">
+                    <div class="article-card">
+                        <h4>Nominativ Examples</h4>
+                        <ul class="article-examples">
+                            <li><span class="german-text">Der Hund</span> spielt. <span class="english-text">(The dog plays)</span></li>
+                            <li><span class="german-text">Eine Katze</span> schläft. <span class="english-text">(A cat sleeps)</span></li>
+                            <li><span class="german-text">Das Kind</span> läuft. <span class="english-text">(The child runs)</span></li>
+                            <li><span class="german-text">Keine Autos</span> fahren. <span class="english-text">(No cars drive)</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="article-card">
+                        <h4>Akkusativ Examples</h4>
+                        <ul class="article-examples">
+                            <li>Ich sehe <span class="german-text">den Hund</span>. <span class="english-text">(I see the dog)</span></li>
+                            <li>Er kauft <span class="german-text">eine Katze</span>. <span class="english-text">(He buys a cat)</span></li>
+                            <li>Wir haben <span class="german-text">das Auto</span>. <span class="english-text">(We have the car)</span></li>
+                            <li>Sie kennt <span class="german-text">keine Leute</span>. <span class="english-text">(She knows no people)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Possessive Articles Tab -->
+        <div class="tab-content" id="possessive">
+            <div class="content-section">
+                <h2 class="section-title">👥 Possessiv Artikel (Possessive Articles)</h2>
+                
+                <div class="concept-box">
+                    <div class="concept-title">What are Possessive Articles?</div>
+                    <div class="concept-explanation">
+                        Possessive articles show ownership or relationship. They correspond to English "my, your, his, her, its, our, their" and change form based on the gender and case of the noun they modify.
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <div class="note-title">🔑 Key Rule:</div>
+                    <div><strong>Possessive articles follow the same pattern as "ein"</strong></div>
+                    <div>• They change endings based on gender and case of the noun they modify</div>
+                    <div>• The stem (mein-, dein-, sein-, etc.) stays the same, only endings change</div>
+                </div>
+            </div>
+
+            <!-- Nominativ Possessive Table -->
+            <div class="content-section">
+                <h2 class="section-title">📋 Nominativ Possessive Articles</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Person</th>
+                                <th>Maskulin</th>
+                                <th>Feminin</th>
+                                <th>Neutrum</th>
+                                <th>Plural</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="person-label">ich (I)</td>
+                                <td><div class="german-form">mein</div><div class="example-text">(Das ist mein Hund)</div></td>
+                                <td><div class="german-form">meine</div><div class="example-text">(Das ist meine Flasche)</div></td>
+                                <td><div class="german-form">mein</div><div class="example-text">(Das ist mein Kind)</div></td>
+                                <td><div class="german-form">meine</div><div class="example-text">(Das sind meine Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">du (you informal)</td>
+                                <td><div class="german-form">dein</div><div class="example-text">(Das ist dein Hund)</div></td>
+                                <td><div class="german-form">deine</div><div class="example-text">(Das ist deine Flasche)</div></td>
+                                <td><div class="german-form">dein</div><div class="example-text">(Das ist dein Kind)</div></td>
+                                <td><div class="german-form">deine</div><div class="example-text">(Das sind deine Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">er (he)</td>
+                                <td><div class="german-form">sein</div><div class="example-text">(Das ist sein Hund)</div></td>
+                                <td><div class="german-form">seine</div><div class="example-text">(Das ist seine Flasche)</div></td>
+                                <td><div class="german-form">sein</div><div class="example-text">(Das ist sein Kind)</div></td>
+                                <td><div class="german-form">seine</div><div class="example-text">(Das sind seine Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">sie (she)</td>
+                                <td><div class="german-form">ihr</div><div class="example-text">(Das ist ihr Hund)</div></td>
+                                <td><div class="german-form">ihre</div><div class="example-text">(Das ist ihre Flasche)</div></td>
+                                <td><div class="german-form">ihr</div><div class="example-text">(Das ist ihr Kind)</div></td>
+                                <td><div class="german-form">ihre</div><div class="example-text">(Das sind ihre Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">es (it)</td>
+                                <td><div class="german-form">sein</div><div class="example-text">(Das ist sein Hund)</div></td>
+                                <td><div class="german-form">seine</div><div class="example-text">(Das ist seine Flasche)</div></td>
+                                <td><div class="german-form">sein</div><div class="example-text">(Das ist sein Kind)</div></td>
+                                <td><div class="german-form">seine</div><div class="example-text">(Das sind seine Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">wir (we)</td>
+                                <td><div class="german-form">unser</div><div class="example-text">(Das ist unser Hund)</div></td>
+                                <td><div class="german-form">unsere</div><div class="example-text">(Das ist unsere Flasche)</div></td>
+                                <td><div class="german-form">unser</div><div class="example-text">(Das ist unser Kind)</div></td>
+                                <td><div class="german-form">unsere</div><div class="example-text">(Das sind unsere Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">ihr (you plural)</td>
+                                <td><div class="german-form">euer</div><div class="example-text">(Das ist euer Hund)</div></td>
+                                <td><div class="german-form">eure</div><div class="example-text">(Das ist eure Flasche)</div></td>
+                                <td><div class="german-form">euer</div><div class="example-text">(Das ist euer Kind)</div></td>
+                                <td><div class="german-form">eure</div><div class="example-text">(Das sind eure Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">sie (they)</td>
+                                <td><div class="german-form">ihr</div><div class="example-text">(Das ist ihr Hund)</div></td>
+                                <td><div class="german-form">ihre</div><div class="example-text">(Das ist ihre Flasche)</div></td>
+                                <td><div class="german-form">ihr</div><div class="example-text">(Das ist ihr Kind)</div></td>
+                                <td><div class="german-form">ihre</div><div class="example-text">(Das sind ihre Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">Sie (You formal)</td>
+                                <td><div class="german-form">Ihr</div><div class="example-text">(Das ist Ihr Hund)</div></td>
+                                <td><div class="german-form">Ihre</div><div class="example-text">(Das ist Ihre Flasche)</div></td>
+                                <td><div class="german-form">Ihr</div><div class="example-text">(Das ist Ihr Kind)</div></td>
+                                <td><div class="german-form">Ihre</div><div class="example-text">(Das sind Ihre Kinder)</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box">
+                    <div class="note-title">💡 Pattern Recognition:</div>
+                    <div>• <strong>Masculine & Neuter:</strong> No ending (mein, dein, sein, ihr, unser, euer)</div>
+                    <div>• <strong>Feminine & Plural:</strong> Add -e (meine, deine, seine, ihre, unsere, eure)</div>
+                    <div>• <strong>Special case "euer":</strong> Drops the second 'e' when adding endings → eure (not euere)</div>
+                </div>
+            </div>
+
+            <!-- Akkusativ Possessive Table -->
+            <div class="content-section">
+                <h2 class="section-title">🎯 Akkusativ Possessive Articles</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Person</th>
+                                <th>Maskulin</th>
+                                <th>Feminin</th>
+                                <th>Neutrum</th>
+                                <th>Plural</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="person-label">ich (I)</td>
+                                <td><div class="german-form">meinen</div><div class="example-text">(Ich sehe meinen Hund)</div></td>
+                                <td><div class="german-form">meine</div><div class="example-text">(Ich kaufe meine Flasche)</div></td>
+                                <td><div class="german-form">mein</div><div class="example-text">(Ich habe mein Kind)</div></td>
+                                <td><div class="german-form">meine</div><div class="example-text">(Ich rufe meine Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">du (you informal)</td>
+                                <td><div class="german-form">deinen</div><div class="example-text">(Du siehst deinen Hund)</div></td>
+                                <td><div class="german-form">deine</div><div class="example-text">(Du kaufst deine Flasche)</div></td>
+                                <td><div class="german-form">dein</div><div class="example-text">(Du hast dein Kind)</div></td>
+                                <td><div class="german-form">deine</div><div class="example-text">(Du rufst deine Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">er (he)</td>
+                                <td><div class="german-form">seinen</div><div class="example-text">(Er sieht seinen Hund)</div></td>
+                                <td><div class="german-form">seine</div><div class="example-text">(Er kauft seine Flasche)</div></td>
+                                <td><div class="german-form">sein</div><div class="example-text">(Er hat sein Kind)</div></td>
+                                <td><div class="german-form">seine</div><div class="example-text">(Er ruft seine Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">sie (she)</td>
+                                <td><div class="german-form">ihren</div><div class="example-text">(Sie sieht ihren Hund)</div></td>
+                                <td><div class="german-form">ihre</div><div class="example-text">(Sie kauft ihre Flasche)</div></td>
+                                <td><div class="german-form">ihr</div><div class="example-text">(Sie hat ihr Kind)</div></td>
+                                <td><div class="german-form">ihre</div><div class="example-text">(Sie ruft ihre Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">es (it)</td>
+                                <td><div class="german-form">seinen</div><div class="example-text">(Es sieht seinen Hund)</div></td>
+                                <td><div class="german-form">seine</div><div class="example-text">(Es kauft seine Flasche)</div></td>
+                                <td><div class="german-form">sein</div><div class="example-text">(Es hat sein Kind)</div></td>
+                                <td><div class="german-form">seine</div><div class="example-text">(Es ruft seine Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">wir (we)</td>
+                                <td><div class="german-form">unseren</div><div class="example-text">(Wir sehen unseren Hund)</div></td>
+                                <td><div class="german-form">unsere</div><div class="example-text">(Wir kaufen unsere Flasche)</div></td>
+                                <td><div class="german-form">unser</div><div class="example-text">(Wir haben unser Kind)</div></td>
+                                <td><div class="german-form">unsere</div><div class="example-text">(Wir rufen unsere Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">ihr (you plural)</td>
+                                <td><div class="german-form">euren</div><div class="example-text">(Ihr seht euren Hund)</div></td>
+                                <td><div class="german-form">eure</div><div class="example-text">(Ihr kauft eure Flasche)</div></td>
+                                <td><div class="german-form">euer</div><div class="example-text">(Ihr habt euer Kind)</div></td>
+                                <td><div class="german-form">eure</div><div class="example-text">(Ihr ruft eure Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">sie (they)</td>
+                                <td><div class="german-form">ihren</div><div class="example-text">(Sie sehen ihren Hund)</div></td>
+                                <td><div class="german-form">ihre</div><div class="example-text">(Sie kaufen ihre Flasche)</div></td>
+                                <td><div class="german-form">ihr</div><div class="example-text">(Sie haben ihr Kind)</div></td>
+                                <td><div class="german-form">ihre</div><div class="example-text">(Sie rufen ihre Kinder)</div></td>
+                            </tr>
+                            <tr>
+                                <td class="person-label">Sie (You formal)</td>
+                                <td><div class="german-form">Ihren</div><div class="example-text">(Sie sehen Ihren Hund)</div></td>
+                                <td><div class="german-form">Ihre</div><div class="example-text">(Sie kaufen Ihre Flasche)</div></td>
+                                <td><div class="german-form">Ihr</div><div class="example-text">(Sie haben Ihr Kind)</div></td>
+                                <td><div class="german-form">Ihre</div><div class="example-text">(Sie rufen Ihre Kinder)</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box">
+                    <div class="note-title">⚠️ Akkusativ Changes:</div>
+                    <div><strong>Only masculine possessive articles change in Akkusativ!</strong></div>
+                    <div>• <strong>Masculine:</strong> Add -en (meinen, deinen, seinen, ihren, unseren, euren)</div>
+                    <div>• <strong>Feminine, Neuter, Plural:</strong> Stay exactly the same as Nominativ</div>
+                    <div>• <strong>Remember:</strong> This follows the same pattern as ein → einen</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Rules Tab -->
+        <div class="tab-content" id="advanced">
+            <div class="content-section">
+                <h2 class="section-title">🎯 Advanced Rules & Memory Tips</h2>
+                
+                <div class="concept-box">
+                    <div class="concept-title">Formation Rules Summary</div>
+                    <div class="concept-explanation">
+                        Understanding the systematic patterns behind German articles will help you remember them better.
+                    </div>
+                </div>
+
+                <div class="article-comparison">
+                    <div class="article-card">
+                        <h4>🔵 Definite Articles (der/die/das)</h4>
+                        <ul class="article-examples">
+                            <li><strong>Nominativ:</strong> der, die, das, die</li>
+                            <li><strong>Akkusativ:</strong> den, die, das, die</li>
+                            <li><strong>Rule:</strong> Only "der" changes to "den"</li>
+                            <li><strong>Memory:</strong> "Der Mann" → "Den Mann sehen"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="article-card">
+                        <h4>🟡 Indefinite Articles (ein/eine)</h4>
+                        <ul class="article-examples">
+                            <li><strong>Nominativ:</strong> ein, eine, ein, —</li>
+                            <li><strong>Akkusativ:</strong> einen, eine, ein, —</li>
+                            <li><strong>Rule:</strong> Only "ein" (masc) changes to "einen"</li>
+                            <li><strong>Memory:</strong> "Ein Mann" → "Einen Mann sehen"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="article-card">
+                        <h4>❌ Negative Articles (kein/keine)</h4>
+                        <ul class="article-examples">
+                            <li><strong>Nominativ:</strong> kein, keine, kein, keine</li>
+                            <li><strong>Akkusativ:</strong> keinen, keine, kein, keine</li>
+                            <li><strong>Rule:</strong> Follows "ein" pattern exactly</li>
+                            <li><strong>Memory:</strong> "Kein Mann" → "Keinen Mann sehen"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="article-card">
+                        <h4>👥 Possessive Articles</h4>
+                        <ul class="article-examples">
+                            <li><strong>Pattern:</strong> Follow "ein" endings exactly</li>
+                            <li><strong>Stems:</strong> mein-, dein-, sein-, ihr-, unser-, euer-</li>
+                            <li><strong>Akkusativ change:</strong> Only masculine adds -en</li>
+                            <li><strong>Memory:</strong> "Mein Mann" → "Meinen Mann sehen"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <div class="note-title">🧠 Master Memory Strategy:</div>
+                    <div><strong>The "Ein-Words" Family:</strong></div>
+                    <div>• ein, kein, mein, dein, sein, ihr, unser, euer ALL follow the same pattern</div>
+                    <div>• Learn ONE pattern, apply to ALL possessive articles</div>
+                    <div>• <strong>Masculine Akkusativ:</strong> Always add -en (einen, keinen, meinen, deinen, etc.)</div>
+                    <div>• <strong>Everything else:</strong> Stays the same in Akkusativ</div>
+                </div>
+
+                <div class="concept-box">
+                    <div class="concept-title">Common Mistakes to Avoid</div>
+                    <div class="example-box">
+                        <div class="example-title">❌ Wrong → ✅ Correct</div>
+                        <div>❌ Ich sehe <em>mein</em> Vater → ✅ Ich sehe <em>meinen</em> Vater</div>
+                        <div>❌ Er hat <em>einen</em> Schwester → ✅ Er hat <em>eine</em> Schwester</div>
+                        <div>❌ Das ist <em>meinen</em> Auto → ✅ Das ist <em>mein</em> Auto</div>
+                        <div>❌ Wir kaufen <em>der</em> Haus → ✅ Wir kaufen <em>das</em> Haus</div>
+                    </div>
+                </div>
+
+                <div class="concept-box">
+                    <div class="concept-title">Quick Reference Checklist</div>
+                    <div class="example-box">
+                        <div class="example-title">Before choosing an article, ask:</div>
+                        <div>1. <strong>What gender is the noun?</strong> (der/die/das)</div>
+                        <div>2. <strong>What case is needed?</strong> (Nominativ/Akkusativ)</div>
+                        <div>3. <strong>What type of article?</strong> (definite/indefinite/possessive)</div>
+                        <div>4. <strong>Is it masculine Akkusativ?</strong> If yes, use special forms (den/einen/meinen)</div>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <div class="note-title">📚 Study Recommendations:</div>
+                    <div>• <strong>Practice daily:</strong> Write 5 sentences using different possessive articles</div>
+                    <div>• <strong>Focus on masculine:</strong> It's the only gender that changes in Akkusativ</div>
+                    <div>• <strong>Use mnemonics:</strong> "Der Mann den ich kenne" (The man whom I know)</div>
+                    <div>• <strong>Read aloud:</strong> Hearing the patterns helps memorization</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Under Construction Alert
+        function showUnderConstructionAlert(sectionName) {
+            alert(`🚧 ${sectionName} Section Under Construction 🚧\n\nThis section is currently being developed and will be available soon!\n\nStay tuned for exciting German learning tools and practice exercises.`);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (!navContainer.contains(event.target) && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
+                    
