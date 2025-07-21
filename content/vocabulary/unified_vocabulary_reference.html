@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Vocabulary Reference | German Learning Hub</title>
+    <meta name="description" content="Complete German vocabulary reference with article grouping, verbs, and search functionality">
+    <meta name="theme-color" content="#667eea">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header - Consistent styling */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .logo .flag {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #495057;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-list a:hover, .mobile-nav-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-separator {
+            color: #adb5bd;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #495057;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        /* Search Performance Indicator */
+        .search-stats {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .search-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        /* Tab Navigation */
+        .tab-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #495057;
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .tab:hover:not(.active) {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #495057;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Article Categories */
+        .article-category {
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .article-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .article-header:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+        
+        .article-content {
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .article-category.collapsed .article-content {
+            max-height: 0;
+        }
+        
+        .article-category.collapsed .article-header span {
+            transform: rotate(-90deg);
+        }
+        
+        .article-header span {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            background: white;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 12px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 15px 12px;
+            border: 1px solid #e9ecef;
+            vertical-align: top;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+        
+        tr:hover td {
+            background: #e3f2fd;
+            transform: scale(1.01);
+        }
+        
+        .german-word {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        
+        .pronunciation {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        
+        .meaning {
+            text-align: center;
+            font-weight: bold;
+            background: #f0f8ff !important;
+            color: #495057;
+        }
+        
+        /* Verb conjugation table */
+        .verb-table {
+            margin: 10px 0;
+        }
+        
+        .verb-table td {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .verb-subject {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .verb-form {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        /* Performance warning */
+        .performance-warning {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #856404;
+        }
+        
+        .performance-warning.hidden {
+            display: none;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            table {
+                min-width: 500px;
+                font-size: 13px;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+            }
+            
+            .german-word {
+                font-size: 14px;
+            }
+            
+            .pronunciation {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 20px 10px;
+            }
+            
+            .content-section {
+                padding: 20px 15px;
+            }
+            
+            table {
+                min-width: 400px;
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 10px 6px;
+            }
+            
+            .german-word {
+                font-size: 13px;
+            }
+            
+            .pronunciation {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="../../index.html" class="logo">
+                <span class="flag">🇩🇪</span>
+                German Hub
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
+            </ul>
+            
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-list">
+                <li><a href="index.html" class="active">📚 Vocabulary</a></li>
+                <li><a href="../grammar/index.html">📖 Grammar</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Practice'); return false;">🎯 Practice</a></li>
+                <li><a href="#" onclick="showUnderConstructionAlert('Tools'); return false;">⚙️ Tools</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav">
+                <a href="../../index.html">🏠 Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="index.html">📚 Vocabulary</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>📖 Unified Reference</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>📖 Unified Vocabulary Reference</h1>
+            <p>Complete German vocabulary collection organized by articles with search functionality and detailed forms.</p>
+        </section>
+
+        <!-- Performance Warning -->
+        <div class="performance-warning hidden" id="performanceWarning">
+            ⚠️ <strong>Performance Note:</strong> With large vocabulary lists (1000+ words), search may become slower. Consider using more specific search terms for better performance.
+        </div>
+
+        <!-- Search Stats -->
+        <div class="search-stats">
+            <span>Total Words: <strong id="totalWords">95</strong></span>
+            <span>Visible: <strong id="visibleWords">95</strong></span>
+            <span>Search Time: <strong id="searchTime">0ms</strong></span>
+        </div>
+
+        <!-- Search Container -->
+        <div class="search-container">
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search vocabulary (German word, English meaning, or category)...">
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('simple-nouns')">📝 Simple Nouns</button>
+                <button class="tab" onclick="showTab('complete-forms')">📋 Complete Forms</button>
+                <button class="tab" onclick="showTab('verbs')">🔄 Verbs</button>
+                <button class="tab" onclick="showTab('adjectives-others')">✨ Adjectives & Others</button>
+            </div>
+        </div>
+
+        <!-- Simple Nouns Tab -->
+        <div class="tab-content active" id="simple-nouns">
+            <div class="article-category" id="das-simple">
+                <div class="article-header" onclick="toggleCategory('das-simple')">
+                    <h3>🟢 DAS Articles (Neuter) - Simple Form</h3>
+                    <span>▼</span>
+                </div>
+                <div class="article-content">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>German Word</th><th>Plural Form</th><th>English Meaning</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div class="german-word">das Wort</div><div class="pronunciation">das vort</div></td>
+                                    <td><div class="german-word">die Wörter</div><div class="pronunciation">dee VER-ter</div></td>
+                                    <td class="meaning">Word</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Subject</div><div class="pronunciation">das sub-YEKT</div></td>
+                                    <td><div class="german-word">die Subjekte</div><div class="pronunciation">dee sub-YEK-teh</div></td>
+                                    <td class="meaning">Subject</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Lied</div><div class="pronunciation">das leet</div></td>
+                                    <td><div class="german-word">die Lieder</div><div class="pronunciation">dee LEE-der</div></td>
+                                    <td class="meaning">Song</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Buch</div><div class="pronunciation">das bookh</div></td>
+                                    <td><div class="german-word">die Bücher</div><div class="pronunciation">dee BUE-kher</div></td>
+                                    <td class="meaning">Book</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Gespräch</div><div class="pronunciation">das geh-SHPRAYKH</div></td>
+                                    <td><div class="german-word">die Gespräche</div><div class="pronunciation">dee geh-SHPRAY-kheh</div></td>
+                                    <td class="meaning">Conversation</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Land</div><div class="pronunciation">das lant</div></td>
+                                    <td><div class="german-word">die Länder</div><div class="pronunciation">dee LEN-der</div></td>
+                                    <td class="meaning">Country</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Büro</div><div class="pronunciation">das bue-ROH</div></td>
+                                    <td><div class="german-word">die Büros</div><div class="pronunciation">dee bue-ROHS</div></td>
+                                    <td class="meaning">Office</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Haus</div><div class="pronunciation">das hows</div></td>
+                                    <td><div class="german-word">die Häuser</div><div class="pronunciation">dee HOY-zer</div></td>
+                                    <td class="meaning">House</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Klassenzimmer</div><div class="pronunciation">das KLAS-sen-tsim-mer</div></td>
+                                    <td><div class="german-word">die Klassenzimmer</div><div class="pronunciation">dee KLAS-sen-tsim-mer</div></td>
+                                    <td class="meaning">Classroom</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Visum</div><div class="pronunciation">das VEE-zum</div></td>
+                                    <td><div class="german-word">die Visa</div><div class="pronunciation">dee VEE-za</div></td>
+                                    <td class="meaning">Visa</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Bargeld</div><div class="pronunciation">das BAR-gelt</div></td>
+                                    <td><div class="german-word">-</div><div class="pronunciation">-</div></td>
+                                    <td class="meaning">Cash</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">das Formular</div><div class="pronunciation">das for-mu-LAHR</div></td>
+                                    <td><div class="german-word">die Formulare</div><div class="pronunciation">dee for-mu-LAH-reh</div></td>
+                                    <td class="meaning">Form</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-category" id="die-simple">
+                <div class="article-header" onclick="toggleCategory('die-simple')">
+                    <h3>🔴 DIE Articles (Feminine) - Simple Form</h3>
+                    <span>▼</span>
+                </div>
+                <div class="article-content">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>German Word</th><th>Plural Form</th><th>English Meaning</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div class="german-word">die Frage</div><div class="pronunciation">dee FRAH-geh</div></td>
+                                    <td><div class="german-word">die Fragen</div><div class="pronunciation">dee FRAH-gen</div></td>
+                                    <td class="meaning">Question</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Antwort</div><div class="pronunciation">dee ANT-vort</div></td>
+                                    <td><div class="german-word">die Antworten</div><div class="pronunciation">dee ANT-vor-ten</div></td>
+                                    <td class="meaning">Answer</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Präposition</div><div class="pronunciation">dee pray-po-zi-TSEE-ohn</div></td>
+                                    <td><div class="german-word">die Präpositionen</div><div class="pronunciation">dee pray-po-zi-TSEE-oh-nen</div></td>
+                                    <td class="meaning">Preposition</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Sprache</div><div class="pronunciation">dee SHPRAH-kheh</div></td>
+                                    <td><div class="german-word">die Sprachen</div><div class="pronunciation">dee SHPRAH-khen</div></td>
+                                    <td class="meaning">Language</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Aktivität</div><div class="pronunciation">dee ak-ti-vi-TAYT</div></td>
+                                    <td><div class="german-word">die Aktivitäten</div><div class="pronunciation">dee ak-ti-vi-TAY-ten</div></td>
+                                    <td class="meaning">Activity</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Aktion</div><div class="pronunciation">dee ak-TSEE-ohn</div></td>
+                                    <td><div class="german-word">die Aktionen</div><div class="pronunciation">dee ak-TSEE-oh-nen</div></td>
+                                    <td class="meaning">Action</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Konzentration</div><div class="pronunciation">dee kon-tsen-tra-TSEE-ohn</div></td>
+                                    <td><div class="german-word">-</div><div class="pronunciation">-</div></td>
+                                    <td class="meaning">Concentration</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Instruktion</div><div class="pronunciation">dee in-struk-TSEE-ohn</div></td>
+                                    <td><div class="german-word">die Instruktionen</div><div class="pronunciation">dee in-struk-TSEE-oh-nen</div></td>
+                                    <td class="meaning">Instruction</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Bedeutung</div><div class="pronunciation">dee beh-DOY-tung</div></td>
+                                    <td><div class="german-word">die Bedeutungen</div><div class="pronunciation">dee beh-DOY-tung-en</div></td>
+                                    <td class="meaning">Meaning</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Stadt</div><div class="pronunciation">dee shtaht</div></td>
+                                    <td><div class="german-word">die Städte</div><div class="pronunciation">dee SHTET-teh</div></td>
+                                    <td class="meaning">City</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Sache</div><div class="pronunciation">dee ZAH-kheh</div></td>
+                                    <td><div class="german-word">die Sachen</div><div class="pronunciation">dee ZAH-khen</div></td>
+                                    <td class="meaning">Thing</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Nationalität</div><div class="pronunciation">dee na-tsee-oh-nah-li-TAYT</div></td>
+                                    <td><div class="german-word">die Nationalitäten</div><div class="pronunciation">dee na-tsee-oh-nah-li-TAY-ten</div></td>
+                                    <td class="meaning">Nationality</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Kreditkarte</div><div class="pronunciation">dee kreh-DEET-kar-teh</div></td>
+                                    <td><div class="german-word">die Kreditkarten</div><div class="pronunciation">dee kreh-DEET-kar-ten</div></td>
+                                    <td class="meaning">Credit Card</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Fahrkarte</div><div class="pronunciation">dee FAHR-kar-teh</div></td>
+                                    <td><div class="german-word">die Fahrkarten</div><div class="pronunciation">dee FAHR-kar-ten</div></td>
+                                    <td class="meaning">Ticket</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">die Adresse</div><div class="pronunciation">dee ah-DREH-seh</div></td>
+                                    <td><div class="german-word">die Adressen</div><div class="pronunciation">dee ah-DREH-sen</div></td>
+                                    <td class="meaning">Address</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-category" id="der-simple">
+                <div class="article-header" onclick="toggleCategory('der-simple')">
+                    <h3>🔵 DER Articles (Masculine) - Simple Form</h3>
+                    <span>▼</span>
+                </div>
+                <div class="article-content">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>German Word</th><th>Plural Form</th><th>English Meaning</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div class="german-word">der Satz</div><div class="pronunciation">dehr zahts</div></td>
+                                    <td><div class="german-word">die Sätze</div><div class="pronunciation">dee ZET-seh</div></td>
+                                    <td class="meaning">Sentence</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">der Buchstabe</div><div class="pronunciation">dehr BOOKH-shtah-beh</div></td>
+                                    <td><div class="german-word">die Buchstaben</div><div class="pronunciation">dee BOOKH-shtah-ben</div></td>
+                                    <td class="meaning">Letter (alphabet)</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">der Chef</div><div class="pronunciation">dehr shef</div></td>
+                                    <td><div class="german-word">die Chefs</div><div class="pronunciation">dee shefs</div></td>
+                                    <td class="meaning">Boss/Chief</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">der Mann</div><div class="pronunciation">dehr man</div></td>
+                                    <td><div class="german-word">die Männer</div><div class="pronunciation">dee MEN-ner</div></td>
+                                    <td class="meaning">Man</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">der Klassengegenstand</div><div class="pronunciation">dehr KLAS-sen-geh-gen-shtant</div></td>
+                                    <td><div class="german-word">die Klassengegenstände</div><div class="pronunciation">dee KLAS-sen-geh-gen-shten-deh</div></td>
+                                    <td class="meaning">School Subject</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">der Reisepass</div><div class="pronunciation">dehr RYE-zeh-pas</div></td>
+                                    <td><div class="german-word">die Reisepässe</div><div class="pronunciation">dee RYE-zeh-peh-seh</div></td>
+                                    <td class="meaning">Passport</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">der Ausweis</div><div class="pronunciation">dehr OWS-vyes</div></td>
+                                    <td><div class="german-word">die Ausweise</div><div class="pronunciation">dee OWS-vye-zeh</div></td>
+                                    <td class="meaning">ID Card</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="german-word">der Einkauf</div><div class="pronunciation">dehr EYN-kowf</div></td>
+                                    <td><div class="german-word">die Einkäufe</div><div class="pronunciation">dee EYN-koy-feh</div></td>
+                                    <td class="meaning">Shopping</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-category" id="plural-only">
+                <div class="article-header" onclick="toggleCategory('plural-only')">
+                    <h3>👥 Plural Only Words</h3>
+                    <span>▼</span>
+                </div>
+                <div class="article-content">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>German Word</th><th>English Meaning</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div class="german-word">die Freunde</div><div class="pronunciation">dee FROYN-deh</div></td>
+                                    <td class="meaning">Friends</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complete Forms Tab -->
+        <div class="tab-content" id="complete-forms">
+            <div class="content-section">
+                <h2 class="section-title">📋 Complete Forms with Gender Variations</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Masculine Singular</th>
+                                <th>Masculine Plural</th>
+                                <th>Feminine Singular</th>
+                                <th>Feminine Plural</th>
+                                <th>English Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="meaning">Colleague</td>
+                                <td><div class="german-word">der Kollege</div><div class="pronunciation">dehr kol-LEH-geh</div></td>
+                                <td><div class="german-word">die Kollegen</div><div class="pronunciation">dee kol-LEH-gen</div></td>
+                                <td><div class="german-word">die Kollegin</div><div class="pronunciation">dee kol-LEH-gin</div></td>
+                                <td><div class="german-word">die Kolleginnen</div><div class="pronunciation">dee kol-LEH-gi-nen</div></td>
+                                <td class="meaning">Colleague</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verbs Tab -->
+        <div class="tab-content" id="verbs">
+            <div class="content-section">
+                <h2 class="section-title">🔄 German Verbs with Conjugations</h2>
+                
+                <!-- Regular Verbs -->
+                <div class="article-category" id="regular-verbs">
+                    <div class="article-header" onclick="toggleCategory('regular-verbs')">
+                        <h3>📝 Regular Verbs</h3>
+                        <span>▼</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr><th>Infinitive</th><th>Present Conjugation</th><th>English Meaning</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="german-word">wohnen</div><div class="pronunciation">VOH-nen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">wohne</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">wohnst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">wohnt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">wohnen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">wohnt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">wohnen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to live/reside</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">lernen</div><div class="pronunciation">LER-nen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">lerne</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">lernst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">lernt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">lernen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">lernt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">lernen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to learn</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">spielen</div><div class="pronunciation">SHPEE-len</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">spiele</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">spielst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">spielt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">spielen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">spielt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">spielen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to play</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">machen</div><div class="pronunciation">MAH-khen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">mache</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">machst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">macht</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">machen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">macht</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">machen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to make/do</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">zeigen</div><div class="pronunciation">TSYE-gen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">zeige</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">zeigst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">zeigt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">zeigen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">zeigt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">zeigen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to show</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">reisen</div><div class="pronunciation">RYE-zen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">reise</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">reist</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">reist</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">reisen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">reist</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">reisen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to travel</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">besuchen</div><div class="pronunciation">beh-ZOO-khen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">besuche</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">besuchst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">besucht</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">besuchen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">besucht</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">besuchen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to visit</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">schwimmen</div><div class="pronunciation">SHVIM-men</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">schwimme</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">schwimmst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">schwimmt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">schwimmen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">schwimmt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">schwimmen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to swim</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">tanzen</div><div class="pronunciation">TAN-tsen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">tanze</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">tanzt</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">tanzt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">tanzen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">tanzt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">tanzen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to dance</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">reiten</div><div class="pronunciation">RYE-ten</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">reite</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">reitest</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">reitet</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">reiten</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">reitet</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">reiten</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to ride</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">turnen</div><div class="pronunciation">TOOR-nen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">turne</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">turnst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">turnt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">turnen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">turnt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">turnen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to do gymnastics</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">klettern</div><div class="pronunciation">KLET-tern</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">klettere</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">kletterst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">klettert</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">klettern</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">klettert</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">klettern</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to climb</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Irregular Verbs -->
+                <div class="article-category" id="irregular-verbs">
+                    <div class="article-header" onclick="toggleCategory('irregular-verbs')">
+                        <h3>⚡ Irregular Verbs</h3>
+                        <span>▼</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr><th>Infinitive</th><th>Present Conjugation</th><th>English Meaning</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="german-word">kommen</div><div class="pronunciation">KOM-men</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">komme</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">kommst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">kommt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">kommen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">kommt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">kommen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to come</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">können</div><div class="pronunciation">KER-nen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">kann</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">kannst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">kann</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">können</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">könnt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">können</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">can/to be able to</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">sprechen</div><div class="pronunciation">SHPREH-khen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">spreche</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">sprichst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">spricht</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">sprechen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">sprecht</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">sprechen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to speak</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">sehen</div><div class="pronunciation">ZEH-en</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">sehe</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">siehst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">sieht</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">sehen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">seht</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">sehen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to see</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">lesen</div><div class="pronunciation">LEH-zen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">lese</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">liest</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">liest</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">lesen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">lest</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">lesen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to read</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">geben</div><div class="pronunciation">GEH-ben</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">gebe</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">gibst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">gibt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">geben</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">gebt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">geben</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to give</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">sein</div><div class="pronunciation">zyne</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">bin</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">bist</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">ist</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">sind</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">seid</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">sind</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to be</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">heißen</div><div class="pronunciation">HYE-sen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">heiße</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">heißt</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">heißt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">heißen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">heißt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">heißen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to be called/named</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">gehen</div><div class="pronunciation">GEH-en</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">gehe</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">gehst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">geht</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">gehen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">geht</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">gehen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to go/walk</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">fliegen</div><div class="pronunciation">FLEE-gen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">fliege</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">fliegst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">fliegt</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">fliegen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">fliegt</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">fliegen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to fly</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">treffen</div><div class="pronunciation">TREF-fen</div></td>
+                                        <td>
+                                            <table class="verb-table">
+                                                <tr><td class="verb-subject">ich</td><td class="verb-form">treffe</td></tr>
+                                                <tr><td class="verb-subject">du</td><td class="verb-form">triffst</td></tr>
+                                                <tr><td class="verb-subject">er/sie/es</td><td class="verb-form">trifft</td></tr>
+                                                <tr><td class="verb-subject">wir</td><td class="verb-form">treffen</td></tr>
+                                                <tr><td class="verb-subject">ihr</td><td class="verb-form">trefft</td></tr>
+                                                <tr><td class="verb-subject">sie/Sie</td><td class="verb-form">treffen</td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="meaning">to meet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Verbs -->
+                <div class="article-category" id="other-verbs">
+                    <div class="article-header" onclick="toggleCategory('other-verbs')">
+                        <h3>📚 Other Verbs</h3>
+                        <span>▼</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr><th>Infinitive</th><th>English Meaning</th><th>Notes</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="german-word">bedeuten</div><div class="pronunciation">beh-DOY-ten</div></td>
+                                        <td class="meaning">to mean</td>
+                                        <td>Regular conjugation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">buchstabieren</div><div class="pronunciation">BOOKH-shtah-bee-ren</div></td>
+                                        <td class="meaning">to spell</td>
+                                        <td>Regular conjugation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">beginnen</div><div class="pronunciation">beh-GIN-nen</div></td>
+                                        <td class="meaning">to begin</td>
+                                        <td>Irregular conjugation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">finden</div><div class="pronunciation">FIN-den</div></td>
+                                        <td class="meaning">to find</td>
+                                        <td>Irregular conjugation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">setzen</div><div class="pronunciation">ZET-sen</div></td>
+                                        <td class="meaning">to set/put</td>
+                                        <td>Regular conjugation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">schreiben</div><div class="pronunciation">SHRY-ben</div></td>
+                                        <td class="meaning">to write</td>
+                                        <td>Irregular conjugation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">hören</div><div class="pronunciation">HER-en</div></td>
+                                        <td class="meaning">to hear</td>
+                                        <td>Regular conjugation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">brauchen</div><div class="pronunciation">BROW-khen</div></td>
+                                        <td class="meaning">to need</td>
+                                        <td>Regular conjugation</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Adjectives & Others Tab -->
+        <div class="tab-content" id="adjectives-others">
+            <div class="content-section">
+                <h2 class="section-title">✨ Adjectives & Other Words</h2>
+                
+                <!-- Adjectives -->
+                <div class="article-category" id="adjectives">
+                    <div class="article-header" onclick="toggleCategory('adjectives')">
+                        <h3>🎨 Adjectives</h3>
+                        <span>▼</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr><th>German Adjective</th><th>English Meaning</th><th>Example Usage</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="german-word">groß</div><div class="pronunciation">grohs</div></td>
+                                        <td class="meaning">big/large</td>
+                                        <td>Das ist ein großes Haus</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">klein</div><div class="pronunciation">kline</div></td>
+                                        <td class="meaning">small</td>
+                                        <td>Das ist ein kleines Auto</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">richtig</div><div class="pronunciation">RIKH-tikh</div></td>
+                                        <td class="meaning">correct/right</td>
+                                        <td>Das ist richtig</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">falsch</div><div class="pronunciation">falsh</div></td>
+                                        <td class="meaning">false/wrong</td>
+                                        <td>Das ist falsch</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">klar</div><div class="pronunciation">klahr</div></td>
+                                        <td class="meaning">clear</td>
+                                        <td>Das ist klar</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Words -->
+                <div class="article-category" id="other-words">
+                    <div class="article-header" onclick="toggleCategory('other-words')">
+                        <h3>🔤 Other Words</h3>
+                        <span>▼</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr><th>German Word</th><th>Word Type</th><th>English Meaning</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="german-word">danke</div><div class="pronunciation">DAN-keh</div></td>
+                                        <td class="meaning">Interjection</td>
+                                        <td class="meaning">thank you</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">die Frau</div><div class="pronunciation">dee frow</div></td>
+                                        <td class="meaning">Noun</td>
+                                        <td class="meaning">woman/wife</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">die Option</div><div class="pronunciation">dee op-TSEE-ohn</div></td>
+                                        <td class="meaning">Noun</td>
+                                        <td class="meaning">option</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">andere</div><div class="pronunciation">AN-deh-reh</div></td>
+                                        <td class="meaning">Adjective</td>
+                                        <td class="meaning">other/another</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">zusammen</div><div class="pronunciation">tsu-ZAM-men</div></td>
+                                        <td class="meaning">Adverb</td>
+                                        <td class="meaning">together</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="german-word">zu</div><div class="pronunciation">tsoo</div></td>
+                                        <td class="meaning">Preposition</td>
+                                        <td class="meaning">to/at</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Performance tracking variables
+        let totalWordsCount = 95;
+        let searchStartTime = 0;
+
+        // Show performance warning for large datasets
+        if (totalWordsCount > 1000) {
+            document.getElementById('performanceWarning').classList.remove('hidden');
+        }
+
+        // Under Construction Alert
+        function showUnderConstructionAlert(sectionName) {
+            alert(`🚧 ${sectionName} Section Under Construction 🚧\n\nThis section is currently being developed and will be available soon!\n\nStay tuned for exciting German learning tools and practice exercises.`);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (!navContainer.contains(event.target) && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active to clicked tab
+            event.target.classList.add('active');
+
+            // Update search when switching tabs
+            performSearch();
+        }
+        
+        // Accordion functionality
+        function toggleCategory(categoryId) {
+            const category = document.getElementById(categoryId);
+            category.classList.toggle('collapsed');
+        }
+        
+        // Enhanced Search functionality with performance tracking
+        function performSearch() {
+            searchStartTime = performance.now();
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            let visibleCount = 0;
+            
+            // Get all searchable elements
+            const allRows = document.querySelectorAll('tbody tr');
+            const allCategories = document.querySelectorAll('.article-category');
+            const allSections = document.querySelectorAll('.content-section');
+            
+            if (searchTerm === '') {
+                // Show all elements when search is empty
+                allRows.forEach(row => {
+                    row.style.display = '';
+                    visibleCount++;
+                });
+                allCategories.forEach(cat => cat.style.display = '');
+                allSections.forEach(section => section.style.display = '');
+                
+                // Collapse all categories when search is cleared
+                allCategories.forEach(cat => cat.classList.add('collapsed'));
+            } else {
+                // Search through content
+                allRows.forEach(row => {
+                    const rowText = row.textContent.toLowerCase();
+                    if (rowText.includes(searchTerm)) {
+                        row.style.display = '';
+                        visibleCount++;
+                        
+                        // Expand parent category if match found
+                        const category = row.closest('.article-category');
+                        if (category) {
+                            category.classList.remove('collapsed');
+                            category.style.display = '';
+                        }
+                        
+                        // Show parent section
+                        const section = row.closest('.content-section');
+                        if (section) {
+                            section.style.display = '';
+                        }
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                // Hide categories with no visible rows
+                allCategories.forEach(cat => {
+                    const visibleRowsInCat = cat.querySelectorAll('tbody tr:not([style*="display: none"])');
+                    if (visibleRowsInCat.length === 0) {
+                        cat.style.display = 'none';
+                    }
+                });
+                
+                // Hide sections with no visible categories
+                allSections.forEach(section => {
+                    const visibleCatsInSection = section.querySelectorAll('.article-category:not([style*="display: none"])');
+                    const visibleTablesInSection = section.querySelectorAll('table tbody tr:not([style*="display: none"])');
+                    if (visibleCatsInSection.length === 0 && visibleTablesInSection.length === 0) {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Update search statistics
+            const searchTime = Math.round(performance.now() - searchStartTime);
+            document.getElementById('visibleWords').textContent = visibleCount;
+            document.getElementById('searchTime').textContent = searchTime + 'ms';
+            document.getElementById('totalWords').textContent = totalWordsCount;
+        }
+        
+        // Search with debouncing for better performance
+        let searchTimeout;
+        document.getElementById('searchBox').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(performSearch, 150); // 150ms delay for better performance
+        });
+
+        // Initialize with all categories collapsed except the first one
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.article-category');
+            categories.forEach((cat, index) => {
+                if (index > 0) {
+                    cat.classList.add('collapsed');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

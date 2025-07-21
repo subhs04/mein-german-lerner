@@ -121,6 +121,93 @@
         .hamburger.active span:nth-child(3) {
             transform: rotate(45deg) translate(-5px, -6px);
         }
+
+        /* Search Box Styles */
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .search-box:focus {
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .search-box::placeholder {
+            color: #6c757d;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1001;
+            display: none;
+            margin-top: 10px;
+        }
+        
+        .search-result-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f8f9fa;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .search-result-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+        
+        .search-result-content {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .search-result-page {
+            color: #667eea;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .no-results {
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+        }
         
         /* Mobile Menu Overlay */
         .mobile-menu {
@@ -380,6 +467,17 @@
                 display: flex;
             }
             
+            .search-container {
+                margin: 0 10px;
+                max-width: none;
+                flex: 1;
+            }
+            
+            .search-box {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+            
             .hero-section {
                 padding: 40px 20px;
             }
@@ -437,6 +535,17 @@
                 <span class="flag">🇩🇪</span>
                 German Hub
             </a>
+            
+            <!-- Search Container -->
+            <div class="search-container">
+                <input type="text" 
+                       class="search-box" 
+                       id="globalSearch" 
+                       placeholder="🔍 Search German words, phrases, or pages..."
+                       onkeyup="performSearch(this.value)"
+                       autocomplete="off">
+                <div class="search-results" id="searchResults"></div>
+            </div>
             
             <!-- Desktop Navigation -->
             <ul class="nav-menu">
@@ -1008,6 +1117,223 @@
 
         window.addEventListener('offline', () => {
             console.log('Gone offline');
+        });
+
+        // Global Search Functionality
+        let searchIndex = null;
+        let searchTimeout = null;
+
+        // Content mapping for all pages in the application
+        const pageContent = {
+            'index.html': {
+                title: 'German Learning Hub - Home',
+                content: 'German Learning Hub vocabulary grammar practice tools comprehensive platform learning words phrases pronunciation interactive content responsive tables offline access Guten Tag vocabulary words learning categories',
+                url: 'index.html'
+            },
+            'content/vocabulary/index.html': {
+                title: 'German Vocabulary Hub',
+                content: 'vocabulary W-words professions food drinks city locations German words vocabulary sections browse',
+                url: 'content/vocabulary/index.html'
+            },
+            'content/vocabulary/w-words-verbs.html': {
+                title: 'German W-Words - Complete Reference',
+                content: 'W-words Was what Wer who Wen whom accusative Wem whom dative Wessen whose Welche which Wie how Wie viel how much Wie viele how many Warum why Wieso why informal Weshalb why formal Wo where static Wohin where to Woher where from Wodurch through what Worauf on what Worin in what Wobei whereby Wann when specific Wenn when if conditional Wie lange how long Wie oft how often Wie spät what time Wochentag day week Während during Wegen because of Womöglich possibly Weder neither Weiter further Wieder again Wichtig important German question words interrogative pronouns relative pronouns verbs complete reference',
+                url: 'content/vocabulary/w-words-verbs.html'
+            },
+            'content/vocabulary/professions.html': {
+                title: 'German Professions',
+                content: 'professions jobs careers Sekretär Sekretärin secretary Manager Managerin manager Lehrer Lehrerin teacher Arzt Ärztin doctor Ingenieur Ingenieurin engineer Polizist Polizistin police officer Verkäufer Verkäuferin salesperson Schriftsteller Schriftstellerin writer Journalist Journalistin journalist Bäcker Bäckerin baker Architekt Architektin architect Koch Köchin cook chef Krankenpfleger Krankenschwester nurse Geschäftsmann Geschäftsfrau businessperson Pilot Pilotin pilot Sänger Sängerin singer Friseur Friseurin hairdresser Taxifahrer Taxifahrerin taxi driver Kellner Kellnerin waiter server Flugbegleiter Flugbegleiterin flight attendant Bankangestellte bank employee Schüler Schülerin student Programmierer Programmiererin programmer German occupations work masculine feminine forms',
+                url: 'content/vocabulary/professions.html'
+            },
+            'content/vocabulary/profession_page.html': {
+                title: 'German Professions Page',
+                content: 'professions jobs careers occupations German work professional vocabulary',
+                url: 'content/vocabulary/profession_page.html'
+            },
+            'content/vocabulary/food_drinks_vehicles.html': {
+                title: 'German Food, Drinks & Vehicles',
+                content: 'food drinks vehicles Essen eat trinken drink Apfel apple Banane banana Orange orange Erdbeere strawberry Traube grape Birne pear Zitrone lemon Karotte carrot Tomate tomato Kartoffel potato Zwiebel onion Salat lettuce Kohl cabbage Fleisch meat Hähnchen chicken Rindfleisch beef Fisch fish Wurst sausage Ei egg Milch milk Käse cheese Butter butter Joghurt yogurt Brot bread Brötchen roll Reis rice Nudel pasta Wasser water Saft juice Kaffee coffee Tee tea Bier beer Wein wine Auto car Bus bus Zug train Flugzeug airplane Fahrrad bicycle Motorrad motorcycle Schiff ship Boot boat Taxi taxi Straßenbahn tram U-Bahn subway LKW truck lecker delicious gut good schlecht bad süß sweet sauer sour salzig salty scharf spicy heiß hot kalt cold frisch fresh hungrig hungry durstig thirsty satt full kochen cook German vocabulary',
+                url: 'content/vocabulary/food_drinks_vehicles.html'
+            },
+            'content/vocabulary/city-locations.html': {
+                title: 'German City Locations',
+                content: 'city locations Stadt city Straße street Platz square Park park Bahnhof train station Flughafen airport Kirche church Brücke bridge Landungsbrücke landing bridge Kunsthalle art gallery Bank bank Insel island Bibliothek library Schule school Post post office Autobahn highway Haltestelle bus stop Museum museum Planetarium planetarium Rathaus town hall Theater theater Konzerthaus concert hall Einkaufszentrum shopping center Hotel hotel Krankenhaus hospital Restaurant restaurant Meer sea Denkmal monument Markt market Turm tower Tierpark zoo Zoo zoo Friedhof cemetery Hafen harbor Garten garden Spielplatz playground Fluss river Strand beach Parkplatz parking lot German places urban vocabulary der die das articles',
+                url: 'content/vocabulary/city-locations.html'
+            },
+            'content/vocabulary/german_time_days.html': {
+                title: 'German Time & Days',
+                content: 'time days Zeit time Uhr clock Uhrzeit time Stunde hour Minute minute Sekunde second Montag Monday Dienstag Tuesday Mittwoch Wednesday Donnerstag Thursday Freitag Friday Samstag Saturday Sonntag Sunday Morgen morning Vormittag forenoon Mittag noon Nachmittag afternoon Abend evening Nacht night heute today gestern yesterday morgen tomorrow jetzt now früh early spät late pünktlich on time drei Uhr three oclock halb vier half past three Viertel nach quarter past Viertel vor quarter to German temporal vocabulary days week',
+                url: 'content/vocabulary/german_time_days.html'
+            },
+            'content/vocabulary/family_classroomArticles.html': {
+                title: 'German Family & Classroom Articles',
+                content: 'family classroom articles Familie family Vater father Mutter mother Sohn son Tochter daughter Bruder brother Schwester sister Großvater grandfather Großmutter grandmother Onkel uncle Tante aunt Cousin male cousin Cousine female cousin Neffe nephew Nichte niece Ehemann husband Ehefrau wife Schwiegervater father-in-law Schwiegermutter mother-in-law Schwiegersohn son-in-law Schwiegertochter daughter-in-law Enkelsohn grandson Enkeltochter granddaughter Bleistift pencil Kuli ballpoint pen Filzstift felt-tip pen Marker marker Radiergummi eraser Spitzer pencil sharpener Ordner folder Stuhl chair Tisch table Computer computer Taschenrechner calculator Schere scissors Tafel blackboard Tasche bag Büroklammer paper clip Tür door Buch book Heft notebook Wörterbuch dictionary Lineal ruler Mäppchen pencil case Fenster window Name name Vorname first name Nachname last name Alter age Geburtsort birthplace Geburtsdatum date birth Adresse address ledig single verlobt engaged verheiratet married geschieden divorced verwitwet widowed Staatsangehörigkeit nationality Sprachen languages Muttersprache mother tongue Fremdsprache foreign language Beruf profession Ausbildung training Studium studies Student student arbeitslos unemployed German family classroom vocabulary der die das articles',
+                url: 'content/vocabulary/family_classroomArticles.html'
+            },
+            'content/grammar/index.html': {
+                title: 'German Grammar Hub',
+                content: 'grammar German grammar articles cases irregular verbs sentence structure comprehensive guides examples conjugation tables',
+                url: 'content/grammar/index.html'
+            },
+            'content/grammar/german_articles.html': {
+                title: 'German Articles & Cases',
+                content: 'articles cases der die das den einen eine ein kein keine keinen definite indefinite negative possessive mein meine meinen dein deine deinen sein seine seinen ihr ihre ihren unser unsere unseren euer eure euren Ihr Ihre Ihren nominative accusative dative genitive Nominativ Akkusativ Bestimmter Artikel Unbestimmter Artikel Negationsartikel Possessiv Artikel Wer oder was Wen oder was German articles cases possessive pronouns declension grammar',
+                url: 'content/grammar/german_articles.html'
+            },
+            'content/grammar/german_irregular_verbs.html': {
+                title: 'German Irregular Verbs',
+                content: 'irregular verbs fahren drive ich fahre du fährst er fährt wir fahren ihr fahrt sie fahren schlafen sleep ich schlafe du schläfst er schläft wir schlafen ihr schlaft sie schlafen laufen run walk ich laufe du läufst er läuft wir laufen ihr lauft sie laufen sehen see ich sehe du siehst er sieht wir sehen ihr seht sie sehen lesen read ich lese du liest er liest wir lesen ihr lest sie lesen sprechen speak ich spreche du sprichst er spricht wir sprechen ihr sprecht sie sprechen essen eat ich esse du isst er isst wir essen ihr esst sie essen geben give ich gebe du gibst er gibt wir geben ihr gebt sie geben Unregelmäßige Verben Stammwechsel stem change Konjugation conjugation German irregular verbs verb forms strong verbs weak verbs',
+                url: 'content/grammar/german_irregular_verbs.html'
+            },
+            'content/vocabulary/unified_vocabulary_reference.html': {
+                title: 'Unified German Vocabulary Reference',
+                content: 'unified vocabulary reference complete German words phrases expressions comprehensive guide W-words Wer who Was what Wo where Wann when Wie how Warum why question words interrogative pronouns food drinks Apfel apple Banane banana Wasser water Kaffee coffee vehicles Auto car Bus bus Zug train Flugzeug airplane city locations Bahnhof train station Museum museum Park park time days Montag Monday Dienstag Tuesday Mittwoch Wednesday heute today gestern yesterday morgen tomorrow family Vater father Mutter mother Bruder brother Schwester sister classroom Bleistift pencil Buch book Stuhl chair Tisch table professions Arzt doctor Lehrer teacher Koch chef Verkäufer salesperson pronunciation IPA phonetic transcription articles der die das grammar cases nominative accusative dative genitive German learning vocabulary tables reference guide all categories combined comprehensive complete unified',
+                url: 'content/vocabulary/unified_vocabulary_reference.html'
+            }
+        };
+
+        function performSearch(query) {
+            clearTimeout(searchTimeout);
+            
+            if (!query || query.length < 2) {
+                hideSearchResults();
+                return;
+            }
+
+            searchTimeout = setTimeout(() => {
+                const results = searchContent(query.toLowerCase());
+                displaySearchResults(results, query);
+            }, 300);
+        }
+
+        function searchContent(query) {
+            const results = [];
+            
+            Object.entries(pageContent).forEach(([path, page]) => {
+                const titleMatch = page.title.toLowerCase().includes(query);
+                const contentMatch = page.content.toLowerCase().includes(query);
+                
+                if (titleMatch || contentMatch) {
+                    let relevanceScore = 0;
+                    
+                    // Higher score for title matches
+                    if (titleMatch) relevanceScore += 10;
+                    if (contentMatch) relevanceScore += 5;
+                    
+                    // Higher score for exact word matches
+                    const words = query.split(' ');
+                    words.forEach(word => {
+                        if (word.length > 1) {
+                            const regex = new RegExp('\\b' + word + '\\b', 'i');
+                            if (regex.test(page.title)) relevanceScore += 5;
+                            if (regex.test(page.content)) relevanceScore += 2;
+                        }
+                    });
+
+                    // Extract relevant snippet
+                    const snippet = extractSnippet(page.content, query);
+                    
+                    results.push({
+                        title: page.title,
+                        content: snippet,
+                        url: page.url,
+                        score: relevanceScore
+                    });
+                }
+            });
+
+            // Sort by relevance score
+            return results.sort((a, b) => b.score - a.score).slice(0, 8);
+        }
+
+        function extractSnippet(content, query) {
+            const words = content.split(' ');
+            const queryWords = query.toLowerCase().split(' ');
+            let bestStart = 0;
+            let bestScore = 0;
+
+            // Find the best 15-word snippet that contains query terms
+            for (let i = 0; i <= words.length - 15; i++) {
+                const snippet = words.slice(i, i + 15).join(' ').toLowerCase();
+                let score = 0;
+                
+                queryWords.forEach(qWord => {
+                    if (qWord.length > 1 && snippet.includes(qWord)) {
+                        score++;
+                    }
+                });
+
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestStart = i;
+                }
+            }
+
+            const snippet = words.slice(bestStart, bestStart + 15).join(' ');
+            return snippet.length > 100 ? snippet.substring(0, 100) + '...' : snippet;
+        }
+
+        function displaySearchResults(results, query) {
+            const searchResults = document.getElementById('searchResults');
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">No results found for "' + query + '"</div>';
+            } else {
+                searchResults.innerHTML = results.map(result => `
+                    <div class="search-result-item" onclick="navigateToPage('${result.url}')">
+                        <div class="search-result-title">${highlightQuery(result.title, query)}</div>
+                        <div class="search-result-content">${highlightQuery(result.content, query)}</div>
+                        <div class="search-result-page">${result.url}</div>
+                    </div>
+                `).join('');
+            }
+            
+            searchResults.style.display = 'block';
+        }
+
+        function highlightQuery(text, query) {
+            const words = query.split(' ').filter(word => word.length > 1);
+            let highlightedText = text;
+            
+            words.forEach(word => {
+                const regex = new RegExp(`(${word})`, 'gi');
+                highlightedText = highlightedText.replace(regex, '<strong style="background-color: #fff3cd; color: #856404;">$1</strong>');
+            });
+            
+            return highlightedText;
+        }
+
+        function navigateToPage(url) {
+            window.location.href = url;
+        }
+
+        function hideSearchResults() {
+            const searchResults = document.getElementById('searchResults');
+            searchResults.style.display = 'none';
+        }
+
+        // Hide search results when clicking outside
+        document.addEventListener('click', function(event) {
+            const searchContainer = document.querySelector('.search-container');
+            if (!searchContainer.contains(event.target)) {
+                hideSearchResults();
+            }
+        });
+
+        // Handle search result navigation with keyboard
+        document.getElementById('globalSearch').addEventListener('keydown', function(event) {
+            const searchResults = document.getElementById('searchResults');
+            const resultItems = searchResults.querySelectorAll('.search-result-item');
+            
+            if (event.key === 'Escape') {
+                hideSearchResults();
+                this.blur();
+            } else if (event.key === 'Enter' && resultItems.length > 0) {
+                // Navigate to first result on Enter
+                const firstResult = resultItems[0];
+                const url = firstResult.getAttribute('onclick').match(/'([^']+)'/)[1];
+                navigateToPage(url);
+            }
         });
     </script>
 </body>
