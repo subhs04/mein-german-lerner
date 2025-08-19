@@ -12,7 +12,9 @@ const urlsToCache = [
   './content/vocabulary/german_time_days.html',
   './content/vocabulary/family_classroomArticles.html',
   './content/grammar/index.html',
-  './content/grammar/german_irregular_verbs.html'
+  './content/grammar/german_irregular_verbs.html',
+  './content/grammar/Dativ.html',
+  './content/grammar/trennbare_verben_note.html'
 ];
 
 // Maximum cache age in milliseconds (1 hour)
