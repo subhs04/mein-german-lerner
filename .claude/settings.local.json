@@ -2,7 +2,18 @@
   "permissions": {
     "allow": [
       "Bash(rg:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(python3:*)",
+      "Bash(find:*)",
+      "Bash(chmod:*)",
+      "Bash(./optimize_files.sh)",
+      "Bash(for file in /Users/subhankarbhattacharjee/workspaces/code/mein-german-lerner/content/vocabulary/*.html)",
+      "Bash(do)",
+      "Bash(if ! grep -q \"vocabulary.css\" \"$file\")",
+      "Bash(then)",
+      "Bash(fi)",
+      "Bash(done)"
     ],
     "deny": []
   }
